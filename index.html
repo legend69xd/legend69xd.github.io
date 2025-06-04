@@ -3,876 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prathamesh Upadhye - Professional Portfolio</title>
-    <!-- Google Fonts - Fira Code for a monospace feel, and Montserrat for clean headings -->
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Prathamesh Upadhye - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables for Minimalist and Modern theme (Crisp White, Deep Charcoal, Subtle Accents) */
-        :root {
-            --bg-dark: #1A1A1A; /* Deep Charcoal */
-            --bg-medium: #282828; /* Slightly lighter Charcoal for panels */
-            --bg-light: #3A3A3A; /* Lighter Charcoal for internal elements */
-            --accent-main: #E0E0E0; /* Very light grey, almost crisp white, for primary accents */
-            --accent-highlight: #B0B0B0; /* Slightly darker light grey for secondary accents/highlights */
-            --text-light: #FFFFFF; /* Crisp White for main text */
-            --text-muted: #A0A0A0; /* Muted Grey for secondary text */
-            --border-color: var(--text-muted); /* Borders based on muted text */
-            --shadow-color: rgba(0, 0, 0, 0.3); /* Subtle black shadow */
-            --transition-speed: 0.3s;
+        /* Custom scrollbar for a sleeker look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #27272a; /* zinc-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #52525b; /* zinc-600 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #71717a; /* zinc-500 */
         }
 
-        /* General Body Styles */
         body {
-            margin: 0;
-            font-family: 'Fira Code', monospace;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            /* Removed overflow: hidden from body to allow overall page scrolling */
-            font-size: 16px;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            box-sizing: border-box;
-            background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.03) 1px, transparent 1px); /* Subtle background pattern */
-            background-size: 20px 20px;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Site Wrapper for Full Page Grid Layout */
-        .site-wrapper {
-            display: grid;
-            grid-template-columns: 320px 1fr; /* Sidebar fixed, content flexible */
-            grid-template-rows: auto 1fr auto; /* Header, Main, Footer */
-            grid-template-areas:
-                "header header"
-                "sidebar content"
-                "footer footer";
-            flex-grow: 1;
-            width: 100vw;
-            height: 100vh; /* Fixed height for desktop */
-            overflow: hidden; /* Hide overflow for desktop grid layout */
-            background-color: var(--bg-medium);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 0 20px var(--shadow-color);
-        }
-
-        /* Top Bar (Header) */
-        .top-bar {
-            grid-area: header;
-            background-color: var(--bg-dark);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        /* Custom hover effect for panels */
+        .panel-hover-effect {
             position: relative;
-            z-index: 20;
+            transition: all 0.3s ease-in-out;
+            border: 1px solid transparent; /* Default transparent border */
         }
 
-        .header-left .system-status {
-            display: none; /* Removed for simplicity */
+        .panel-hover-effect:hover {
+            border-color: #52525b; /* zinc-600 on hover */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Subtle shadow on hover */
+            transform: translateY(-2px); /* Slight lift effect */
         }
 
-        .header-center h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.2em;
-            margin: 0;
-            color: var(--accent-main);
-            text-shadow: 0 0 5px var(--accent-main), 0 0 10px rgba(255, 255, 255, 0.1); /* Subtle glow for name */
-            animation: glowSubtle 1.5s infinite alternate; /* Subtle glow animation */
-            line-height: 1.2;
-            white-space: nowrap;
+        /* Specific styling for list items within panels */
+        .panel-content ul li {
+            margin-bottom: 0.5rem; /* Spacing between list items */
+        }
+        .panel-content ul li:last-child {
+            margin-bottom: 0; /* No margin for the last item */
         }
 
-        .header-center .tagline {
-            font-size: 0.7em;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            margin-top: 5px;
-            animation: none; /* Removed scanline animation */
-        }
-
-        .header-right .current-time {
-            color: var(--accent-main);
-            font-size: 0.9em;
-            letter-spacing: 1px;
-        }
-
-        /* Left Panel (Sidebar) */
-        .left-panel {
-            grid-area: sidebar;
-            background-color: var(--bg-dark);
-            padding: 30px 20px;
-            border-right: 1px solid var(--border-color);
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            z-index: 15;
-            overflow-y: auto; /* Allows internal scrolling if sidebar content overflows */
-        }
-
-        .section-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.2em;
-            color: var(--accent-highlight);
-            margin-bottom: 20px;
-            padding-bottom: 5px;
-            border-bottom: 1px dashed var(--accent-main);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            width: 100%;
-            text-align: center;
-        }
-
-        .profile-meta {
-            margin-bottom: 40px;
-            width: 100%;
-        }
-
-        .contact-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            font-size: 0.85em;
-            color: var(--text-muted);
-            align-items: flex-start;
-            width: 100%;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 5px 0;
-        }
-
-        .contact-item i {
-            color: var(--accent-main);
-            font-size: 1em;
-        }
-
-        .social-matrix {
-            margin-top: 30px;
-            margin-bottom: 40px;
-            width: 100%;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-        }
-
-        .social-icons a {
-            color: var(--accent-main);
-            font-size: 1.8em;
-            transition: color var(--transition-speed), transform var(--transition-speed);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
-        }
-
-        .social-icons a:hover {
-            color: var(--accent-highlight);
-            transform: translateY(-5px) scale(1.1);
-            text-shadow: 0 0 10px var(--accent-highlight), 0 0 20px rgba(255, 255, 255, 0.05);
-        }
-
-        /* Main Navigation */
-        .main-navigation {
-            width: 100%;
-            margin-bottom: 40px;
-        }
-
-        .main-navigation ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .main-navigation a {
-            display: block;
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.95em;
-            padding: 12px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            background-color: var(--bg-medium);
-            text-align: left;
-            font-weight: 500;
-            transition: all var(--transition-speed);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .main-navigation a:hover, .main-navigation a.active-link {
-            background-color: rgba(255, 255, 255, 0.05); /* Subtle background change */
-            color: var(--text-light);
-            box-shadow: 0 0 15px var(--accent-main), 0 0 25px rgba(255, 255, 255, 0.1);
-            border-color: var(--accent-main);
-        }
-
-        /* Content Area */
-        .content-area {
-            grid-area: content;
-            background-color: var(--bg-medium);
-            padding: 30px 40px;
-            position: relative;
-            overflow-y: auto; /* Allows internal scrolling if content overflows */
-            scroll-behavior: smooth;
-        }
-
-        .page-content {
-            display: none;
-            padding: 20px;
-            background-color: var(--bg-dark);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 0 10px var(--shadow-color);
-            margin-bottom: 30px;
-            border-radius: 8px;
+        /* Styles for content pages and transitions */
+        .content-page {
+            transition: opacity 0.4s ease-in-out;
             opacity: 0;
-            transform: translateY(0); /* Minimal animation */
-            transition: opacity 0.6s ease-out;
+            display: none; /* Hidden by default */
         }
 
-        .page-content.active {
-            display: block;
+        .content-page.active {
             opacity: 1;
-            transform: translateY(0);
+            display: block; /* Show active page */
         }
 
-        .content-heading {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2em;
-            color: var(--accent-main);
-            border-bottom: 1px dashed var(--accent-highlight);
-            padding-bottom: 10px;
-            margin-bottom: 25px;
-            text-align: left;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            position: relative;
+        /* Active navigation link styling */
+        .nav-link.active {
+            color: #a1a1aa; /* zinc-400 */
+            border-bottom: 2px solid #a1a1aa; /* zinc-400 */
         }
 
-        .content-heading .blink-cursor {
-            display: none; /* Removed for simplicity */
+        /* Social icon styling */
+        .social-icon {
+            transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
         }
-
-        /* Timeline Styles */
-        .timeline {
-            position: relative;
-            padding-left: 20px;
-            border-left: 2px solid var(--accent-highlight);
-        }
-
-        .timeline-item {
-            margin-bottom: 25px;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -28px;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            background-color: var(--accent-main);
-            border: 2px solid var(--accent-highlight);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-main);
-        }
-
-        .timeline-item h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--accent-highlight);
-            font-size: 1.1em;
-            margin-top: 0;
-            margin-bottom: 3px;
-            font-weight: 600;
-        }
-
-        .timeline-item .job-title {
-            color: var(--accent-main);
-            font-size: 0.9em;
-            margin-bottom: 3px;
-        }
-
-        .timeline-item p {
-            margin-bottom: 3px;
-            color: var(--text-muted);
-            font-size: 0.85em;
-        }
-
-        .timeline-item ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 8px;
-        }
-
-        .timeline-item ul li {
-            position: relative;
-            padding-left: 15px;
-            margin-bottom: 3px;
-            font-size: 0.85em;
-            color: var(--text-light);
-        }
-
-        .timeline-item ul li::before {
-            content: '\2023'; /* Bullet point */
-            color: var(--accent-main);
-            font-size: 1.1em;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        /* Grid Layout for Projects and Skills */
-        .project-grid, .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .project-item, .skill-category {
-            background-color: var(--bg-light);
-            border: 1px solid var(--accent-highlight);
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
-            transition: all var(--transition-speed);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-item:hover, .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 15px var(--accent-main), 0 0 25px rgba(255, 255, 255, 0.05);
-            border-color: var(--accent-main);
-        }
-
-        .project-item h3, .skill-category h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--accent-highlight);
-            font-size: 1.15em;
-            margin-top: 0;
-            margin-bottom: 12px;
-            border-bottom: 1px solid var(--accent-main);
-            padding-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .project-item ul, .skill-category ul {
-            padding: 0;
-            list-style: none;
-        }
-
-        .project-item li, .skill-category li {
-            position: relative;
-            padding-left: 18px;
-            margin-bottom: 5px;
-            font-size: 0.85em;
-            color: var(--text-light);
-        }
-
-        .project-item li::before, .skill-category li::before {
-            content: '\2023'; /* Bullet point */
-            color: var(--accent-main);
-            font-size: 1.1em;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        /* Bottom Bar (Footer) */
-        .bottom-bar {
-            grid-area: footer;
-            background-color: var(--bg-dark);
-            padding: 15px 30px;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
-            color: var(--text-muted);
-            font-size: 0.8em;
-            letter-spacing: 0.5px;
-            position: relative;
-            z-index: 20;
-        }
-
-        .footer-status {
-            display: none; /* Removed for simplicity */
-        }
-
-        /* Keyframe Animations */
-        @keyframes glowSubtle {
-            0% { text-shadow: 0 0 5px var(--accent-main), 0 0 10px rgba(255, 255, 255, 0.1); }
-            100% { text-shadow: 0 0 8px var(--accent-main), 0 0 15px rgba(255, 255, 255, 0.05); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 900px) {
-            .site-wrapper {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto auto 1fr auto; /* Header, Sidebar, Content, Footer */
-                grid-template-areas:
-                    "header"
-                    "sidebar"
-                    "content"
-                    "footer";
-                height: auto; /* Allow height to adjust to content */
-                min-height: 100vh;
-                overflow: visible; /* Allow content to overflow and body to scroll */
-            }
-
-            .top-bar {
-                padding: 10px 20px;
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .header-center h1 {
-                font-size: 1.8em;
-            }
-
-            .header-center .tagline {
-                font-size: 0.6em;
-            }
-
-            .left-panel {
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-                padding: 20px 15px;
-                overflow-y: visible; /* Allow sidebar content to push layout if needed */
-            }
-
-            .profile-meta {
-                margin-bottom: 20px;
-            }
-
-            .section-title {
-                margin-bottom: 15px;
-            }
-
-            .contact-grid {
-                align-items: center;
-            }
-
-            .social-matrix {
-                margin-top: 20px;
-                margin-bottom: 20px;
-            }
-
-            .main-navigation ul {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 8px;
-            }
-
-            .main-navigation a {
-                padding: 8px 12px;
-                font-size: 0.85em;
-                text-align: center;
-            }
-
-            .content-area {
-                padding: 20px 25px;
-                overflow-y: visible; /* Allow content to push layout if needed */
-            }
-
-            .page-content {
-                padding: 15px;
-                margin-bottom: 20px;
-            }
-
-            .content-heading {
-                font-size: 1.6em;
-                text-align: center;
-                margin-bottom: 20px;
-            }
-
-            .project-grid, .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .timeline-item {
-                margin-bottom: 15px;
-            }
-
-            .bottom-bar {
-                padding: 10px 20px;
-            }
-        }
-
-        @media (max-width: 500px) {
-            .top-bar {
-                padding: 8px 15px;
-            }
-            .header-center h1 {
-                font-size: 1.5em;
-            }
-            .header-left .system-status, .header-right .current-time {
-                font-size: 0.8em;
-            }
-            .left-panel {
-                padding: 15px 10px;
-            }
-            .section-title {
-                font-size: 1.1em;
-            }
-            .contact-grid {
-                font-size: 0.75em;
-                gap: 8px;
-            }
-            .social-icons a {
-                font-size: 1.5em;
-                gap: 15px;
-            }
-            .main-navigation a {
-                font-size: 0.8em;
-                padding: 6px 10px;
-            }
-            .content-area {
-                padding: 15px 15px;
-            }
-            .page-content {
-                padding: 10px;
-            }
-            .content-heading {
-                font-size: 1.4em;
-            }
-            .timeline-item h3 {
-                font-size: 1em;
-            }
-            .timeline-item .job-title, .timeline-item p, .timeline-item ul li,
-            .project-item li, .skill-category li {
-                font-size: 0.8em;
-            }
-            .project-item, .skill-category {
-                padding: 15px;
-            }
-            .project-item h3, .skill-category h3 {
-                font-size: 1em;
-            }
+        .social-icon:hover {
+            transform: translateY(-3px);
+            color: #a1a1aa; /* zinc-400 */
         }
     </style>
 </head>
-<body>
-    <!-- Site Wrapper for the entire layout (Grid Container) -->
-    <div class="site-wrapper">
-        <!-- Top Bar (Header) -->
-        <header class="top-bar">
-            <div class="header-left">
-                <!-- Removed system status -->
+<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-4xl w-full space-y-10">
+
+        <header class="text-center mb-12">
+            <h1 class="text-5xl sm:text-6xl font-extrabold text-zinc-50 mb-4 tracking-tight">Prathamesh Upadhye</h1>
+            <p class="text-xl sm:text-2xl text-zinc-300 mb-6">Software Test Engineer | Cybersecurity Enthusiast</p>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-zinc-400 text-lg mb-8">
+                <span class="flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-zinc-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                    bhalprathamesh6@gmail.com
+                </span>
+                <span class="flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-zinc-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+                    +91 9137887904
+                </span>
+                <span class="flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-zinc-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                    Mumbai, India
+                </span>
             </div>
-            <div class="header-center">
-                <h1 id="name-display"></h1>
-                <p class="tagline">CYBERSECURITY PROFESSIONAL PORTFOLIO</p>
+
+            <div class="flex flex-wrap justify-center gap-6 text-zinc-300 mb-8">
+                <a href="https://www.instagram.com/prathamesh_upadhye/" target="_blank" aria-label="Instagram" class="social-icon">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2zm-.2 2A2.8 2.8 0 0 0 5 7.8v8.4c0 1.54 1.26 2.8 2.8 2.8h8.4a2.8 2.8 0 0 0 2.8-2.8V7.8A2.8 2.8 0 0 0 16.2 5H7.6zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm6.5-3a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5z"/>
+                    </svg>
+                </a>
+                <a href="https://discord.com/" target="_blank" aria-label="Discord" class="social-icon">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.218 2.664c-1.785-.92-3.66-.46-5.46.22-1.3.5-2.5.96-3.74 1.44-.06.02-.12.04-.18.06-.06-.02-.12-.04-.18-.06-1.24-.48-2.44-.94-3.74-1.44-1.8-.68-3.675-1.14-5.46-.22C.802 3.584 0 5.484 0 7.384v10.232c0 1.9 1.422 3.42 3.198 3.42 1.56 0 2.82-1.04 3.72-2.58.54.12 1.08.24 1.62.36.08.02.16.04.24.06.08-.02.16-.04.24-.06.54-.12 1.08-.24 1.62-.36.9 1.54 2.16 2.58 3.72 2.58 1.776 0 3.198-1.52 3.198-3.42V7.384c0-1.9-1.422-3.8-3.198-4.72zm-1.62 1.92c.66.34 1.2.98 1.56 1.78v.02c.36.8.54 1.7.54 2.62v7.2c0 .88-.34 1.68-.96 2.28-.62.6-1.42.94-2.3.94-1.12 0-2.02-.68-2.6-1.76-.58-1.08-.88-2.34-.88-3.72V7.384c0-1.38.3-2.64.88-3.72.58-1.08 1.48-1.76 2.6-1.76zm-12.84 0c1.12 0 2.02.68 2.6 1.76.58 1.08.88 2.34.88 3.72v7.2c0 1.38-.3 2.64-.88 3.72-.58 1.08-1.48 1.76-2.6 1.76-.88 0-1.68-.34-2.3-.94-.62-.6-.96-1.4-.96-2.28V7.384c0-.92.18-1.82.54-2.62v-.02c.36-.8.9-1.44 1.56-1.78zM12.318 8.164c-.66.34-1.2.98-1.56 1.78v.02c-.36.8-.54 1.7-.54 2.62v.02c0 .88.34 1.68.96 2.28.62.6 1.42.94 2.3.94 1.12 0 2.02-.68 2.6-1.76.58-1.08.88-2.34.88-3.72v-.02c0-1.38-.3-2.64-.88-3.72-.58-1.08-1.48-1.76-2.6-1.76-.88 0-1.68-.34-2.3-.94-.62-.6-.96-1.4-.96-2.28z"/>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/prathamesh-upadhye/" target="_blank" aria-label="LinkedIn" class="social-icon">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.447 20.447h-3.554v-5.569c0-1.32-.472-2.223-1.658-2.223-1.341 0-2.135.908-2.488 1.782-.128.315-.163.753-.163 1.191v4.819h-3.554s.047-9.67 0-10.64h3.554v1.517c.472-.729 1.318-1.762 3.193-1.762 2.33 0 4.07 1.528 4.07 4.819v6.066zM4.35 8.196a2.122 2.122 0 110-4.244 2.122 2.122 0 010 4.244zm1.777 12.251H2.573V9.803h3.554v10.644zM22.227 0H1.771C.792 0 0 .792 0 1.771v20.458C0 23.208.792 24 1.771 24h20.458c.979 0 1.771-.792 1.771-1.771V1.771C24 .792 23.208 0 22.227 0z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/prathamesh-upadhye" target="_blank" aria-label="GitHub" class="social-icon">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.799 8.205 11.385.6.11.82-.26.82-.577v-2.003c-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.332-1.758-1.332-1.758-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.238 1.838 1.238 1.07 1.833 2.809 1.304 3.492.997.108-.775.419-1.304.762-1.604-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.465-2.382 1.235-3.22-.12-.303-.535-1.52.117-3.176 0 0 1.008-.323 3.301 1.23.957-.266 1.983-.4 3.003-.404 1.02.004 2.046.138 3.003.404 2.293-1.553 3.3-1.23 3.3-1.23.652 1.656.237 2.873.117 3.176.77.838 1.235 1.91 1.235 3.22 0 4.61-2.805 5.62-5.474 5.92.43.37.818 1.102.818 2.22v3.292c0 .318.216.69.825.577C20.565 21.799 24 17.302 24 12c0-6.627-5.373-12-12-12z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+                <a href="https://store.steampowered.com/" target="_blank" aria-label="Steam" class="social-icon">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 1.8c5.62 0 10.2 4.58 10.2 10.2S17.62 22.2 12 22.2 1.8 17.62 1.8 12 6.38 1.8 12 1.8zM12 4.2c-4.3 0-7.8 3.5-7.8 7.8s3.5 7.8 7.8 7.8 7.8-3.5 7.8-7.8-3.5-7.8-7.8-7.8zm0 2.4c3.08 0 5.6 2.52 5.6 5.6s-2.52 5.6-5.6 5.6-5.6-2.52-5.6-5.6 2.52-5.6 5.6-5.6zm0 2.4c-1.76 0-3.2 1.44-3.2 3.2s1.44 3.2 3.2 3.2 3.2-1.44 3.2-3.2-1.44-3.2-3.2-3.2z"/>
+                    </svg>
+                </a>
             </div>
-            <div class="header-right">
-                <span class="current-time" id="current-time"></span>
+
+            <!-- Download Resume Button -->
+            <div class="mt-8">
+                <a href="https://example.com/your-resume.pdf" target="_blank" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-zinc-900 bg-zinc-300 hover:bg-zinc-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-zinc-500 transition-colors duration-200">
+                    <svg class="-ml-1 mr-3 h-5 w-5 text-zinc-700" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    Download Resume
+                </a>
             </div>
         </header>
 
-        <!-- Left Panel (Sidebar) -->
-        <aside class="left-panel">
-            <div class="profile-meta">
-                <h2 class="section-title">CONTACT INFO</h2>
-                <div class="contact-grid">
-                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Mumbai, India</span></div>
-                    <div class="contact-item"><i class="fas fa-envelope"></i><span>bhalprathamesh6@gmail.com</span></div>
-                    <div class="contact-item"><i class="fas fa-phone"></i><span>+91 9137887904</span></div>
-                </div>
+        <nav class="flex justify-center mb-8">
+            <ul class="flex flex-wrap justify-center space-x-6 sm:space-x-10 text-xl font-medium text-zinc-500">
+                <li><a href="#education" class="nav-link hover:text-zinc-300 transition-colors duration-200 active" data-target="education-page">Education</a></li>
+                <li><a href="#experience" class="nav-link hover:text-zinc-300 transition-colors duration-200" data-target="experience-page">Experience</a></li>
+                <li><a href="#projects" class="nav-link hover:text-zinc-300 transition-colors duration-200" data-target="projects-page">Projects</a></li>
+                <li><a href="#skills" class="nav-link hover:text-zinc-300 transition-colors duration-200" data-target="skills-page">Skills</a></li>
+                <li><a href="#extracurricular" class="nav-link hover:text-zinc-300 transition-colors duration-200" data-target="extracurricular-page">Extracurricular</a></li>
+            </ul>
+        </nav>
+
+        <div id="content-wrapper">
+            <div id="education-page" class="content-page active">
+                <section class="bg-zinc-900 p-8 rounded-xl shadow-lg panel-hover-effect">
+                    <h2 class="text-3xl font-bold text-zinc-50 mb-6 border-b border-zinc-700 pb-3">Education</h2>
+                    <div class="panel-content">
+                        <div class="mb-4">
+                            <h3 class="text-xl font-semibold text-zinc-200">St. Francis Institute of Technology, Mumbai University</h3>
+                            <p class="text-zinc-400">B.E. in IT with Distinction | Honors in Cybersecurity (2024)</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-zinc-200">Nirmala Memorial Foundation Junior College</h3>
+                            <p class="text-zinc-400">HSC with Distinction</p>
+                        </div>
+                    </div>
+                </section>
             </div>
 
-            <nav class="main-navigation">
-                <h2 class="section-title">SECTIONS</h2>
-                <ul>
-                    <li><a href="#" data-page="education">Education</a></li>
-                    <li><a href="#" data-page="experience">Experience</a></li>
-                    <li><a href="#" data-page="projects">Projects</a></li>
-                    <li><a href="#" data-page="skills">Skills</a></li>
-                    <li><a href="#" data-page="activities">Activities</a></li>
-                </ul>
-            </nav>
-
-            <div class="social-matrix">
-                <h2 class="section-title">SOCIAL LINKS</h2>
-                <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/prathamesh-upadhye/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/your-github-username" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
-                    <a href="https://www.instagram.com/your-instagram-username/" target="_blank" aria-label="Instagram Profile"><i class="fab fa-instagram"></i></a>
-                    <a href="https://steamcommunity.com/id/your-steam-id/" target="_blank" aria-label="Steam Profile"><i class="fab fa-steam"></i></a>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Content Area (Main Content Display) -->
-        <main class="content-area">
-            <!-- Education Page -->
-            <div id="education-page" class="page-content active">
-                <h2 class="content-heading">EDUCATION</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <h3>St Francis Institute of Technology</h3>
-                        <p>B.E. in IT with Distinction (CGPA 7.65/10)</p>
-                        <p>Honors in Cybersecurity</p>
+            <div id="experience-page" class="content-page">
+                <section class="bg-zinc-900 p-8 rounded-xl shadow-lg panel-hover-effect">
+                    <h2 class="text-3xl font-bold text-zinc-50 mb-6 border-b border-zinc-700 pb-3">Professional Experience</h2>
+                    <div class="panel-content space-y-6">
+                        <div>
+                            <h3 class="text-xl font-semibold text-zinc-200">Testriq QA Lab LLP</h3>
+                            <p class="text-zinc-400">Software Test Engineer (Jul 2024 – Present)</p>
+                            <ul class="list-disc list-inside mt-2 text-zinc-300 space-y-1">
+                                <li>Regression, smoke, and security testing.</li>
+                                <li>Client collaboration and QA strategy execution.</li>
+                                <li>Improved testing efficiency with automation tools.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-zinc-200">Testriq QA Lab LLP</h3>
+                            <p class="text-zinc-400">Software Test Intern (Jun 2024 – Jul 2024)</p>
+                            <ul class="list-disc list-inside mt-2 text-zinc-300 space-y-1">
+                                <li>Test case creation and bug documentation.</li>
+                                <li>Exploratory testing to find edge cases.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-zinc-200">Epic Games</h3>
+                            <p class="text-zinc-400">Public Beta Tester (May 2022 – Nov 2022)</p>
+                            <ul class="list-disc list-inside mt-2 text-zinc-300 space-y-1">
+                                <li>Discovered and reported critical gameplay bugs.</li>
+                                <li>Contributed to QA improvements in "Fall Guys".</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="timeline-item">
-                        <h3>Nirmala Memorial Foundation Junior College</h3>
-                        <p>Higher Secondary Certificate Examination (62.31%)</p>
-                    </div>
-                </div>
+                </section>
             </div>
 
-            <!-- Professional Experience Page -->
-            <div id="experience-page" class="page-content">
-                <h2 class="content-heading">EXPERIENCE</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <h3>Testriq QA Lab LLP</h3>
-                        <p class="job-title">Software Test Engineer</p>
-                        <p>July 2024 – Present</p>
-                        <ul>
-                            <li>Executes smoke & regression testing for software stability.</li>
-                            <li>Performs security testing to identify vulnerabilities.</li>
-                            <li>Collaborates with clients for tailored testing solutions.</li>
-                            <li>Improved testing efficiency by 30-70% via automation.</li>
-                            <li>Identified & resolved bugs using Jira & TestRail.</li>
-                        </ul>
+            <div id="projects-page" class="content-page">
+                <section class="bg-zinc-900 p-8 rounded-xl shadow-lg panel-hover-effect">
+                    <h2 class="text-3xl font-bold text-zinc-50 mb-6 border-b border-zinc-700 pb-3">Projects</h2>
+                    <div class="panel-content space-y-6">
+                        <div>
+                            <h3 class="text-xl font-semibold text-zinc-200">Automated Drone Delivery System</h3>
+                            <p class="text-zinc-400">Flutter + Firebase with live tracking and route optimization.</p>
+                            <p class="text-zinc-400">Secured real-time notifications and user interface.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-zinc-200">PScanner</h3>
+                            <p class="text-zinc-400">Python, Scapy, React</p>
+                            <p class="text-zinc-400">Advanced network scanner with OS fingerprinting.</p>
+                            <p class="text-zinc-400">React UI with periodic scan scheduling.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-zinc-200">Keylogger (Ethical)</h3>
+                            <p class="text-zinc-400">Python tool with encryption and access control.</p>
+                            <p class="text-zinc-400">Ethical research with user consent framework.</p>
+                        </div>
                     </div>
-                    <div class="timeline-item">
-                        <h3>Testriq QA Lab LLP</h3>
-                        <p class="job-title">Software Test Intern</p>
-                        <p>June 2024 – July 2024</p>
-                        <ul>
-                            <li>Wrote effective test cases for functional requirements.</li>
-                            <li>Identified & documented bugs during manual testing.</li>
-                            <li>Ensured application quality via thorough testing.</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>Epic Games (Remote)</h3>
-                        <p class="job-title">Public Beta Tester – "Fall Guys"</p>
-                        <p>May 2022 – November 2022</p>
-                        <ul>
-                            <li>Identified bugs and provided feedback for "Fall Guys."</li>
-                            <li>Ensured game functionality and stability post-updates.</li>
-                            <li>Discovered critical game-breaking voice chat bug.</li>
-                        </ul>
-                    </div>
-                </div>
+                </section>
             </div>
 
-            <!-- Academic Projects Page -->
-            <div id="projects-page" class="page-content">
-                <h2 class="content-heading">PROJECTS</h2>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <h3>Automated Drone Delivery System</h3>
-                        <ul>
-                            <li>Secure web app (Flutter, Firebase) for drone safety.</li>
-                            <li>Google Maps UI for real-time route optimization.</li>
-                            <li>Implemented security protocols & real-time notifications.</li>
-                        </ul>
+            <div id="skills-page" class="content-page">
+                <section class="bg-zinc-900 p-8 rounded-xl shadow-lg panel-hover-effect">
+                    <h2 class="text-3xl font-bold text-zinc-50 mb-6 border-b border-zinc-700 pb-3">Technical Skills</h2>
+                    <div class="panel-content grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-zinc-300">
+                        <div>
+                            <h3 class="text-xl font-semibold text-zinc-200 mb-2">Languages:</h3>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Python</li>
+                                <li>Bash</li>
+                                <li>PowerShell</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-zinc-200 mb-2">Security Tools:</h3>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Burp Suite</li>
+                                <li>OWASP ZAP</li>
+                                <li>Nessus</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-zinc-200 mb-2">Networking:</h3>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Wireshark</li>
+                                <li>Nmap</li>
+                                <li>TCP/IP</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-zinc-200 mb-2">OS:</h3>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Kali Linux</li>
+                                <li>Parrot OS</li>
+                                <li>Windows</li>
+                                <li>macOS</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-zinc-200 mb-2">Cloud:</h3>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>AWS</li>
+                                <li>Azure</li>
+                                <li>GCP</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-zinc-200 mb-2">Version Control:</h3>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Git</li>
+                                <li>GitHub</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="project-item">
-                        <h3>PScanner (Network Scanning Tool)</h3>
-                        <ul>
-                            <li>Python tool for network scanning & device mapping.</li>
-                            <li>OS fingerprinting & service enumeration for security.</li>
-                            <li>React UI for easy analysis & automated scans.</li>
-                        </ul>
-                    </div>
-                    <div class="project-item">
-                        <h3>Keylogger (Ethical Data Logging Tool)</h3>
-                        <ul>
-                            <li>Designed a Python-based Keylogger for ethical vulnerability research.</li>
-                            <li>Integrated encryption for secure data storage.</li>
-                            <li>User consent framework for ethical data collection.</li>
-                        </ul>
-                    </div>
-                </div>
+                </section>
             </div>
 
-            <!-- Technical Skills Page -->
-            <div id="skills-page" class="page-content">
-                <h2 class="content-heading">SKILLS</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Programming/Scripting</h3>
-                        <ul>
-                            <li>Python</li>
-                            <li>Bash</li>
-                            <li>PowerShell</li>
+            <div id="extracurricular-page" class="content-page">
+                <section class="bg-zinc-900 p-8 rounded-xl shadow-lg panel-hover-effect">
+                    <h2 class="text-3xl font-bold text-zinc-50 mb-6 border-b border-zinc-700 pb-3">Extracurricular</h2>
+                    <div class="panel-content space-y-4 text-zinc-300">
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Stage Admin – ComicCon Mumbai, SkyEsports LAN</li>
+                            <li>Vice President – ITSA, SFIT</li>
+                            <li>Rocket League Champion – Zephyr 2022-23</li>
+                            <li>Volunteer – Blood Donation Drives (SFIT)</li>
                         </ul>
                     </div>
-                    <div class="skill-category">
-                        <h3>Networking/Security</h3>
-                        <ul>
-                            <li>TCP/IP</li>
-                            <li>Firewalls</li>
-                            <li>VPNs</li>
-                            <li>Wireshark</li>
-                            <li>Nmap</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Operating Systems</h3>
-                        <ul>
-                            <li>Linux (Kali, Parrot)</li>
-                            <li>Windows</li>
-                            <li>macOS</li>
-                            <li>OS hardening</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Penetration Testing</h3>
-                        <ul>
-                            <li>Burp Suite</li>
-                            <li>OWASP ZAP</li>
-                            <li>Metasploit</li>
-                            <li>Nessus</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Cloud Security</h3>
-                        <ul>
-                            <li>AWS</li>
-                            <li>Azure</li>
-                            <li>GCP practices</li>
-                            <li>Workload protection</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Version Control</h3>
-                        <ul>
-                            <li>Git</li>
-                            <li>GitHub</li>
-                            <li>Jira</li>
-                        </ul>
-                    </div>
-                </div>
+                </section>
             </div>
+        </div>
 
-            <!-- Extracurricular Activities Page -->
-            <div id="activities-page" class="page-content">
-                <h2 class="content-heading">ACTIVITIES</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <h3>Mumbai ComicCon (2023-24)</h3>
-                        <p>Stage Admin Volunteer: Managed event flow & coordinated activities.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>IT Students' Association (ITSA) VP (2023)</h3>
-                        <p>Led student engagement initiatives & networking events.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>Valorant Tournament (MetaSummit 2023)</h3>
-                        <p>Participated in college esports tournament.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>SkyEsports LAN Event (2023)</h3>
-                        <p>Stage Admin/Operator: Facilitated live esports execution.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>Zephyr Rocket League Tournament (2022-23)</h3>
-                        <p>Achieved consecutive victories, showcasing strategy.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>Blood Donation Drives (2022-2023)</h3>
-                        <p>Volunteered, raising awareness & supporting community health.</p>
-                    </div>
-                </div>
-            </div>
-        </main>
+        <footer class="text-center text-zinc-500 text-sm mt-12 pb-8">
+            <p>&copy; 2024 Prathamesh Upadhye. All rights reserved.</p>
+        </footer>
+
     </div>
 
-    <!-- Bottom Bar (Footer) -->
-    <footer class="bottom-bar">
-        <p>&copy; 2025 Prathamesh Upadhye. All rights reserved.</p>
-    </footer>
-
-    <!-- JavaScript for dynamic effects and page switching -->
     <script>
-        // Typing Effect for the Name
-        const nameElement = document.getElementById('name-display');
-        const nameText = "PRATHAMESH UPADHYE";
-        let charIndex = 0;
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentPages = document.querySelectorAll('.content-page');
 
-        function typeWriter() {
-            if (charIndex < nameText.length) {
-                nameElement.textContent += nameText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeWriter, 100); // Typing speed
-            }
-        }
-
-        // Current Time Display
-        function updateTime() {
-            const now = new Date();
-            const options = {
-                year: 'numeric', month: '2-digit', day: '2-digit',
-                hour: '2-digit', minute: '2-digit', second: '2-digit',
-                hour12: false
+            // Function to show a specific page
+            const showPage = (targetId) => {
+                contentPages.forEach(page => {
+                    if (page.id === targetId) {
+                        page.style.display = 'block'; // Ensure it's block to animate opacity
+                        setTimeout(() => {
+                            page.classList.add('active'); // Trigger opacity transition
+                        }, 10); // Small delay to allow display change to register
+                    } else {
+                        page.classList.remove('active');
+                        // After transition, set display to none
+                        page.addEventListener('transitionend', function handler() {
+                            if (!page.classList.contains('active')) {
+                                page.style.display = 'none';
+                            }
+                            page.removeEventListener('transitionend', handler);
+                        });
+                    }
+                });
             };
-            document.getElementById('current-time').textContent = now.toLocaleString('en-GB', options).replace(/,/, ' |');
-        }
-        setInterval(updateTime, 1000);
-        updateTime(); // Initial call
 
-        // Page Switching Logic
-        const pageLinks = document.querySelectorAll('.main-navigation a');
-        const pages = document.querySelectorAll('.page-content');
-        const contentArea = document.querySelector('.content-area'); // Get the scrollable content area
+            // Function to set active navigation link
+            const setActiveNavLink = (targetId) => {
+                navLinks.forEach(link => {
+                    if (link.dataset.target === targetId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            };
 
-        function showPage(pageId) {
-            pages.forEach(page => {
-                if (page.id === pageId) {
-                    page.classList.add('active');
-                } else {
-                    page.classList.remove('active');
-                }
+            // Event listener for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default anchor link behavior
+                    const targetId = e.target.dataset.target;
+                    showPage(targetId);
+                    setActiveNavLink(targetId);
+                });
             });
 
-            // Update active link styling
-            pageLinks.forEach(link => {
-                if (link.dataset.page + '-page' === pageId) {
-                    link.classList.add('active-link');
-                } else {
-                    link.classList.remove('active-link');
-                }
-            });
-
-            // Scroll to top of content area when page changes
-            contentArea.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        pageLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetPageId = this.dataset.page + '-page';
-                showPage(targetPageId);
-            });
+            // Initial page load: show the first page and activate its link
+            const initialPageId = navLinks[0].dataset.target;
+            showPage(initialPageId);
+            setActiveNavLink(initialPageId);
         });
-
-        // Initial call to start typing effect and show default page after page load
-        window.onload = () => {
-            typeWriter();
-            showPage('education-page'); // Show education page by default
-        };
     </script>
 </body>
 </html>
