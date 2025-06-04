@@ -13,106 +13,94 @@
         body {
             margin: 0;
             font-family: 'Fira Code', monospace;
-            background-color: #0d0d1a; /* Very dark blue/purple */
-            color: #e0e0e0; /* Off-white text for readability */
+            background-color: #121212; /* Very dark grey */
+            color: #E0E0E0; /* Soft white text */
             line-height: 1.6;
             overflow-x: hidden; /* Prevent horizontal scroll */
             position: relative;
             font-size: 16px; /* Base font size for responsiveness */
-        }
-
-        /* Canvas for Matrix Background */
-        #matrixCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Send to background */
-            opacity: 0.05; /* Even more subtle */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure body takes full viewport height */
         }
 
         /* Header Section */
         header {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
             padding: 20px;
-            position: relative;
-            z-index: 1;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%);
-            box-shadow: 0 0 15px rgba(0, 204, 204, 0.2); /* Muted teal glow */
-            border-bottom: 2px solid #00cccc; /* Muted teal border */
+            text-align: center;
+            background-color: #1A1A1A; /* Slightly lighter dark grey */
+            border-bottom: 1px solid #424242; /* Subtle grey border */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .header-content {
-            max-width: 900px;
-            width: 100%; /* Ensure it takes full width within padding */
-            animation: fadeIn 2s ease-out;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         h1 {
-            font-size: 3.5em;
-            margin-bottom: 10px;
-            color: #00cccc; /* Muted teal for name */
-            /* Significantly reduced vibrancy for text-shadow */
-            text-shadow: 0 0 1px #00cccc, 0 0 2px #00cccc, 0 0 3px #00cccc;
-            animation: glowLessVibrant 1.5s infinite alternate; /* New even less vibrant glow animation */
-            word-break: break-word; /* Prevent overflow on small screens */
+            font-size: 2.5em; /* Reduced size for minimalism */
+            margin-bottom: 5px;
+            color: #80DEEA; /* Light blue/cyan accent */
+            text-shadow: none; /* Removed text shadow for minimalism */
+            animation: none; /* Removed glow animation */
+            word-break: break-word;
         }
 
         .subtitle {
-            font-size: 1.5em;
-            color: #ffffff; /* White for subtitle */
-            text-shadow: none; /* Removed text shadow */
+            font-size: 1em; /* Reduced size */
+            color: #B0B0B0; /* Muted grey */
             margin-top: 0;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .contact-info {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            font-size: 0.9em;
-            color: #b380ff; /* Subtle purple */
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 0.8em;
+            color: #A0B0FF; /* Soft, cool blue */
         }
 
         .contact-info span {
             display: flex;
             align-items: center;
             gap: 5px;
-            padding: 5px 10px;
-            border: 1px solid #00cccc; /* Muted teal border */
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 204, 204, 0.3); /* Muted teal shadow */
-            text-align: left; /* Align text within span */
+            padding: 3px 8px;
+            border: 1px solid #424242; /* Subtle grey border */
+            border-radius: 3px;
+            background-color: #202020;
         }
 
         /* Social Links */
         .social-links {
-            margin-top: 30px;
-            margin-bottom: 30px;
+            margin-top: 15px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 20px;
         }
 
         .social-links a {
-            color: #00cccc; /* Muted teal for social icons */
-            font-size: 2.5em;
-            transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
-            text-shadow: 0 0 5px rgba(0, 204, 204, 0.5);
+            color: #80DEEA; /* Light blue/cyan accent */
+            font-size: 1.8em; /* Reduced size */
+            transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+            text-shadow: none; /* Removed text shadow */
         }
 
         .social-links a:hover {
-            transform: translateY(-5px) scale(1.1);
-            text-shadow: 0 0 15px #00cccc, 0 0 30px rgba(0, 204, 204, 0.3);
+            transform: translateY(-2px) scale(1.05);
+            color: #FFFFFF; /* White on hover */
         }
-
 
         /* Navigation */
         nav ul {
@@ -122,690 +110,502 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         nav a {
-            color: #ffffff; /* White */
+            color: #E0E0E0; /* Soft white */
             text-decoration: none;
-            font-size: 1.1em;
-            padding: 10px 20px;
-            border: 1px solid #00cccc; /* Muted teal border */
-            border-radius: 8px;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 0 5px rgba(0, 204, 204, 0.5); /* Muted teal shadow */
-            position: relative;
-            overflow: hidden;
-            white-space: nowrap; /* Prevent text wrapping inside nav links */
+            font-size: 0.9em;
+            padding: 8px 15px;
+            border: 1px solid #424242; /* Subtle grey border */
+            border-radius: 5px;
+            transition: all 0.2s ease-in-out;
+            background-color: #282828;
+            box-shadow: none; /* Removed box shadow */
+            white-space: nowrap;
         }
 
         nav a:hover {
-            background-color: rgba(0, 204, 204, 0.1); /* Muted teal background on hover */
-            box-shadow: 0 0 10px #00cccc, 0 0 20px rgba(0, 204, 204, 0.2); /* Muted teal glow on hover */
-            transform: translateY(-3px);
+            background-color: #3A3A3A; /* Slightly lighter grey on hover */
+            color: #80DEEA; /* Light blue/cyan on hover */
+            transform: translateY(-1px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
-        /* Main Content Sections */
+        /* Main Content Area */
         main {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
+            flex-grow: 1; /* Allows main content to take available space */
+            padding: 30px 20px;
+            max-width: 1000px;
+            margin: 20px auto; /* Add margin for separation */
+            background-color: #1A1A1A; /* Match header background */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically if space allows */
         }
 
-        section {
-            background-color: rgba(18, 18, 30, 0.8); /* Slightly lighter dark blue/purple */
-            border: 1px solid #00cccc; /* Muted teal border */
-            border-radius: 10px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: 0 0 15px rgba(0, 204, 204, 0.3); /* Muted teal shadow */
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-        }
-
-        section::before {
-            /* Removed the repeating linear gradient background for cleaner look */
-            content: none;
-        }
-
-        section h2 {
-            font-size: 2.5em;
-            color: #00cccc; /* Muted teal */
-            text-shadow: none; /* Removed text shadow */
-            margin-top: 0;
-            margin-bottom: 25px;
-            border-bottom: 2px dashed #b380ff; /* Subtle purple dashed border */
-            padding-bottom: 10px;
-            display: inline-block;
-            /* Removed glitch animation for a minimalist look */
-            animation: none;
-        }
-
-        /* Section Reveal Animation */
-        .section-hidden {
+        .page-content {
+            display: none; /* Hidden by default */
+            padding: 20px;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(20px);
         }
 
-        .section-visible {
+        .page-content.active {
+            display: block;
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Timeline Styles (for Education, Experience, Activities) */
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-            border-left: 2px solid #b380ff; /* Subtle purple border */
+        .page-content h2 {
+            font-size: 2em; /* Reduced size */
+            color: #80DEEA; /* Light blue/cyan */
+            border-bottom: 1px solid #424242; /* Subtle border */
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .timeline-item {
-            margin-bottom: 30px;
+        /* Minimalist List Styles */
+        .content-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-list li {
             position: relative;
-            padding-left: 20px;
+            padding: 8px 0;
+            margin-bottom: 5px;
+            color: #E0E0E0;
+            border-bottom: 1px dashed #2A2A2A; /* Very subtle dashed line */
+            font-size: 0.95em;
+        }
+
+        .content-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Specific adjustments for sections with different structures */
+        .timeline-item {
+            margin-bottom: 15px; /* Reduced margin */
+            padding-left: 0; /* No left padding */
+            position: relative;
         }
 
         .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -38px; /* Adjust to align with timeline line */
-            top: 5px;
-            width: 16px;
-            height: 16px;
-            background-color: #ffffff; /* White dot */
-            border: 2px solid #00cccc; /* Muted teal border */
-            border-radius: 50%;
-            box-shadow: 0 0 8px #ffffff; /* White glow */
+            content: none; /* Removed bullet point */
         }
 
         .timeline-item h3 {
-            color: #b380ff; /* Subtle purple */
-            font-size: 1.4em;
+            color: #A0B0FF; /* Soft, cool blue */
+            font-size: 1.1em; /* Reduced size */
             margin-top: 0;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
 
         .timeline-item .job-title {
-            color: #00cccc; /* Muted teal */
-            font-style: italic;
-            margin-bottom: 5px;
+            color: #80DEEA; /* Light blue/cyan */
+            font-style: normal; /* Removed italic */
+            font-size: 0.9em;
+            margin-bottom: 3px;
         }
 
         .timeline-item p {
-            margin-bottom: 5px;
-            color: #cccccc; /* Light grey */
+            margin-bottom: 3px;
+            color: #B0B0B0;
+            font-size: 0.85em;
         }
 
         .timeline-item ul {
             list-style: none;
             padding: 0;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
-        .timeline-item li {
+        .timeline-item ul li {
             position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-            color: #e0e0e0;
+            padding-left: 15px;
+            margin-bottom: 3px;
+            font-size: 0.85em;
+            color: #E0E0E0;
+            border-bottom: none; /* No border for sub-bullets */
         }
 
-        .timeline-item li::before {
-            content: '\2022'; /* Bullet point */
-            color: #00cccc; /* Muted teal bullet */
-            font-size: 1.2em;
+        .timeline-item ul li::before {
+            content: '\2022'; /* Simple bullet point */
+            color: #80DEEA;
+            font-size: 1em;
             position: absolute;
             left: 0;
-            top: -2px;
-            text-shadow: 0 0 3px #00cccc;
+            top: 0;
         }
 
-        /* Project Grid */
-        .project-grid {
+        .project-grid, .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted min-width */
+            gap: 20px; /* Reduced gap */
         }
 
-        .project-item {
-            background-color: rgba(25, 25, 45, 0.9); /* Darker blue/purple */
-            border: 1px solid #b380ff; /* Subtle purple border */
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(179, 128, 255, 0.3); /* Subtle purple shadow */
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        .project-item, .skill-category {
+            background-color: #202020; /* Darker background */
+            border: 1px solid #424242; /* Subtle border */
+            border-radius: 5px;
+            padding: 15px; /* Reduced padding */
+            box-shadow: none; /* Removed box shadow */
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
         }
 
-        .project-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 15px #b380ff, 0 0 30px rgba(179, 128, 255, 0.2); /* Subtle purple glow on hover */
+        .project-item:hover, .skill-category:hover {
+            transform: translateY(-2px);
+            background-color: #2A2A2A; /* Slightly lighter on hover */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
-        .project-item h3 {
-            color: #ffffff; /* White */
-            font-size: 1.3em;
+        .project-item h3, .skill-category h3 {
+            color: #A0B0FF; /* Soft, cool blue */
+            font-size: 1.1em;
             margin-top: 0;
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(0, 204, 204, 0.5); /* Muted teal border */
-            padding-bottom: 8px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #3A3A3A; /* Subtle border */
+            padding-bottom: 5px;
         }
 
-        .project-item ul {
-            list-style: none;
+        .project-item ul, .skill-category ul {
             padding: 0;
+            list-style: none;
         }
 
-        .project-item li {
+        .project-item li, .skill-category li {
             position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-            color: #e0e0e0;
+            padding-left: 15px;
+            margin-bottom: 3px;
+            font-size: 0.85em;
+            color: #E0E0E0;
         }
 
-        .project-item li::before {
-            content: '\25B6'; /* Right-pointing triangle */
-            color: #00cccc; /* Muted teal triangle */
-            font-size: 0.9em;
+        .project-item li::before, .skill-category li::before {
+            content: '\2022'; /* Simple bullet point */
+            color: #80DEEA;
+            font-size: 1em;
             position: absolute;
             left: 0;
-            top: 2px;
-            text-shadow: 0 0 3px #00cccc;
-        }
-
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .skill-category {
-            background-color: rgba(25, 25, 45, 0.9); /* Darker blue/purple */
-            border: 1px solid #b380ff; /* Subtle purple border */
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(179, 128, 255, 0.3); /* Subtle purple shadow */
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 15px #b380ff, 0 0 30px rgba(179, 128, 255, 0.2); /* Subtle purple glow on hover */
-        }
-
-        .skill-category h3 {
-            color: #ffffff; /* White */
-            font-size: 1.2em;
-            margin-top: 0;
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(0, 204, 204, 0.5); /* Muted teal border */
-            padding-bottom: 8px;
-        }
-
-        .skill-category ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .skill-category li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 5px;
-            color: #e0e0e0;
-        }
-
-        .skill-category li::before {
-            content: '\2713'; /* Checkmark */
-            color: #00cccc; /* Muted teal checkmark */
-            font-size: 0.9em;
-            position: absolute;
-            left: 0;
-            top: 2px;
-            text-shadow: 0 0 3px #00cccc;
+            top: 0;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            border-top: 1px dashed #b380ff; /* Subtle purple dashed border */
-            color: #cccccc; /* Light grey */
-            font-size: 0.9em;
+            padding: 15px;
+            margin-top: auto; /* Pushes footer to the bottom */
+            border-top: 1px solid #424242; /* Subtle border */
+            color: #B0B0B0; /* Muted grey */
+            font-size: 0.8em;
+            background-color: #1A1A1A; /* Match header background */
         }
-
-        /* Keyframe Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Less vibrant glow animation for name */
-        @keyframes glowLessVibrant {
-            0% { text-shadow: 0 0 1px #00cccc, 0 0 2px #00cccc; }
-            100% { text-shadow: 0 0 2px #00cccc, 0 0 3px #00cccc, 0 0 5px #00cccc; }
-        }
-
-        /* Removed glitch animation for a minimalist look */
-        /* @keyframes glitchTextRed { ... } */
 
         /* Responsive Design */
-        /* Tablet and smaller desktops */
         @media (max-width: 768px) {
             body {
-                font-size: 15px; /* Slightly smaller base font */
+                font-size: 15px;
             }
 
             h1 {
-                font-size: 2.8em; /* Scale down name */
+                font-size: 2em;
             }
 
             .subtitle {
-                font-size: 1.3em; /* Scale down subtitle */
+                font-size: 0.9em;
             }
 
             .contact-info {
-                flex-direction: column; /* Stack contact info vertically */
-                gap: 10px;
+                flex-direction: column;
+                gap: 8px;
             }
 
             .contact-info span {
-                width: fit-content; /* Adjust width to content */
-                margin: 0 auto; /* Center individual contact items */
+                width: 90%;
+                max-width: 300px;
+                margin: 0 auto;
             }
 
             .social-links {
-                gap: 20px; /* Adjust gap for social links */
+                gap: 15px;
             }
 
             .social-links a {
-                font-size: 2em; /* Scale down social icons */
+                font-size: 1.5em;
             }
 
             nav ul {
-                flex-direction: column; /* Stack navigation links vertically */
-                gap: 10px;
+                flex-direction: column;
+                gap: 8px;
             }
 
             nav a {
-                width: 80%; /* Make nav links wider */
-                max-width: 300px; /* Limit max width */
-                margin: 0 auto; /* Center nav links */
-                white-space: normal; /* Allow text to wrap if needed */
-            }
-
-            section {
-                padding: 25px; /* Slightly less padding */
-            }
-
-            section h2 {
-                font-size: 2.2em; /* Scale down section titles */
-            }
-
-            .timeline {
-                padding-left: 20px; /* Adjust timeline padding */
-            }
-
-            .timeline-item::before {
-                left: -28px; /* Adjust timeline marker position */
-            }
-
-            .project-grid, .skills-grid {
-                grid-template-columns: 1fr; /* Stack grids on top of each other */
-            }
-        }
-
-        /* Mobile devices */
-        @media (max-width: 480px) {
-            body {
-                font-size: 14px; /* Even smaller base font */
-            }
-
-            h1 {
-                font-size: 2em; /* Further scale down name */
-            }
-
-            .subtitle {
-                font-size: 1.1em; /* Further scale down subtitle */
-            }
-
-            header {
-                padding: 15px; /* Reduce header padding */
-            }
-
-            .contact-info span {
-                font-size: 0.85em; /* Smaller font for contact info */
-            }
-
-            .social-links {
-                gap: 15px; /* Further adjust gap for social links */
-            }
-
-            .social-links a {
-                font-size: 1.8em; /* Further scale down social icons */
-            }
-
-            nav a {
-                padding: 8px 15px; /* Smaller padding for nav links */
-                font-size: 1em; /* Smaller font for nav links */
+                width: 90%;
+                max-width: 250px;
+                margin: 0 auto;
+                font-size: 0.85em;
             }
 
             main {
-                padding: 20px 15px; /* Reduce main content padding */
+                padding: 20px 15px;
+                margin: 15px auto;
             }
 
-            section {
-                padding: 20px; /* Smaller section padding */
-                margin-bottom: 30px; /* Reduce margin between sections */
+            .page-content h2 {
+                font-size: 1.8em;
             }
 
-            section h2 {
-                font-size: 1.8em; /* Further scale down section titles */
+            .content-list li, .timeline-item ul li, .project-item li, .skill-category li {
+                font-size: 0.9em;
             }
 
-            .timeline-item h3 {
-                font-size: 1.2em; /* Smaller timeline item titles */
-            }
-
-            .timeline-item .job-title {
-                font-size: 0.9em; /* Smaller job title */
-            }
-
-            .timeline-item p, .timeline-item li {
-                font-size: 0.9em; /* Smaller text in timeline items */
-            }
-
-            .project-item, .skill-category {
-                padding: 15px; /* Smaller padding for grid items */
-            }
-
-            .project-item h3, .skill-category h3 {
-                font-size: 1.1em; /* Smaller titles in grid items */
+            .project-grid, .skills-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        /* Very small mobile devices (e.g., iPhone SE) */
-        @media (max-width: 375px) {
+        @media (max-width: 480px) {
             body {
-                font-size: 13px; /* Smallest base font */
+                font-size: 14px;
             }
 
             h1 {
-                font-size: 1.7em; /* Smallest name font */
+                font-size: 1.7em;
             }
 
             .subtitle {
-                font-size: 0.9em; /* Smallest subtitle font */
+                font-size: 0.8em;
             }
 
             .contact-info span {
-                font-size: 0.8em; /* Smallest contact info font */
-                padding: 4px 8px; /* Smallest padding for contact info */
+                font-size: 0.75em;
             }
 
             .social-links a {
-                font-size: 1.5em; /* Smallest social icon font */
+                font-size: 1.3em;
             }
 
             nav a {
-                font-size: 0.9em; /* Smallest nav link font */
-                padding: 6px 10px; /* Smallest padding for nav links */
+                font-size: 0.8em;
+                padding: 6px 12px;
             }
 
-            section h2 {
-                font-size: 1.6em; /* Smallest section title font */
+            main {
+                padding: 15px 10px;
+                margin: 10px auto;
             }
 
-            .timeline-item h3 {
-                font-size: 1.1em;
+            .page-content h2 {
+                font-size: 1.5em;
+            }
+
+            .content-list li, .timeline-item ul li, .project-item li, .skill-category li {
+                font-size: 0.85em;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Canvas for the Matrix falling code background -->
-    <canvas id="matrixCanvas"></canvas>
-
     <!-- Header Section - Home and Navigation -->
-    <header id="home">
+    <header>
         <div class="header-content">
-            <!-- Name will be typed out by JS -->
             <h1 id="name"></h1>
             <p class="subtitle">Cybersecurity Enthusiast | Software Test Engineer</p>
             <div class="contact-info">
-                <span><i class="fas fa-map-marker-alt"></i> A/203, ShekharNagar Building, Dahisar (West), Mumbai-400068, India</span>
+                <span><i class="fas fa-map-marker-alt"></i> Mumbai, India</span>
                 <span><i class="fas fa-envelope"></i> bhalprathamesh6@gmail.com</span>
                 <span><i class="fas fa-phone"></i> +91 9137887904</span>
             </div>
             <!-- Social Links -->
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/prathameshjod/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/legend69xd" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
-                <a href="https://www.instagram.com/prathamesh_jod/" target="_blank" aria-label="Instagram Profile"><i class="fab fa-instagram"></i></a>
-                <a href="https://steamcommunity.com/profiles/76561199064828256/" target="_blank" aria-label="Steam Profile"><i class="fab fa-steam"></i></a>
-                <!-- Add more social links as needed -->
+                <a href="https://www.linkedin.com/in/prathamesh-upadhye/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/your-github-username" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/your-instagram-username/" target="_blank" aria-label="Instagram Profile"><i class="fab fa-instagram"></i></a>
+                <a href="https://steamcommunity.com/id/your-steam-id/" target="_blank" aria-label="Steam Profile"><i class="fab fa-steam"></i></a>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#activities">Activities</a></li>
+                    <li><a href="#" data-page="education">Education</a></li>
+                    <li><a href="#" data-page="experience">Experience</a></li>
+                    <li><a href="#" data-page="projects">Projects</a></li>
+                    <li><a href="#" data-page="skills">Skills</a></li>
+                    <li><a href="#" data-page="activities">Activities</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content Area -->
+    <!-- Main Content Area - Pages -->
     <main>
-        <!-- Education Section -->
-        <section id="education" class="section-hidden">
+        <!-- Education Page -->
+        <div id="education-page" class="page-content active">
             <h2>Education</h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <h3>St Francis Institute of Technology, Mumbai University, India</h3>
-                    <p>July 2024</p>
-                    <p>Bachelor of Engineering in Information Technology with Distinction (CGPA 7.65/10)</p>
+                    <h3>St Francis Institute of Technology</h3>
+                    <p>B.E. in IT with Distinction (CGPA 7.65/10)</p>
                     <p>Honors in Cybersecurity</p>
                 </div>
                 <div class="timeline-item">
-                    <h3>Nirmala Memorial Foundation Junior College, Mumbai, India</h3>
-                    <p>March 2020</p>
-                    <p>Secured Distinction in Higher Secondary Certificate Examination (62.31%)</p>
+                    <h3>Nirmala Memorial Foundation Junior College</h3>
+                    <p>Higher Secondary Certificate Examination (62.31%)</p>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Professional Experience Section -->
-        <section id="experience" class="section-hidden">
+        <!-- Professional Experience Page -->
+        <div id="experience-page" class="page-content">
             <h2>Professional Experience</h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <h3>Testriq QA Lab LLP, Thane, India</h3>
+                    <h3>Testriq QA Lab LLP</h3>
                     <p class="job-title">Software Test Engineer</p>
                     <p>July 2024 – Present</p>
                     <ul>
-                        <li>Executing smoke testing and regression testing to validate software functionality and stability after changes or updates.</li>
-                        <li>Performing security testing to identify vulnerabilities, ensuring applications adhere to best practices and compliance standards.</li>
-                        <li>Collaborating with clients to provide tailored solutions, gather requirements, and address specific testing needs.</li>
-                        <li>Conducting manual and automation testing using version control software has led to an improvement in testing efficiency by approximately 30% to 70%, including reductions in testing time by 30% to 50%, increased bug detection rates by 20% to 40%, and enhancements in release frequency by 25% to 60%.</li>
-                        <li>Identified and resolved bugs throughout the web development lifecycle, leveraging tools such as Jira and TestRail for effective tracking and reporting.</li>
-                        <li>Assigned to implement testing strategies and frameworks to enhance the overall quality assurance process, fostering continuous improvement within the team.</li>
+                        <li>Executes smoke & regression testing for software stability.</li>
+                        <li>Performs security testing to identify vulnerabilities.</li>
+                        <li>Collaborates with clients for tailored testing solutions.</li>
+                        <li>Improved testing efficiency by 30-70% via automation.</li>
+                        <li>Identified & resolved bugs using Jira & TestRail.</li>
                     </ul>
                 </div>
                 <div class="timeline-item">
-                    <h3>Testriq QA Lab LLP, Thane, India</h3>
+                    <h3>Testriq QA Lab LLP</h3>
                     <p class="job-title">Software Test Intern</p>
                     <p>June 2024 – July 2024</p>
                     <ul>
-                        <li>Studied how to write effective test cases for various applications, ensuring comprehensive coverage of functional requirements.</li>
-                        <li>Tasked with identifying and documenting bugs during manual testing processes, providing clear and actionable feedback to development teams.</li>
-                        <li>Carried out thorough software testing to ensure application quality, including exploratory testing to uncover edge cases and unexpected behavior.</li>
-                        <li>Assisted in creating and maintaining test documentation, contributing to a structured testing process.</li>
+                        <li>Wrote effective test cases for functional requirements.</li>
+                        <li>Identified & documented bugs during manual testing.</li>
+                        <li>Ensured application quality via thorough testing.</li>
                     </ul>
                 </div>
                 <div class="timeline-item">
-                    <h3>Epic Games, Cary, North Carolina, USA (Remote)</h3>
+                    <h3>Epic Games (Remote)</h3>
                     <p class="job-title">Public Beta Tester – "Fall Guys"</p>
                     <p>May 2022 – November 2022</p>
                     <ul>
-                        <li>Participated in the beta testing phase of "Fall Guys," identifying bugs and providing actionable feedback.</li>
-                        <li>Undertook comprehensive testing to ensure game functionality and stability after updates.</li>
-                        <li>Collaborated with development teams to gather requirements and address specific testing needs.</li>
-                        <li>Utilized Discord for real-time bug reporting and communication with the testing team.</li>
-                        <li>Assigned to execute both manual and automated testing methodologies to enhance testing efficiency.</li>
-                        <li>Discovered a critical game-breaking bug in the voice chat system, demonstrating the ability to identify high-impact issues.</li>
+                        <li>Identified bugs and provided feedback for "Fall Guys."</li>
+                        <li>Ensured game functionality and stability post-updates.</li>
+                        <li>Discovered critical game-breaking voice chat bug.</li>
                     </ul>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Academic Projects Section -->
-        <section id="projects" class="section-hidden">
+        <!-- Academic Projects Page -->
+        <div id="projects-page" class="page-content">
             <h2>Academic Projects</h2>
             <div class="project-grid">
                 <div class="project-item">
                     <h3>Automated Drone Delivery System</h3>
                     <ul>
-                        <li>Developed a secure web application using Flutter for frontend and Firebase for backend, ensuring drone safety.</li>
-                        <li>Integrated Google Maps UI for real-time route visualization and optimized delivery path planning.</li>
-                        <li>Introduced security protocols to protect data and prevent unauthorized access.</li>
-                        <li>Incorporated real-time notifications for users to track delivery status.</li>
-                        <li>Technologies: Flutter, JavaScript, Firebase, Google Maps API, Security Protocols.</li>
+                        <li>Secure web app (Flutter, Firebase) for drone safety.</li>
+                        <li>Google Maps UI for real-time route optimization.</li>
+                        <li>Implemented security protocols & real-time notifications.</li>
                     </ul>
                 </div>
                 <div class="project-item">
                     <h3>PScanner (Network Scanning Tool)</h3>
                     <ul>
-                        <li>Built a Python-based tool for advanced network scanning, identifying open ports, and mapping network devices.</li>
-                        <li>Deployed OS fingerprinting and service enumeration to enhance network visibility and security measures.</li>
-                        <li>Applied network segmentation and vulnerability patching to mitigate risks.</li>
-                        <li>Integrated a user-friendly interface using React for easy navigation and reporting.</li>
-                        <li>Technologies: Python, Scapy, Nmap, OS Fingerprinting, Service Enumeration.</li>
+                        <li>Python tool for network scanning & device mapping.</li>
+                        <li>OS fingerprinting & service enumeration for security.</li>
+                        <li>React UI for easy analysis & automated scans.</li>
                     </ul>
                 </div>
                 <div class="project-item">
                     <h3>Keylogger (Ethical Data Logging Tool)</h3>
                     <ul>
-                        <li>Designed a Python-based Keylogger for ethical research on vulnerabilities in unauthorized data access.</li>
-                        <li>Integrated encryption to securely store captured data and implemented restricted access mechanisms.</li>
-                        <li>Programmed a monitoring system using Python with PyHook and Pynput libraries for ethical data collection.</li>
-                        <li>Devised a user consent framework using Python and Flask.</li>
-                        <li>Technologies: Python, PyHook, Pynput, Data Encryption, Access Control.</li>
+                        <li>Python-based tool for ethical vulnerability research.</li>
+                        <li>Integrated encryption for secure data storage.</li>
+                        <li>User consent framework for ethical data collection.</li>
                     </ul>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Technical Skills Section -->
-        <section id="skills" class="section-hidden">
+        <!-- Technical Skills Page -->
+        <div id="skills-page" class="page-content">
             <h2>Technical Skills</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3>Programming and Scripting</h3>
+                    <h3>Programming/Scripting</h3>
                     <ul>
-                        <li>Python</li>
-                        <li>Bash</li>
-                        <li>PowerShell</li>
+                        <li>Python, Bash, PowerShell</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3>Networking and Network Security</h3>
+                    <h3>Networking/Security</h3>
                     <ul>
-                        <li>TCP/IP</li>
-                        <li>Firewalls</li>
-                        <li>VPNs</li>
-                        <li>Wireshark</li>
-                        <li>Nmap</li>
+                        <li>TCP/IP, Firewalls, VPNs</li>
+                        <li>Wireshark, Nmap</li>
                     </ul>
                 </div>
                 <div class="skill-category">
                     <h3>Operating Systems</h3>
                     <ul>
-                        <li>Linux (Kali, Parrot)</li>
-                        <li>Windows</li>
-                        <li>macOS</li>
+                        <li>Linux (Kali, Parrot), Windows, macOS</li>
                         <li>OS hardening</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3>Penetration Testing Tools</h3>
+                    <h3>Penetration Testing</h3>
                     <ul>
-                        <li>Burp Suite</li>
-                        <li>OWASP ZAP</li>
-                        <li>Metasploit</li>
-                        <li>Nessus</li>
+                        <li>Burp Suite, OWASP ZAP</li>
+                        <li>Metasploit, Nessus</li>
                     </ul>
                 </div>
                 <div class="skill-category">
                     <h3>Cloud Security</h3>
                     <ul>
-                        <li>AWS</li>
-                        <li>Azure</li>
-                        <li>GCP security practices</li>
-                        <li>Cloud workload protection</li>
+                        <li>AWS, Azure, GCP practices</li>
+                        <li>Workload protection</li>
                     </ul>
                 </div>
                 <div class="skill-category">
                     <h3>Version Control</h3>
                     <ul>
-                        <li>Git</li>
-                        <li>GitHub</li>
-                        <li>Jira</li>
+                        <li>Git, GitHub, Jira</li>
                     </ul>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Extracurricular Activities Section -->
-        <section id="activities" class="section-hidden">
+        <!-- Extracurricular Activities Page -->
+        <div id="activities-page" class="page-content">
             <h2>Extracurricular Activities</h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <h3>Stage Admin Volunteer at Mumbai ComicCon (2023-24)</h3>
-                    <ul>
-                        <li>Managed event flow and coordinated activities, ensuring a seamless experience for attendees.</li>
-                        <li>Involved in troubleshooting any issues that arose and facilitating communication between different teams.</li>
-                    </ul>
+                    <h3>Mumbai ComicCon (2023-24)</h3>
+                    <p>Stage Admin Volunteer: Managed event flow & coordinated activities.</p>
                 </div>
                 <div class="timeline-item">
-                    <h3>Vice President of the IT Students' Association (ITSA) at St. Francis Institute of Technology (2023)</h3>
-                    <ul>
-                        <li>Led initiatives to boost student engagement through workshops and networking events.</li>
-                        <li>Collaborated with faculty to create valuable opportunities for students to connect with industry professionals.</li>
-                    </ul>
+                    <h3>IT Students' Association (ITSA) VP (2023)</h3>
+                    <p>Led student engagement initiatives & networking events.</p>
                 </div>
                 <div class="timeline-item">
-                    <h3>Participant in Valorant tournament at Shree LR Tiwari College of Engineering (MetaSummit 2023)</h3>
-                    <ul>
-                        <li>Participated in the Valorant tournament held at Shree LR Tiwari College of Engineering for the fest called MetaSummit (2023).</li>
-                    </ul>
+                    <h3>Valorant Tournament (MetaSummit 2023)</h3>
+                    <p>Participated in college esports tournament.</p>
                 </div>
                 <div class="timeline-item">
-                    <h3>Stage Admin and Operator at the SkyEsports LAN Event (2023)</h3>
-                    <ul>
-                        <li>Facilitated the smooth execution of live esports events.</li>
-                        <li>Coordinated logistics and ensuring that all technical aspects ran without a hitch, contributing to a successful event.</li>
-                    </ul>
+                    <h3>SkyEsports LAN Event (2023)</h3>
+                    <p>Stage Admin/Operator: Facilitated live esports execution.</p>
                 </div>
                 <div class="timeline-item">
-                    <h3>Consecutive victories in Zephyr Rocket League Tournament (2022-23)</h3>
-                    <ul>
-                        <li>Achieved consecutive victories as a participant, showcasing strategic gameplay and teamwork.</li>
-                    </ul>
+                    <h3>Zephyr Rocket League Tournament (2022-23)</h3>
+                    <p>Achieved consecutive victories, showcasing strategy.</p>
                 </div>
                 <div class="timeline-item">
-                    <h3>Volunteer in St Francis Institute of Technology campus blood donation drives (2022-2023)</h3>
-                    <ul>
-                        <li>Volunteered in campus blood donation drives, raising awareness and supporting community health.</li>
-                        <li>Promoted the events and encouraged fellow students to contribute to this important cause.</li>
-                    </ul>
+                    <h3>Blood Donation Drives (2022-23)</h3>
+                    <p>Volunteered, raising awareness & supporting community health.</p>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
     <!-- Footer Section -->
@@ -813,69 +613,8 @@
         <p>&copy; 2025 Prathamesh Upadhye. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript for dynamic effects and animations -->
+    <!-- JavaScript for dynamic effects and page switching -->
     <script>
-        // Matrix Background Animation
-        const canvas = document.getElementById('matrixCanvas');
-        const ctx = canvas.getContext('2d');
-
-        // Set canvas dimensions to full window size
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        // Characters for the matrix effect
-        const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{}|;:,.<>?';
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
-
-        // Array to store the y-position of each falling character
-        const drops = [];
-        for (let x = 0; x < columns; x++) {
-            drops[x] = 1; // Start at the top
-        }
-
-        // Function to draw the matrix effect
-        function drawMatrix() {
-            // Semi-transparent black rectangle to fade out old characters
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Set text color and font (now muted teal)
-            ctx.fillStyle = '#00cccc'; /* Muted teal for matrix characters */
-            ctx.font = `${fontSize}px Fira Code`;
-
-            // Loop through each drop
-            for (let i = 0; i < drops.length; i++) {
-                // Get a random character
-                const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
-                // Draw the character
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                // If the character has reached the bottom of the screen, reset it to the top
-                if (drops[i] * fontSize * 1.5 > canvas.height && Math.random() > 0.975) { // Adjusted condition
-                    drops[i] = 0;
-                }
-
-                // Increment the y-position of the character
-                drops[i]++;
-            }
-        }
-
-        // Animate the matrix effect
-        setInterval(drawMatrix, 35); // Adjust speed here
-
-        // Handle canvas resize
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            // Re-initialize drops array for new column count
-            const newColumns = canvas.width / fontSize;
-            drops.length = 0; // Clear existing drops
-            for (let x = 0; x < newColumns; x++) {
-                drops[x] = Math.floor(Math.random() * canvas.height / fontSize); // Random starting height
-            }
-        });
-
         // Typing Effect for the Name
         const nameElement = document.getElementById('name');
         const nameText = "Prathamesh Upadhye";
@@ -889,45 +628,32 @@
             }
         }
 
-        // Intersection Observer for Section Reveal Animation
-        const sections = document.querySelectorAll('section');
+        // Page Switching Logic
+        const pageLinks = document.querySelectorAll('nav a');
+        const pages = document.querySelectorAll('.page-content');
 
-        const observerOptions = {
-            root: null, // viewport
-            rootMargin: '0px',
-            threshold: 0.1 // 10% of the section must be visible
-        };
-
-        const sectionObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.remove('section-hidden');
-                    entry.target.classList.add('section-visible');
-                    observer.unobserve(entry.target); // Stop observing once visible
+        function showPage(pageId) {
+            pages.forEach(page => {
+                if (page.id === pageId) {
+                    page.classList.add('active');
+                } else {
+                    page.classList.remove('active');
                 }
             });
-        }, observerOptions);
+        }
 
-        // Add hidden class initially and observe
-        sections.forEach(section => {
-            section.classList.add('section-hidden');
-            sectionObserver.observe(section);
-        });
-
-        // Smooth Scrolling for Navigation Links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        pageLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetPageId = this.dataset.page + '-page'; // Get the ID from data-page attribute
+                showPage(targetPageId);
             });
         });
 
-        // Initial call to start typing effect after page load
+        // Initial call to start typing effect and show default page after page load
         window.onload = () => {
             typeWriter();
+            showPage('education-page'); // Show education page by default
         };
     </script>
 </body>
