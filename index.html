@@ -13,8 +13,8 @@
         body {
             margin: 0;
             font-family: 'Fira Code', monospace;
-            background-color: #1a1a1a; /* Dark grey background */
-            color: #ffffff; /* White text */
+            background-color: #0d0d1a; /* Very dark blue/purple */
+            color: #e0e0e0; /* Off-white text for readability */
             line-height: 1.6;
             overflow-x: hidden; /* Prevent horizontal scroll */
             position: relative;
@@ -29,7 +29,7 @@
             width: 100%;
             height: 100%;
             z-index: -1; /* Send to background */
-            opacity: 0.1; /* Very subtle */
+            opacity: 0.05; /* Even more subtle */
         }
 
         /* Header Section */
@@ -43,8 +43,8 @@
             position: relative;
             z-index: 1;
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); /* Red glow */
-            border-bottom: 2px solid #ff0000; /* Red border */
+            box-shadow: 0 0 15px rgba(0, 204, 204, 0.2); /* Muted teal glow */
+            border-bottom: 2px solid #00cccc; /* Muted teal border */
         }
 
         .header-content {
@@ -56,17 +56,17 @@
         h1 {
             font-size: 3.5em;
             margin-bottom: 10px;
-            color: #ff0000; /* Bright red for name */
+            color: #00cccc; /* Muted teal for name */
             /* Significantly reduced vibrancy for text-shadow */
-            text-shadow: 0 0 2px #ff0000, 0 0 5px #ff0000, 0 0 8px #ff0000;
-            animation: glowRedEvenLessVibrant 1.5s infinite alternate; /* New even less vibrant glow animation */
+            text-shadow: 0 0 1px #00cccc, 0 0 2px #00cccc, 0 0 3px #00cccc;
+            animation: glowLessVibrant 1.5s infinite alternate; /* New even less vibrant glow animation */
             word-break: break-word; /* Prevent overflow on small screens */
         }
 
         .subtitle {
             font-size: 1.5em;
             color: #ffffff; /* White for subtitle */
-            text-shadow: 0 0 8px #ffffff;
+            text-shadow: none; /* Removed text shadow */
             margin-top: 0;
             margin-bottom: 20px;
         }
@@ -78,7 +78,7 @@
             gap: 15px;
             margin-bottom: 30px;
             font-size: 0.9em;
-            color: #cccccc; /* Light grey */
+            color: #b380ff; /* Subtle purple */
         }
 
         .contact-info span {
@@ -86,9 +86,9 @@
             align-items: center;
             gap: 5px;
             padding: 5px 10px;
-            border: 1px solid #ff0000; /* Red border */
+            border: 1px solid #00cccc; /* Muted teal border */
             border-radius: 5px;
-            box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); /* Red shadow */
+            box-shadow: 0 0 5px rgba(0, 204, 204, 0.3); /* Muted teal shadow */
             text-align: left; /* Align text within span */
         }
 
@@ -102,15 +102,15 @@
         }
 
         .social-links a {
-            color: #ff0000; /* Bright red for social icons */
+            color: #00cccc; /* Muted teal for social icons */
             font-size: 2.5em;
             transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            text-shadow: 0 0 5px rgba(0, 204, 204, 0.5);
         }
 
         .social-links a:hover {
             transform: translateY(-5px) scale(1.1);
-            text-shadow: 0 0 20px #ff0000, 0 0 40px rgba(255, 0, 0, 0.3);
+            text-shadow: 0 0 15px #00cccc, 0 0 30px rgba(0, 204, 204, 0.3);
         }
 
 
@@ -130,20 +130,18 @@
             text-decoration: none;
             font-size: 1.1em;
             padding: 10px 20px;
-            border: 1px solid #ff0000; /* Red border */
+            border: 1px solid #00cccc; /* Muted teal border */
             border-radius: 8px;
             transition: all 0.3s ease-in-out;
-            box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); /* Red shadow */
-            position: relative; /* Keep relative for potential future effects */
-            overflow: hidden; /* Keep hidden for clean edges */
+            box-shadow: 0 0 5px rgba(0, 204, 204, 0.5); /* Muted teal shadow */
+            position: relative;
+            overflow: hidden;
             white-space: nowrap; /* Prevent text wrapping inside nav links */
         }
 
-        /* Removed nav a::before and nav a:hover::before animations */
-
         nav a:hover {
-            background-color: rgba(255, 0, 0, 0.1); /* Red background on hover */
-            box-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000; /* Red glow on hover */
+            background-color: rgba(0, 204, 204, 0.1); /* Muted teal background on hover */
+            box-shadow: 0 0 10px #00cccc, 0 0 20px rgba(0, 204, 204, 0.2); /* Muted teal glow on hover */
             transform: translateY(-3px);
         }
 
@@ -157,46 +155,33 @@
         }
 
         section {
-            background-color: rgba(20, 20, 20, 0.8); /* Slightly lighter dark grey */
-            border: 1px solid #ff0000; /* Red border */
+            background-color: rgba(18, 18, 30, 0.8); /* Slightly lighter dark blue/purple */
+            border: 1px solid #00cccc; /* Muted teal border */
             border-radius: 10px;
             padding: 30px;
             margin-bottom: 40px;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); /* Red shadow */
+            box-shadow: 0 0 15px rgba(0, 204, 204, 0.3); /* Muted teal shadow */
             position: relative;
             overflow: hidden;
             transition: transform 0.5s ease-out, opacity 0.5s ease-out;
         }
 
         section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                45deg,
-                rgba(255, 0, 0, 0.002), /* Even more reduced opacity for red */
-                rgba(255, 0, 0, 0.002) 10px, /* Even more reduced opacity for red */
-                transparent 10px,
-                transparent 20px
-            );
-            z-index: -1;
-            opacity: 0.1; /* Overall opacity of the pattern */
+            /* Removed the repeating linear gradient background for cleaner look */
+            content: none;
         }
 
         section h2 {
             font-size: 2.5em;
-            color: #ff0000; /* Bright red */
-            text-shadow: 0 0 8px #ff0000;
+            color: #00cccc; /* Muted teal */
+            text-shadow: none; /* Removed text shadow */
             margin-top: 0;
             margin-bottom: 25px;
-            border-bottom: 2px dashed #ff0000; /* Red dashed border */
+            border-bottom: 2px dashed #b380ff; /* Subtle purple dashed border */
             padding-bottom: 10px;
             display: inline-block;
-            animation: glitchTextRed 3s infinite alternate; /* Red glitch animation */
-            word-break: break-word;
+            /* Removed glitch animation for a minimalist look */
+            animation: none;
         }
 
         /* Section Reveal Animation */
@@ -214,7 +199,7 @@
         .timeline {
             position: relative;
             padding-left: 30px;
-            border-left: 2px solid #ff0000; /* Red border */
+            border-left: 2px solid #b380ff; /* Subtle purple border */
         }
 
         .timeline-item {
@@ -231,27 +216,27 @@
             width: 16px;
             height: 16px;
             background-color: #ffffff; /* White dot */
-            border: 2px solid #ff0000; /* Red border */
+            border: 2px solid #00cccc; /* Muted teal border */
             border-radius: 50%;
-            box-shadow: 0 0 10px #ffffff; /* White glow */
+            box-shadow: 0 0 8px #ffffff; /* White glow */
         }
 
         .timeline-item h3 {
-            color: #ff6666; /* Lighter red */
+            color: #b380ff; /* Subtle purple */
             font-size: 1.4em;
             margin-top: 0;
             margin-bottom: 5px;
         }
 
         .timeline-item .job-title {
-            color: #ff0000; /* Bright red */
+            color: #00cccc; /* Muted teal */
             font-style: italic;
             margin-bottom: 5px;
         }
 
         .timeline-item p {
             margin-bottom: 5px;
-            color: #aaa;
+            color: #cccccc; /* Light grey */
         }
 
         .timeline-item ul {
@@ -269,12 +254,12 @@
 
         .timeline-item li::before {
             content: '\2022'; /* Bullet point */
-            color: #ff0000; /* Red bullet */
+            color: #00cccc; /* Muted teal bullet */
             font-size: 1.2em;
             position: absolute;
             left: 0;
             top: -2px;
-            text-shadow: 0 0 5px #ff0000;
+            text-shadow: 0 0 3px #00cccc;
         }
 
         /* Project Grid */
@@ -285,17 +270,17 @@
         }
 
         .project-item {
-            background-color: rgba(30, 30, 30, 0.9); /* Darker grey */
-            border: 1px solid #ff0000; /* Red border */
+            background-color: rgba(25, 25, 45, 0.9); /* Darker blue/purple */
+            border: 1px solid #b380ff; /* Subtle purple border */
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3); /* Red shadow */
+            box-shadow: 0 0 10px rgba(179, 128, 255, 0.3); /* Subtle purple shadow */
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
 
         .project-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 20px #ff0000, 0 0 40px rgba(255, 0, 0, 0.2); /* Red glow on hover */
+            box-shadow: 0 0 15px #b380ff, 0 0 30px rgba(179, 128, 255, 0.2); /* Subtle purple glow on hover */
         }
 
         .project-item h3 {
@@ -303,7 +288,7 @@
             font-size: 1.3em;
             margin-top: 0;
             margin-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 0, 0, 0.5); /* Red border */
+            border-bottom: 1px solid rgba(0, 204, 204, 0.5); /* Muted teal border */
             padding-bottom: 8px;
         }
 
@@ -321,12 +306,12 @@
 
         .project-item li::before {
             content: '\25B6'; /* Right-pointing triangle */
-            color: #ff0000; /* Red triangle */
+            color: #00cccc; /* Muted teal triangle */
             font-size: 0.9em;
             position: absolute;
             left: 0;
             top: 2px;
-            text-shadow: 0 0 5px #ff0000;
+            text-shadow: 0 0 3px #00cccc;
         }
 
         /* Skills Grid */
@@ -337,17 +322,17 @@
         }
 
         .skill-category {
-            background-color: rgba(30, 30, 30, 0.9); /* Darker grey */
-            border: 1px solid #ff0000; /* Red border */
+            background-color: rgba(25, 25, 45, 0.9); /* Darker blue/purple */
+            border: 1px solid #b380ff; /* Subtle purple border */
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3); /* Red shadow */
+            box-shadow: 0 0 10px rgba(179, 128, 255, 0.3); /* Subtle purple shadow */
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
 
         .skill-category:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 20px #ff0000, 0 0 40px rgba(255, 0, 0, 0.2); /* Red glow on hover */
+            box-shadow: 0 0 15px #b380ff, 0 0 30px rgba(179, 128, 255, 0.2); /* Subtle purple glow on hover */
         }
 
         .skill-category h3 {
@@ -355,7 +340,7 @@
             font-size: 1.2em;
             margin-top: 0;
             margin-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 0, 0, 0.5); /* Red border */
+            border-bottom: 1px solid rgba(0, 204, 204, 0.5); /* Muted teal border */
             padding-bottom: 8px;
         }
 
@@ -373,12 +358,12 @@
 
         .skill-category li::before {
             content: '\2713'; /* Checkmark */
-            color: #ff0000; /* Red checkmark */
+            color: #00cccc; /* Muted teal checkmark */
             font-size: 0.9em;
             position: absolute;
             left: 0;
             top: 2px;
-            text-shadow: 0 0 5px #ff0000;
+            text-shadow: 0 0 3px #00cccc;
         }
 
         /* Footer */
@@ -386,7 +371,7 @@
             text-align: center;
             padding: 20px;
             margin-top: 40px;
-            border-top: 1px dashed #ff0000; /* Red dashed border */
+            border-top: 1px dashed #b380ff; /* Subtle purple dashed border */
             color: #cccccc; /* Light grey */
             font-size: 0.9em;
         }
@@ -397,38 +382,14 @@
             to { opacity: 1; }
         }
 
-        /* Even less vibrant red glow animation for name */
-        @keyframes glowRedEvenLessVibrant {
-            0% { text-shadow: 0 0 2px #ff0000, 0 0 5px #ff0000; }
-            100% { text-shadow: 0 0 5px #ff0000, 0 0 8px #ff0000, 0 0 10px #ff0000; }
+        /* Less vibrant glow animation for name */
+        @keyframes glowLessVibrant {
+            0% { text-shadow: 0 0 1px #00cccc, 0 0 2px #00cccc; }
+            100% { text-shadow: 0 0 2px #00cccc, 0 0 3px #00cccc, 0 0 5px #00cccc; }
         }
 
-        @keyframes glitchTextRed { /* Red glitch animation */
-            0% {
-                text-shadow: 0 0 8px #ff0000;
-                transform: translateX(0);
-            }
-            20% {
-                text-shadow: 2px 0 8px #ffffff, -2px 0 8px #ff0000; /* White and red glitch */
-                transform: translateX(-2px);
-            }
-            40% {
-                text-shadow: -2px 2px 8px #ff0000, 2px -2px 8px #ffffff; /* Red and white glitch */
-                transform: translateX(2px);
-            }
-            60% {
-                text-shadow: 0 0 8px #ff0000;
-                transform: translateX(0);
-            }
-            80% {
-                text-shadow: 1px -1px 8px #ffffff, -1px 1px 8px #ff0000; /* White and red glitch */
-                transform: translateX(-1px);
-            }
-            100% {
-                text-shadow: 0 0 8px #ff0000;
-                transform: translateX(0);
-            }
-        }
+        /* Removed glitch animation for a minimalist look */
+        /* @keyframes glitchTextRed { ... } */
 
         /* Responsive Design */
         /* Tablet and smaller desktops */
@@ -879,8 +840,8 @@
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Set text color and font (now red)
-            ctx.fillStyle = '#ff0000'; /* Red for matrix characters */
+            // Set text color and font (now muted teal)
+            ctx.fillStyle = '#00cccc'; /* Muted teal for matrix characters */
             ctx.font = `${fontSize}px Fira Code`;
 
             // Loop through each drop
