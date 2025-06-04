@@ -1,260 +1,973 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prathamesh Upadhye | Cybersecurity Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prathamesh Upadhye - CyberSec Portfolio</title>
+    <!-- Google Fonts - Fira Code for a hacker-like monospace feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: 'Fira Code', monospace;
+            background-color: #1a1a1a; /* Dark grey background */
+            color: #ffffff; /* White text */
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            position: relative;
+            font-size: 16px; /* Base font size for responsiveness */
+        }
 
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #0f0f10;
-      color: #f0f0f0;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+        /* Canvas for Matrix Background */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Send to background */
+            opacity: 0.1; /* Very subtle */
+        }
 
-    header {
-      background: #131417;
-      text-align: center;
-      padding: 3rem 1rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      background-size: cover;
-      background-position: center;
-      color: white;
-    }
+        /* Header Section */
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); /* Red glow */
+            border-bottom: 2px solid #ff0000; /* Red border */
+        }
 
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 0.5rem;
-    }
+        .header-content {
+            max-width: 900px;
+            width: 100%; /* Ensure it takes full width within padding */
+            animation: fadeIn 2s ease-out;
+        }
 
-    .contact p {
-      margin: 0.2rem 0;
-      color: #ddd;
-    }
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            color: #ff0000; /* Bright red for name */
+            /* Significantly reduced vibrancy for text-shadow */
+            text-shadow: 0 0 2px #ff0000, 0 0 5px #ff0000, 0 0 8px #ff0000;
+            animation: glowRedEvenLessVibrant 1.5s infinite alternate; /* New even less vibrant glow animation */
+            word-break: break-word; /* Prevent overflow on small screens */
+        }
 
-    .container {
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
+        .subtitle {
+            font-size: 1.5em;
+            color: #ffffff; /* White for subtitle */
+            text-shadow: 0 0 8px #ffffff;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
 
-    h2 {
-      font-size: 1.6rem;
-      margin: 2rem 0 1rem;
-      border-left: 4px solid #0090ff;
-      padding-left: 1rem;
-      color: #0090ff;
-    }
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+            color: #cccccc; /* Light grey */
+        }
 
-    ul {
-      list-style-type: disc;
-      padding-left: 2rem;
-      margin-bottom: 1rem;
-    }
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            border: 1px solid #ff0000; /* Red border */
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); /* Red shadow */
+            text-align: left; /* Align text within span */
+        }
 
-    li {
-      margin-bottom: 0.5rem;
-    }
+        /* Social Links */
+        .social-links {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
 
-    a {
-      color: #00bfff;
-      text-decoration: none;
-    }
+        .social-links a {
+            color: #ff0000; /* Bright red for social icons */
+            font-size: 2.5em;
+            transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            text-shadow: 0 0 20px #ff0000, 0 0 40px rgba(255, 0, 0, 0.3);
+        }
 
-    .buttons {
-      margin-top: 2rem;
-      text-align: center;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-    }
 
-    .button {
-      background: #0090ff;
-      color: #fff;
-      padding: 0.7rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
-      text-align: center;
-    }
+        /* Navigation */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
 
-    .button:hover {
-      background: #0078cc;
-      transform: scale(1.05);
-    }
+        nav a {
+            color: #ffffff; /* White */
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            border: 1px solid #ff0000; /* Red border */
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); /* Red shadow */
+            position: relative; /* Keep relative for potential future effects */
+            overflow: hidden; /* Keep hidden for clean edges */
+            white-space: nowrap; /* Prevent text wrapping inside nav links */
+        }
 
-    footer {
-      text-align: center;
-      color: #777;
-      padding: 1.5rem;
-      margin-top: 3rem;
-      border-top: 1px solid #333;
-    }
+        /* Removed nav a::before and nav a:hover::before animations */
 
-    #bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      width: 100%;
-      height: 100%;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/2d/Kali-dragon-icon.svg');
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 30%;
-      opacity: 0.05;
-      animation: fadeIn 10s infinite alternate;
-    }
+        nav a:hover {
+            background-color: rgba(255, 0, 0, 0.1); /* Red background on hover */
+            box-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000; /* Red glow on hover */
+            transform: translateY(-3px);
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0.03; }
-      to { opacity: 0.07; }
-    }
+        /* Main Content Sections */
+        main {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
 
-    @media screen and (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
+        section {
+            background-color: rgba(20, 20, 20, 0.8); /* Slightly lighter dark grey */
+            border: 1px solid #ff0000; /* Red border */
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); /* Red shadow */
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        }
 
-      h2 {
-        font-size: 1.3rem;
-      }
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255, 0, 0, 0.002), /* Even more reduced opacity for red */
+                rgba(255, 0, 0, 0.002) 10px, /* Even more reduced opacity for red */
+                transparent 10px,
+                transparent 20px
+            );
+            z-index: -1;
+            opacity: 0.1; /* Overall opacity of the pattern */
+        }
 
-      .container {
-        padding: 1rem;
-      }
+        section h2 {
+            font-size: 2.5em;
+            color: #ff0000; /* Bright red */
+            text-shadow: 0 0 8px #ff0000;
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-bottom: 2px dashed #ff0000; /* Red dashed border */
+            padding-bottom: 10px;
+            display: inline-block;
+            animation: glitchTextRed 3s infinite alternate; /* Red glitch animation */
+            word-break: break-word;
+        }
 
-      .button {
-        width: 100%;
-        padding: 1rem;
-      }
+        /* Section Reveal Animation */
+        .section-hidden {
+            opacity: 0;
+            transform: translateY(50px);
+        }
 
-      ul {
-        padding-left: 1.5rem;
-      }
-    }
-  </style>
+        .section-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Timeline Styles (for Education, Experience, Activities) */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid #ff0000; /* Red border */
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px; /* Adjust to align with timeline line */
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background-color: #ffffff; /* White dot */
+            border: 2px solid #ff0000; /* Red border */
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffffff; /* White glow */
+        }
+
+        .timeline-item h3 {
+            color: #ff6666; /* Lighter red */
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item .job-title {
+            color: #ff0000; /* Bright red */
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item p {
+            margin-bottom: 5px;
+            color: #aaa;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .timeline-item li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: #e0e0e0;
+        }
+
+        .timeline-item li::before {
+            content: '\2022'; /* Bullet point */
+            color: #ff0000; /* Red bullet */
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: -2px;
+            text-shadow: 0 0 5px #ff0000;
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-item {
+            background-color: rgba(30, 30, 30, 0.9); /* Darker grey */
+            border: 1px solid #ff0000; /* Red border */
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3); /* Red shadow */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px #ff0000, 0 0 40px rgba(255, 0, 0, 0.2); /* Red glow on hover */
+        }
+
+        .project-item h3 {
+            color: #ffffff; /* White */
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 0, 0, 0.5); /* Red border */
+            padding-bottom: 8px;
+        }
+
+        .project-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project-item li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: #e0e0e0;
+        }
+
+        .project-item li::before {
+            content: '\25B6'; /* Right-pointing triangle */
+            color: #ff0000; /* Red triangle */
+            font-size: 0.9em;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            text-shadow: 0 0 5px #ff0000;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background-color: rgba(30, 30, 30, 0.9); /* Darker grey */
+            border: 1px solid #ff0000; /* Red border */
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3); /* Red shadow */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px #ff0000, 0 0 40px rgba(255, 0, 0, 0.2); /* Red glow on hover */
+        }
+
+        .skill-category h3 {
+            color: #ffffff; /* White */
+            font-size: 1.2em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 0, 0, 0.5); /* Red border */
+            padding-bottom: 8px;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-category li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 5px;
+            color: #e0e0e0;
+        }
+
+        .skill-category li::before {
+            content: '\2713'; /* Checkmark */
+            color: #ff0000; /* Red checkmark */
+            font-size: 0.9em;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            text-shadow: 0 0 5px #ff0000;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px dashed #ff0000; /* Red dashed border */
+            color: #cccccc; /* Light grey */
+            font-size: 0.9em;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Even less vibrant red glow animation for name */
+        @keyframes glowRedEvenLessVibrant {
+            0% { text-shadow: 0 0 2px #ff0000, 0 0 5px #ff0000; }
+            100% { text-shadow: 0 0 5px #ff0000, 0 0 8px #ff0000, 0 0 10px #ff0000; }
+        }
+
+        @keyframes glitchTextRed { /* Red glitch animation */
+            0% {
+                text-shadow: 0 0 8px #ff0000;
+                transform: translateX(0);
+            }
+            20% {
+                text-shadow: 2px 0 8px #ffffff, -2px 0 8px #ff0000; /* White and red glitch */
+                transform: translateX(-2px);
+            }
+            40% {
+                text-shadow: -2px 2px 8px #ff0000, 2px -2px 8px #ffffff; /* Red and white glitch */
+                transform: translateX(2px);
+            }
+            60% {
+                text-shadow: 0 0 8px #ff0000;
+                transform: translateX(0);
+            }
+            80% {
+                text-shadow: 1px -1px 8px #ffffff, -1px 1px 8px #ff0000; /* White and red glitch */
+                transform: translateX(-1px);
+            }
+            100% {
+                text-shadow: 0 0 8px #ff0000;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        /* Tablet and smaller desktops */
+        @media (max-width: 768px) {
+            body {
+                font-size: 15px; /* Slightly smaller base font */
+            }
+
+            h1 {
+                font-size: 2.8em; /* Scale down name */
+            }
+
+            .subtitle {
+                font-size: 1.3em; /* Scale down subtitle */
+            }
+
+            .contact-info {
+                flex-direction: column; /* Stack contact info vertically */
+                gap: 10px;
+            }
+
+            .contact-info span {
+                width: fit-content; /* Adjust width to content */
+                margin: 0 auto; /* Center individual contact items */
+            }
+
+            .social-links {
+                gap: 20px; /* Adjust gap for social links */
+            }
+
+            .social-links a {
+                font-size: 2em; /* Scale down social icons */
+            }
+
+            nav ul {
+                flex-direction: column; /* Stack navigation links vertically */
+                gap: 10px;
+            }
+
+            nav a {
+                width: 80%; /* Make nav links wider */
+                max-width: 300px; /* Limit max width */
+                margin: 0 auto; /* Center nav links */
+                white-space: normal; /* Allow text to wrap if needed */
+            }
+
+            section {
+                padding: 25px; /* Slightly less padding */
+            }
+
+            section h2 {
+                font-size: 2.2em; /* Scale down section titles */
+            }
+
+            .timeline {
+                padding-left: 20px; /* Adjust timeline padding */
+            }
+
+            .timeline-item::before {
+                left: -28px; /* Adjust timeline marker position */
+            }
+
+            .project-grid, .skills-grid {
+                grid-template-columns: 1fr; /* Stack grids on top of each other */
+            }
+        }
+
+        /* Mobile devices */
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px; /* Even smaller base font */
+            }
+
+            h1 {
+                font-size: 2em; /* Further scale down name */
+            }
+
+            .subtitle {
+                font-size: 1.1em; /* Further scale down subtitle */
+            }
+
+            header {
+                padding: 15px; /* Reduce header padding */
+            }
+
+            .contact-info span {
+                font-size: 0.85em; /* Smaller font for contact info */
+            }
+
+            .social-links {
+                gap: 15px; /* Further adjust gap for social links */
+            }
+
+            .social-links a {
+                font-size: 1.8em; /* Further scale down social icons */
+            }
+
+            nav a {
+                padding: 8px 15px; /* Smaller padding for nav links */
+                font-size: 1em; /* Smaller font for nav links */
+            }
+
+            main {
+                padding: 20px 15px; /* Reduce main content padding */
+            }
+
+            section {
+                padding: 20px; /* Smaller section padding */
+                margin-bottom: 30px; /* Reduce margin between sections */
+            }
+
+            section h2 {
+                font-size: 1.8em; /* Further scale down section titles */
+            }
+
+            .timeline-item h3 {
+                font-size: 1.2em; /* Smaller timeline item titles */
+            }
+
+            .timeline-item .job-title {
+                font-size: 0.9em; /* Smaller job title */
+            }
+
+            .timeline-item p, .timeline-item li {
+                font-size: 0.9em; /* Smaller text in timeline items */
+            }
+
+            .project-item, .skill-category {
+                padding: 15px; /* Smaller padding for grid items */
+            }
+
+            .project-item h3, .skill-category h3 {
+                font-size: 1.1em; /* Smaller titles in grid items */
+            }
+        }
+
+        /* Very small mobile devices (e.g., iPhone SE) */
+        @media (max-width: 375px) {
+            body {
+                font-size: 13px; /* Smallest base font */
+            }
+
+            h1 {
+                font-size: 1.7em; /* Smallest name font */
+            }
+
+            .subtitle {
+                font-size: 0.9em; /* Smallest subtitle font */
+            }
+
+            .contact-info span {
+                font-size: 0.8em; /* Smallest contact info font */
+                padding: 4px 8px; /* Smallest padding for contact info */
+            }
+
+            .social-links a {
+                font-size: 1.5em; /* Smallest social icon font */
+            }
+
+            nav a {
+                font-size: 0.9em; /* Smallest nav link font */
+                padding: 6px 10px; /* Smallest padding for nav links */
+            }
+
+            section h2 {
+                font-size: 1.6em; /* Smallest section title font */
+            }
+
+            .timeline-item h3 {
+                font-size: 1.1em;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div id="bg"></div>
-  <header>
-    <h1 class="animate__animated animate__fadeInDown">Prathamesh Upadhye</h1>
-    <div class="contact animate__animated animate__fadeInUp">
-      <p>Email: bhalprathamesh6@gmail.com</p>
-      <p>Phone: +91 9137887904</p>
-      <p>Location: Mumbai, India</p>
-    </div>
-  </header>
+    <!-- Canvas for the Matrix falling code background -->
+    <canvas id="matrixCanvas"></canvas>
 
-  <div class="container">
-    <section>
-      <h2>Education</h2>
-      <ul>
-        <li>St. Francis Institute of Technology, Mumbai University — B.E. in IT with Distinction | Honors in Cybersecurity (2024)</li>
-        <li>Nirmala Memorial Foundation Junior College — HSC with Distinction</li>
-      </ul>
-    </section>
+    <!-- Header Section - Home and Navigation -->
+    <header id="home">
+        <div class="header-content">
+            <!-- Name will be typed out by JS -->
+            <h1 id="name"></h1>
+            <p class="subtitle">Cybersecurity Enthusiast | Software Test Engineer</p>
+            <div class="contact-info">
+                <span><i class="fas fa-map-marker-alt"></i> A/203, ShekharNagar Building, Dahisar (West), Mumbai-400068, India</span>
+                <span><i class="fas fa-envelope"></i> bhalprathamesh6@gmail.com</span>
+                <span><i class="fas fa-phone"></i> +91 9137887904</span>
+            </div>
+            <!-- Social Links -->
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/prathameshjod/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/legend69xd" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/prathamesh_jod/" target="_blank" aria-label="Instagram Profile"><i class="fab fa-instagram"></i></a>
+                <a href="https://steamcommunity.com/profiles/76561199064828256/" target="_blank" aria-label="Steam Profile"><i class="fab fa-steam"></i></a>
+                <!-- Add more social links as needed -->
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#activities">Activities</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <section>
-      <h2>Professional Experience</h2>
-      <ul>
-        <li><strong>Testriq QA Lab LLP</strong> — Software Test Engineer (Jul 2024 – Present)
-          <ul>
-            <li>Regression, smoke, and security testing.</li>
-            <li>Client collaboration and QA strategy execution.</li>
-            <li>Improved testing efficiency with automation tools.</li>
-          </ul>
-        </li>
-        <li><strong>Software Test Intern</strong> (Jun 2024 – Jul 2024)
-          <ul>
-            <li>Test case creation and bug documentation.</li>
-            <li>Exploratory testing to find edge cases.</li>
-          </ul>
-        </li>
-        <li><strong>Epic Games</strong> — Public Beta Tester (May 2022 – Nov 2022)
-          <ul>
-            <li>Discovered and reported critical gameplay bugs.</li>
-            <li>Contributed to QA improvements in "Fall Guys".</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
+    <!-- Main Content Area -->
+    <main>
+        <!-- Education Section -->
+        <section id="education" class="section-hidden">
+            <h2>Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>St Francis Institute of Technology, Mumbai University, India</h3>
+                    <p>July 2024</p>
+                    <p>Bachelor of Engineering in Information Technology with Distinction (CGPA 7.65/10)</p>
+                    <p>Honors in Cybersecurity</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Nirmala Memorial Foundation Junior College, Mumbai, India</h3>
+                    <p>March 2020</p>
+                    <p>Secured Distinction in Higher Secondary Certificate Examination (62.31%)</p>
+                </div>
+            </div>
+        </section>
 
-    <section>
-      <h2>Projects</h2>
-      <ul>
-        <li><strong>Automated Drone Delivery System</strong>
-          <ul>
-            <li>Flutter + Firebase with live tracking and route optimization.</li>
-            <li>Secured real-time notifications and user interface.</li>
-          </ul>
-        </li>
-        <li><strong>PScanner</strong> — Python, Scapy, React
-          <ul>
-            <li>Advanced network scanner with OS fingerprinting.</li>
-            <li>React UI with periodic scan scheduling.</li>
-          </ul>
-        </li>
-        <li><strong>Keylogger (Ethical)</strong>
-          <ul>
-            <li>Python tool with encryption and access control.</li>
-            <li>Ethical research with user consent framework.</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
+        <!-- Professional Experience Section -->
+        <section id="experience" class="section-hidden">
+            <h2>Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Testriq QA Lab LLP, Thane, India</h3>
+                    <p class="job-title">Software Test Engineer</p>
+                    <p>July 2024 – Present</p>
+                    <ul>
+                        <li>Executing smoke testing and regression testing to validate software functionality and stability after changes or updates.</li>
+                        <li>Performing security testing to identify vulnerabilities, ensuring applications adhere to best practices and compliance standards.</li>
+                        <li>Collaborating with clients to provide tailored solutions, gather requirements, and address specific testing needs.</li>
+                        <li>Conducting manual and automation testing using version control software has led to an improvement in testing efficiency by approximately 30% to 70%, including reductions in testing time by 30% to 50%, increased bug detection rates by 20% to 40%, and enhancements in release frequency by 25% to 60%.</li>
+                        <li>Identified and resolved bugs throughout the web development lifecycle, leveraging tools such as Jira and TestRail for effective tracking and reporting.</li>
+                        <li>Assigned to implement testing strategies and frameworks to enhance the overall quality assurance process, fostering continuous improvement within the team.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Testriq QA Lab LLP, Thane, India</h3>
+                    <p class="job-title">Software Test Intern</p>
+                    <p>June 2024 – July 2024</p>
+                    <ul>
+                        <li>Studied how to write effective test cases for various applications, ensuring comprehensive coverage of functional requirements.</li>
+                        <li>Tasked with identifying and documenting bugs during manual testing processes, providing clear and actionable feedback to development teams.</li>
+                        <li>Carried out thorough software testing to ensure application quality, including exploratory testing to uncover edge cases and unexpected behavior.</li>
+                        <li>Assisted in creating and maintaining test documentation, contributing to a structured testing process.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Epic Games, Cary, North Carolina, USA (Remote)</h3>
+                    <p class="job-title">Public Beta Tester – "Fall Guys"</p>
+                    <p>May 2022 – November 2022</p>
+                    <ul>
+                        <li>Participated in the beta testing phase of "Fall Guys," identifying bugs and providing actionable feedback.</li>
+                        <li>Undertook comprehensive testing to ensure game functionality and stability after updates.</li>
+                        <li>Collaborated with development teams to gather requirements and address specific testing needs.</li>
+                        <li>Utilized Discord for real-time bug reporting and communication with the testing team.</li>
+                        <li>Assigned to execute both manual and automated testing methodologies to enhance testing efficiency.</li>
+                        <li>Discovered a critical game-breaking bug in the voice chat system, demonstrating the ability to identify high-impact issues.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    <section>
-      <h2>Technical Skills</h2>
-      <ul>
-        <li>Languages: Python, Bash, PowerShell</li>
-        <li>Security Tools: Burp Suite, OWASP ZAP, Nessus</li>
-        <li>Networking: Wireshark, Nmap, TCP/IP</li>
-        <li>OS: Kali Linux, Parrot OS, Windows, macOS</li>
-        <li>Cloud: AWS, Azure, GCP</li>
-        <li>Version Control: Git, GitHub</li>
-      </ul>
-    </section>
+        <!-- Academic Projects Section -->
+        <section id="projects" class="section-hidden">
+            <h2>Academic Projects</h2>
+            <div class="project-grid">
+                <div class="project-item">
+                    <h3>Automated Drone Delivery System</h3>
+                    <ul>
+                        <li>Developed a secure web application using Flutter for frontend and Firebase for backend, ensuring drone safety.</li>
+                        <li>Integrated Google Maps UI for real-time route visualization and optimized delivery path planning.</li>
+                        <li>Introduced security protocols to protect data and prevent unauthorized access.</li>
+                        <li>Incorporated real-time notifications for users to track delivery status.</li>
+                        <li>Technologies: Flutter, JavaScript, Firebase, Google Maps API, Security Protocols.</li>
+                    </ul>
+                </div>
+                <div class="project-item">
+                    <h3>PScanner (Network Scanning Tool)</h3>
+                    <ul>
+                        <li>Built a Python-based tool for advanced network scanning, identifying open ports, and mapping network devices.</li>
+                        <li>Deployed OS fingerprinting and service enumeration to enhance network visibility and security measures.</li>
+                        <li>Applied network segmentation and vulnerability patching to mitigate risks.</li>
+                        <li>Integrated a user-friendly interface using React for easy navigation and reporting.</li>
+                        <li>Technologies: Python, Scapy, Nmap, OS Fingerprinting, Service Enumeration.</li>
+                    </ul>
+                </div>
+                <div class="project-item">
+                    <h3>Keylogger (Ethical Data Logging Tool)</h3>
+                    <ul>
+                        <li>Designed a Python-based Keylogger for ethical research on vulnerabilities in unauthorized data access.</li>
+                        <li>Integrated encryption to securely store captured data and implemented restricted access mechanisms.</li>
+                        <li>Programmed a monitoring system using Python with PyHook and Pynput libraries for ethical data collection.</li>
+                        <li>Devised a user consent framework using Python and Flask.</li>
+                        <li>Technologies: Python, PyHook, Pynput, Data Encryption, Access Control.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    <section>
-      <h2>Extracurricular</h2>
-      <ul>
-        <li>Stage Admin – ComicCon Mumbai, SkyEsports LAN</li>
-        <li>Vice President – ITSA, SFIT</li>
-        <li>Rocket League Champion – Zephyr 2022-23</li>
-        <li>Volunteer – Blood Donation Drives (SFIT)</li>
-      </ul>
-    </section>
+        <!-- Technical Skills Section -->
+        <section id="skills" class="section-hidden">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming and Scripting</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>Bash</li>
+                        <li>PowerShell</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Networking and Network Security</h3>
+                    <ul>
+                        <li>TCP/IP</li>
+                        <li>Firewalls</li>
+                        <li>VPNs</li>
+                        <li>Wireshark</li>
+                        <li>Nmap</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Operating Systems</h3>
+                    <ul>
+                        <li>Linux (Kali, Parrot)</li>
+                        <li>Windows</li>
+                        <li>macOS</li>
+                        <li>OS hardening</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Penetration Testing Tools</h3>
+                    <ul>
+                        <li>Burp Suite</li>
+                        <li>OWASP ZAP</li>
+                        <li>Metasploit</li>
+                        <li>Nessus</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Cloud Security</h3>
+                    <ul>
+                        <li>AWS</li>
+                        <li>Azure</li>
+                        <li>GCP security practices</li>
+                        <li>Cloud workload protection</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Version Control</h3>
+                    <ul>
+                        <li>Git</li>
+                        <li>GitHub</li>
+                        <li>Jira</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    <div class="buttons">
-      <a href="assets/Prathamesh_upadhye_resume.pdf" class="button" download="Prathamesh_Upadhye_Resume.pdf">Download Resume</a>
-      <a href="https://github.com/legend69xd" class="button" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/prathameshjod/" class="button" target="_blank">LinkedIn</a>
-    </div>
-  </div>
+        <!-- Extracurricular Activities Section -->
+        <section id="activities" class="section-hidden">
+            <h2>Extracurricular Activities</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Stage Admin Volunteer at Mumbai ComicCon (2023-24)</h3>
+                    <ul>
+                        <li>Managed event flow and coordinated activities, ensuring a seamless experience for attendees.</li>
+                        <li>Involved in troubleshooting any issues that arose and facilitating communication between different teams.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Vice President of the IT Students' Association (ITSA) at St. Francis Institute of Technology (2023)</h3>
+                    <ul>
+                        <li>Led initiatives to boost student engagement through workshops and networking events.</li>
+                        <li>Collaborated with faculty to create valuable opportunities for students to connect with industry professionals.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Participant in Valorant tournament at Shree LR Tiwari College of Engineering (MetaSummit 2023)</h3>
+                    <ul>
+                        <li>Participated in the Valorant tournament held at Shree LR Tiwari College of Engineering for the fest called MetaSummit (2023).</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Stage Admin and Operator at the SkyEsports LAN Event (2023)</h3>
+                    <ul>
+                        <li>Facilitated the smooth execution of live esports events.</li>
+                        <li>Coordinated logistics and ensuring that all technical aspects ran without a hitch, contributing to a successful event.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Consecutive victories in Zephyr Rocket League Tournament (2022-23)</h3>
+                    <ul>
+                        <li>Achieved consecutive victories as a participant, showcasing strategic gameplay and teamwork.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Volunteer in St Francis Institute of Technology campus blood donation drives (2022-2023)</h3>
+                    <ul>
+                        <li>Volunteered in campus blood donation drives, raising awareness and supporting community health.</li>
+                        <li>Promoted the events and encouraged fellow students to contribute to this important cause.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <footer>
-    &copy; 2025 Prathamesh Upadhye | Cybersecurity Portfolio
-  </footer>
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Prathamesh Upadhye. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for dynamic effects and animations -->
+    <script>
+        // Matrix Background Animation
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas dimensions to full window size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Characters for the matrix effect
+        const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{}|;:,.<>?';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        // Array to store the y-position of each falling character
+        const drops = [];
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1; // Start at the top
+        }
+
+        // Function to draw the matrix effect
+        function drawMatrix() {
+            // Semi-transparent black rectangle to fade out old characters
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Set text color and font (now red)
+            ctx.fillStyle = '#ff0000'; /* Red for matrix characters */
+            ctx.font = `${fontSize}px Fira Code`;
+
+            // Loop through each drop
+            for (let i = 0; i < drops.length; i++) {
+                // Get a random character
+                const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+                // Draw the character
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                // If the character has reached the bottom of the screen, reset it to the top
+                if (drops[i] * fontSize * 1.5 > canvas.height && Math.random() > 0.975) { // Adjusted condition
+                    drops[i] = 0;
+                }
+
+                // Increment the y-position of the character
+                drops[i]++;
+            }
+        }
+
+        // Animate the matrix effect
+        setInterval(drawMatrix, 35); // Adjust speed here
+
+        // Handle canvas resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // Re-initialize drops array for new column count
+            const newColumns = canvas.width / fontSize;
+            drops.length = 0; // Clear existing drops
+            for (let x = 0; x < newColumns; x++) {
+                drops[x] = Math.floor(Math.random() * canvas.height / fontSize); // Random starting height
+            }
+        });
+
+        // Typing Effect for the Name
+        const nameElement = document.getElementById('name');
+        const nameText = "Prathamesh Upadhye";
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (charIndex < nameText.length) {
+                nameElement.textContent += nameText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 100); // Typing speed
+            }
+        }
+
+        // Intersection Observer for Section Reveal Animation
+        const sections = document.querySelectorAll('section');
+
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.1 // 10% of the section must be visible
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('section-hidden');
+                    entry.target.classList.add('section-visible');
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, observerOptions);
+
+        // Add hidden class initially and observe
+        sections.forEach(section => {
+            section.classList.add('section-hidden');
+            sectionObserver.observe(section);
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Initial call to start typing effect after page load
+        window.onload = () => {
+            typeWriter();
+        };
+    </script>
 </body>
-
 </html>
