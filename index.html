@@ -21,14 +21,17 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            padding: 20px; /* Add padding to the body for full-width layout */
+            box-sizing: border-box; /* Include padding in element's total width and height */
         }
 
         /* Main Container for Sidebar and Content */
         .main-container {
             display: flex;
             flex-grow: 1;
-            max-width: 1400px; /* Max width for the whole layout */
-            margin: 20px auto; /* Center the container with some margin */
+            width: 100%; /* Make it take full width */
+            /* Removed max-width */
+            margin: 0; /* No auto margin needed as it fills width */
             border: 1px solid #00CCCC; /* Main container border */
             box-shadow: 0 0 15px rgba(0, 204, 204, 0.3); /* Subtle glow */
             background-color: #222222; /* Slightly lighter background for the container */
@@ -296,7 +299,7 @@
             color: #E0E0E0;
         }
 
-        .project-item li::before, .skill-category li::before {
+        .project-item li::before {
             content: '\2022'; /* Simple bullet point */
             color: #00FF00; /* Green bullet */
             font-size: 1em;
@@ -314,6 +317,7 @@
             color: #B0B0B0; /* Muted grey */
             font-size: 0.8em;
             background-color: #1A1A1A; /* Matches sidebar background */
+            margin-top: 20px; /* Add margin above footer */
         }
 
         /* Keyframe Animations */
@@ -324,9 +328,12 @@
 
         /* Responsive Design */
         @media (max-width: 900px) {
+            body {
+                padding: 10px; /* Reduce body padding on smaller screens */
+            }
             .main-container {
                 flex-direction: column; /* Stack sidebar and content */
-                margin: 10px; /* Reduce margin */
+                margin: 0; /* Remove margin */
                 border: none; /* Remove main container border */
                 box-shadow: none; /* Remove main container shadow */
                 border-radius: 0; /* Remove main container border-radius */
@@ -383,9 +390,15 @@
             .project-grid, .skills-grid {
                 grid-template-columns: 1fr; /* Stack grids */
             }
+            footer {
+                margin-top: 10px; /* Adjust footer margin */
+            }
         }
 
         @media (max-width: 500px) {
+            body {
+                padding: 5px; /* Further reduce body padding */
+            }
             h1 {
                 font-size: 1.8em;
             }
@@ -420,6 +433,9 @@
             }
             .project-item h3, .skill-category h3 {
                 font-size: 1em;
+            }
+            footer {
+                padding: 10px; /* Reduce footer padding */
             }
         }
     </style>
