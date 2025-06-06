@@ -31,13 +31,13 @@ export default function Experience() {
         </ul>
       </div>
 
-      {/* Public Beta Tester Experience */}
+      {/* Public Beta Tester Experience - FIX: Escaped quotes */}
       <div className="experience-item">
-        <h3 className="job-title">Public Beta Tester – "Fall Guys"</h3>
+        <h3 className="job-title">Public Beta Tester – &quot;Fall Guys&quot;</h3> {/* Escaped double quotes */}
         <span className="company-name">Epic Games, Cary, North Carolina, USA (Remote)</span>
         <span className="dates">May 2022 – November 2022</span>
         <ul>
-          <li>Participated in the beta testing phase of "Fall Guys," identifying bugs and providing actionable feedback.</li>
+          <li>Participated in the beta testing phase of &quot;Fall Guys,&quot; identifying bugs and providing actionable feedback.</li> {/* Escaped double quotes */}
           <li>Undertook comprehensive testing to ensure game functionality and stability after updates.</li>
           <li>Collaborated with development teams to gather requirements and address specific testing needs.</li>
           <li>Utilized Discord for real-time bug reporting and communication with the testing team.</li>

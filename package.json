@@ -1,25 +1,22 @@
 {
-"homepage": "https://legend69xd.github.io/legend69xd",
+  "name": "cybersec-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "next build && echo > out\\.nojekyll && gh-pages -d out -b gh-pages"
   },
   "dependencies": {
-    "next": "15.3.3",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.2.4"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "eslint": "^9",
-    "eslint-config-next": "15.3.3",
-    "gh-pages": "^6.3.0"
+    "eslint": "^8",
+    "eslint-config-next": "14.2.4",
+    "gh-pages": "^6.1.1"
   }
 }
