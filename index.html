@@ -347,28 +347,48 @@
 
             .sidebar nav ul {
                 display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.5rem;
+                flex-wrap: wrap; /* Allow items to wrap */
+                justify-content: center; /* Center items if they don't fill the row */
+                gap: 0.75rem; /* Gap between buttons */
             }
 
             .sidebar nav li {
-                margin-bottom: 0.5rem;
+                /* Remove fixed width or 100% width on li/button here */
+                /* Let flexbox handle sizing */
+                flex: 1 1 auto; /* Allow items to grow, shrink, and set basis based on content */
+                min-width: 120px; /* A reasonable minimum width for a button on a tablet/small screen */
+                margin-bottom: 0.5rem; /* Small vertical margin between wrapped rows */
             }
 
             .sidebar nav button {
+                /* Remove width: 100%; from here */
+                text-align: center; /* Center text/icon within the button */
+                justify-content: center; /* Center icon and text */
+                font-size: 0.95em; /* Slightly smaller font for more fit */
                 padding: 0.6rem 0.8rem;
-                font-size: 0.9em;
-                text-align: center;
-                justify-content: center;
-                transform: none !important;
+                height: 100%; /* Ensure button fills the li's height */
+                transform: none !important; /* Override hover transform */
             }
             .sidebar nav button:hover {
-                transform: none;
+                transform: none; /* Keep hover transform off for mobile consistency */
             }
 
             .content-area {
                 padding: 1.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) { /* Targeting smaller phones specifically */
+            .sidebar nav ul {
+                gap: 0.5rem; /* Even smaller gap for very tight screens */
+            }
+            .sidebar nav li {
+                flex: 1 1 calc(50% - 0.25rem); /* Aim for two columns with smaller gap */
+                min-width: unset; /* Allow items to shrink more on very small screens */
+            }
+            .sidebar nav button {
+                font-size: 0.85em; /* Further reduce font size */
+                padding: 0.4rem 0.6rem; /* Reduce padding */
             }
         }
 
@@ -482,16 +502,16 @@
                     <!-- Social Links Section -->
                     <div class="social-links">
                         <a href="https://www.linkedin.com/in/prathameshupadhye/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin"></i>LinkedIn
+                            <i class="fab fa-linkedin"></i>
                         </a>
                         <a href="https://github.com/YourGitHubProfile" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-github"></i>GitHub
+                            <i class="fab fa-github"></i>
                         </a>
                         <a href="https://steamcommunity.com/id/YourSteamProfile" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-steam"></i>Steam
+                            <i class="fab fa-steam"></i>
                         </a>
                         <a href="https://www.instagram.com/YourInstagramProfile/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-instagram"></i>Instagram
+                            <i class="fab fa-instagram"></i>
                         </a>
                     </div>
                 </div>
