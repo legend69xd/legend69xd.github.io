@@ -1,0 +1,327 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Global Body Styling */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  background-color: #1a1a1a; /* Even deeper charcoal black for the background */
+  color: #e0e0e0; /* Softer off-white for main text */
+  line-height: 1.6; /* Improved readability for paragraphs */
+  min-height: 100vh; /* Ensure body takes at least the full viewport height */
+  display: flex; /* Use flexbox for basic centering or layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: flex-start; /* Align content to the top */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Headings Styling */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff; /* Pure white for all headings */
+  margin-top: 0; /* Remove default top margin */
+  margin-bottom: 0.5em; /* Small bottom margin */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3); /* Subtle text shadow */
+}
+
+/* Paragraphs Styling */
+p {
+  margin-top: 0;
+  margin-bottom: 1em; /* Standard paragraph spacing */
+}
+
+/* Anchor (Link) Styling */
+a {
+  color: #64ffda; /* Bright accent color for links (cyber-green) */
+  text-decoration: none; /* Remove default underline */
+  transition: color 0.3s ease-in-out; /* Smooth color transition on hover */
+}
+
+a:hover {
+  color: #a2f9d8; /* Lighter shade on hover */
+  text-decoration: underline; /* Add underline on hover for interactivity */
+}
+
+/* Main Content Container */
+.main-container {
+  display: flex;
+  width: 100%; /* Take full width */
+  max-width: 1200px; /* Increased max-width for wider layout */
+  min-height: 100vh;
+  margin: auto;
+  padding: 0; /* Remove overall padding, components will handle their own */
+  background-color: #242424; /* Slightly lighter than body for a layered look */
+  box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Stronger shadow for the main container */
+  border-radius: 12px; /* More rounded corners */
+  overflow: hidden; /* Hide overflowing content during transitions */
+}
+
+/* Sidebar Navigation Styling */
+.sidebar {
+  width: 250px; /* Fixed width for the sidebar */
+  background-color: #1f1f1f; /* Darker background for sidebar */
+  padding: 2rem 1.5rem;
+  box-shadow: 5px 0 15px rgba(0,0,0,0.4); /* Shadow to separate from content */
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0; /* Prevent shrinking */
+  animation: slideInLeft 0.7s ease-out forwards; /* Sidebar entry animation */
+}
+
+.sidebar h2 {
+  color: #64ffda;
+  font-size: 1.6em;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 2px solid #64ffda;
+  padding-bottom: 0.5rem;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav li {
+  margin-bottom: 1rem;
+}
+
+.sidebar nav button {
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  font-size: 1.1em;
+  padding: 0.8rem 1rem;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.2s ease-out;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 500;
+}
+
+.sidebar nav button:hover {
+  background-color: #333;
+  color: #64ffda;
+  transform: translateX(5px); /* Slight slide on hover */
+}
+
+.sidebar nav button.active {
+  background-color: #64ffda;
+  color: #1f1f1f;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.sidebar nav button.active:hover {
+  background-color: #7affc8;
+}
+
+/* Main Content Area */
+.content-area {
+  flex-grow: 1; /* Take remaining space */
+  padding: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.7s ease-out forwards; /* Content area entry animation */
+}
+
+/* General Panel Styling */
+.panel {
+  background-color: #2b2b2b; /* Slightly lighter charcoal for distinct panels */
+  padding: 1.5rem; /* Internal padding within each panel */
+  border-radius: 8px; /* Rounded corners for panels */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s ease-out forwards; /* Panel entry animation */
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Smooth transition for page changes */
+}
+
+/* When a panel is active/visible */
+.panel.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Section Title Styling (e.g., Education, Experience) */
+.section-title {
+  font-size: 1.8em; /* Larger font size for section titles */
+  border-bottom: 2px solid #64ffda; /* Accent line below titles */
+  padding-bottom: 0.5em; /* Space between title and line */
+  margin-bottom: 1.5em; /* Space below the title */
+  color: #64ffda; /* Cyber-green color for titles */
+}
+
+/* List Styling (e.g., for bullet points in experience/projects) */
+ul {
+  list-style: none; /* Remove default list bullets */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+ul li {
+  margin-bottom: 0.8em; /* Increased spacing between list items */
+  transition: transform 0.3s ease-out; /* Smooth transform on hover */
+}
+
+ul li:hover {
+  transform: translateX(5px); /* Slight indent on hover */
+}
+
+ul li::before {
+  content: "•"; /* Custom bullet point */
+  color: #64ffda; /* Accent color for the bullet */
+  display: inline-block;
+  width: 1em; /* Space for the bullet */
+  margin-left: -1em; /* Pull bullet slightly left */
+}
+
+/* Styling for individual items within experience, projects, and education */
+.experience-item, .project-item, .education-item {
+  margin-bottom: 1.5em; /* Space after each item */
+  padding-bottom: 0.5em; /* Padding before the dashed line */
+  border-bottom: 1px dashed rgba(100, 255, 218, 0.3); /* Subtle dashed separator with accent color */
+}
+
+/* Remove border and extra margin for the last item in a list */
+.experience-item:last-child, .project-item:last-child, .education-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Specific text styling for job/project titles, company names, and dates */
+.job-title, .project-name {
+  font-weight: bold;
+  font-size: 1.2em; /* Slightly larger font */
+  color: #90ee90; /* Light green for primary titles */
+}
+
+.company-name, .project-tech {
+  font-style: italic;
+  color: #bdbdbd; /* Neutral grey for secondary info */
+  margin-bottom: 0.5em;
+  display: block; /* Ensure it takes its own line */
+}
+
+.dates {
+  font-size: 0.9em;
+  color: #a0a0a0; /* Darker grey for dates */
+  margin-bottom: 0.5em;
+  display: block; /* Ensure it takes its own line */
+}
+
+/* Grid layout for the skills section */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+  gap: 1.5rem; /* Gap between skill categories */
+}
+
+.skills-grid h3 {
+  color: #90ee90; /* Consistent with other titles */
+  margin-bottom: 0.5em;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.1); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  80% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+
+/* Responsive Adjustments for Smaller Screens */
+@media (max-width: 960px) {
+  .main-container {
+    flex-direction: column; /* Stack sidebar and content vertically */
+    border-radius: 0; /* Remove border-radius on small screens */
+    box-shadow: none; /* Remove shadow on small screens */
+  }
+
+  .sidebar {
+    width: 100%; /* Full width sidebar */
+    padding: 1.5rem 1rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4); /* Shadow below sidebar */
+    animation: fadeIn 0.7s ease-out forwards; /* Fade in sidebar on top */
+  }
+
+  .sidebar h2 {
+    margin-bottom: 1rem;
+  }
+
+  .sidebar nav ul {
+    display: flex; /* Display nav items in a row */
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center; /* Center nav items */
+    gap: 0.5rem; /* Smaller gap */
+  }
+
+  .sidebar nav li {
+    margin-bottom: 0.5rem;
+  }
+
+  .sidebar nav button {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9em;
+    text-align: center;
+    justify-content: center; /* Center text and icon */
+    transform: none !important; /* Override hover transform */
+  }
+  .sidebar nav button:hover {
+    transform: none;
+  }
+
+  .content-area {
+    padding: 1.5rem 1rem; /* Adjust padding for content */
+  }
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .profile-pic-placeholder {
+    margin-right: 0 !important;
+    margin-bottom: 1rem;
+    animation: bounceIn 1s ease-out; /* Add bounce to profile pic on small screens */
+  }
+  .section-title {
+    font-size: 1.5em;
+  }
+  .job-title, .project-name {
+    font-size: 1.1em;
+  }
+}
+
+/* Icon styling (using pseudo-elements for simple visual icons) */
+.icon-profile::before { content: "👤"; margin-right: 0.5em; }
+.icon-education::before { content: "🎓"; margin-right: 0.5em; }
+.icon-experience::before { content: "💼"; margin-right: 0.5em; }
+.icon-projects::before { content: "💻"; margin-right: 0.5em; }
+.icon-skills::before { content: "🛠️"; margin-right: 0.5em; }
+.icon-extracurriculars::before { content: "🏅"; margin-right: 0.5em; }
