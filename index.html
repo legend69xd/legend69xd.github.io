@@ -7,6 +7,8 @@
     <!-- Favicon: You can replace this with your own favicon.ico in the same directory -->
     <link rel="icon" href="/favicon.ico" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Basic CSS Reset */
         html, body {
@@ -112,7 +114,8 @@
             text-align: left;
             cursor: pointer;
             border-radius: 6px;
-            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.2s ease-out;
+            /* Added box-shadow to transition */
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.2s ease-out, box-shadow 0.3s ease-in-out;
             display: flex;
             align-items: center;
             gap: 0.8rem;
@@ -122,7 +125,8 @@
         .sidebar nav button:hover {
             background-color: #333;
             color: #64ffda;
-            transform: translateX(5px);
+            transform: translateY(-3px); /* Changed to lift effect */
+            box-shadow: 0 4px 10px rgba(0,255,218,0.3); /* Added glowing shadow */
         }
 
         .sidebar nav button.active {
@@ -258,6 +262,42 @@
             margin-bottom: 0.5em;
         }
 
+        /* Social Links Styling */
+        .social-links {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            justify-content: center; /* Center horizontally */
+            gap: 1.5rem; /* Space between links */
+            margin-top: 2rem; /* Space above social links */
+            padding-top: 1rem;
+            border-top: 1px solid rgba(100, 255, 218, 0.2); /* Separator line */
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            color: #e0e0e0; /* Default color for social links */
+            transition: color 0.3s ease-in-out, transform 0.2s ease-out;
+            border-radius: 6px; /* Slightly rounded for button feel */
+            padding: 0.5em 1em; /* Add padding for better touch targets */
+            background-color: #3a3a3a; /* Subtle background */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .social-links a:hover {
+            color: #64ffda; /* Accent color on hover */
+            transform: translateY(-3px); /* Lift effect */
+            text-decoration: none; /* No underline on hover */
+            box-shadow: 0 4px 10px rgba(0,255,218,0.3); /* Accent shadow */
+        }
+
+        /* Adjust icon specific spacing for Font Awesome */
+        .social-links a i {
+            margin-right: 0.7em;
+            font-size: 1.2em; /* Larger icon size */
+        }
+
         /* Keyframe Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -348,15 +388,29 @@
             .job-title, .project-name {
                 font-size: 1.1em;
             }
+            .social-links {
+                flex-direction: column; /* Stack social links vertically on very small screens */
+                gap: 0.8rem; /* Reduce gap */
+            }
+            .social-links a {
+                width: calc(100% - 2em); /* Make links take full width minus padding */
+                justify-content: center; /* Center content within button */
+                font-size: 1em;
+            }
+            .social-links a i { /* Ensure consistent icon size on small screens */
+                font-size: 1.1em;
+            }
         }
 
         /* Icon styling (using pseudo-elements for simple visual icons) */
+        /* These are for the sidebar buttons, kept as emojis for simplicity/no extra libraries */
         .icon-profile::before { content: "👤"; margin-right: 0.5em; }
         .icon-education::before { content: "🎓"; margin-right: 0.5em; }
         .icon-experience::before { content: "💼"; margin-right: 0.5em; }
         .icon-projects::before { content: "💻"; margin-right: 0.5em; }
         .icon-skills::before { content: "🛠️"; margin-right: 0.5em; }
-        .icon-extracurriculars::before { content: "�"; margin-right: 0.5em; }
+        .icon-extracurriculars::before { content: "🏅"; margin-right: 0.5em; }
+        
     </style>
 </head>
 <body>
@@ -404,6 +458,21 @@
                                 Cybersecurity & Software Quality Assurance Specialist
                             </p>
                         </div>
+                    </div>
+                    <!-- Social Links Section -->
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/prathameshupadhye/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>LinkedIn
+                        </a>
+                        <a href="https://github.com/YourGitHubProfile" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>GitHub
+                        </a>
+                        <a href="https://steamcommunity.com/id/YourSteamProfile" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-steam"></i>Steam
+                        </a>
+                        <a href="https://www.instagram.com/YourInstagramProfile/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>Instagram
+                        </a>
                     </div>
                 </div>
                 <div class="panel">
@@ -657,4 +726,3 @@
     </script>
 </body>
 </html>
-�
