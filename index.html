@@ -3,352 +3,658 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prathamesh Upadhye - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Prathamesh Upadhye - Cybersecurity Portfolio</title>
+    <!-- Favicon: You can replace this with your own favicon.ico in the same directory -->
+    <link rel="icon" href="/favicon.ico" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Custom scrollbar for a sleeker look */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #27272a; /* zinc-800 */
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #52525b; /* zinc-600 */
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #71717a; /* zinc-500 */
+        /* Basic CSS Reset */
+        html, body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            height: 100%; /* Ensure full height for body and html */
         }
 
+        /* Global Body Styling */
         body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+            background-color: #1a1a1a; /* Even deeper charcoal black for the background */
+            color: #e0e0e0; /* Softer off-white for main text */
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            padding-top: 20px; /* Small top padding */
+            padding-bottom: 20px; /* Small bottom padding */
         }
 
-        /* Custom hover effect for panels */
-        .panel-hover-effect {
-            position: relative;
-            transition: all 0.3s ease-in-out;
-            border: 1px solid transparent; /* Default transparent border */
+        /* Headings Styling */
+        h1, h2, h3, h4, h5, h6 {
+            color: #ffffff; /* Pure white for all headings */
+            margin-top: 0;
+            margin-bottom: 0.5em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
-        .panel-hover-effect:hover {
-            border-color: #52525b; /* zinc-600 on hover */
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Subtle shadow on hover */
-            transform: translateY(-2px); /* Slight lift effect */
+        /* Paragraphs Styling */
+        p {
+            margin-top: 0;
+            margin-bottom: 1em;
         }
 
-        /* Specific styling for list items within panels */
-        .panel-content ul li {
-            margin-bottom: 0.5rem; /* Spacing between list items */
-        }
-        .panel-content ul li:last-child {
-            margin-bottom: 0; /* No margin for the last item */
+        /* Anchor (Link) Styling */
+        a {
+            color: #64ffda; /* Bright accent color for links (cyber-green) */
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
         }
 
-        /* Styles for content pages and transitions */
-        .content-page {
-            transition: opacity 0.4s ease-in-out;
+        a:hover {
+            color: #a2f9d8; /* Lighter shade on hover */
+            text-decoration: underline;
+        }
+
+        /* Main Content Container */
+        .main-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            min-height: 100vh; /* Ensure it takes full viewport height */
+            margin: auto;
+            padding: 0;
+            background-color: #242424;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Sidebar Navigation Styling */
+        .sidebar {
+            width: 250px;
+            background-color: #1f1f1f;
+            padding: 2rem 1.5rem;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            animation: slideInLeft 0.7s ease-out forwards;
+        }
+
+        .sidebar h2 {
+            color: #64ffda;
+            font-size: 1.6em;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid #64ffda;
+            padding-bottom: 0.5rem;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar nav li {
+            margin-bottom: 1rem;
+        }
+
+        .sidebar nav button {
+            background: none;
+            border: none;
+            color: #e0e0e0;
+            font-size: 1.1em;
+            padding: 0.8rem 1rem;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.2s ease-out;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 500;
+        }
+
+        .sidebar nav button:hover {
+            background-color: #333;
+            color: #64ffda;
+            transform: translateX(5px);
+        }
+
+        .sidebar nav button.active {
+            background-color: #64ffda;
+            color: #1f1f1f;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .sidebar nav button.active:hover {
+            background-color: #7affc8;
+        }
+
+        /* Main Content Area */
+        .content-area {
+            flex-grow: 1;
+            padding: 2rem 3rem;
+            display: flex;
+            flex-direction: column;
+            /* Animation applied by JS based on section visibility */
+        }
+
+        /* General Panel Styling */
+        .panel {
+            background-color: #2b2b2b;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1.5rem;
+            /* Initial state for animations (hidden) */
+            transform: translateY(20px);
             opacity: 0;
-            display: none; /* Hidden by default */
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Smooth transition for page changes */
+            position: relative; /* Needed for z-index if elements overlap */
+            z-index: 1; /* Default z-index */
         }
 
-        .content-page.active {
+        /* When a panel is active/visible */
+        .panel.active {
+            transform: translateY(0);
             opacity: 1;
-            display: block; /* Show active page */
+            animation: fadeInUp 0.8s ease-out forwards; /* Apply animation when active */
+            z-index: 2; /* Bring active panel to front */
         }
 
-        /* Active navigation link styling */
-        .nav-link.active {
-            color: #a1a1aa; /* zinc-400 */
-            border-bottom: 2px solid #a1a1aa; /* zinc-400 */
+        /* Hidden class for sections not currently active */
+        .content-section {
+            display: none;
+        }
+        .content-section.visible {
+            display: block; /* Show active section */
+            animation: fadeIn 0.7s ease-out forwards; /* Content area entry animation */
         }
 
-        /* Social icon styling */
-        .social-icon {
-            transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+
+        /* Section Title Styling (e.g., Education, Experience) */
+        .section-title {
+            font-size: 1.8em;
+            border-bottom: 2px solid #64ffda;
+            padding-bottom: 0.5em;
+            margin-bottom: 1.5em;
+            color: #64ffda;
         }
-        .social-icon:hover {
-            transform: translateY(-3px);
-            color: #a1a1aa; /* zinc-400 */
+
+        /* List Styling (e.g., for bullet points in experience/projects) */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
+
+        ul li {
+            margin-bottom: 0.8em;
+            transition: transform 0.3s ease-out;
+        }
+
+        ul li:hover {
+            transform: translateX(5px);
+        }
+
+        ul li::before {
+            content: "•";
+            color: #64ffda;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Styling for individual items within experience, projects, and education */
+        .experience-item, .project-item, .education-item {
+            margin-bottom: 1.5em;
+            padding-bottom: 0.5em;
+            border-bottom: 1px dashed rgba(100, 255, 218, 0.3);
+        }
+
+        /* Remove border and extra margin for the last item in a list */
+        .experience-item:last-child, .project-item:last-child, .education-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        /* Specific text styling for job/project titles, company names, and dates */
+        .job-title, .project-name {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #90ee90;
+        }
+
+        .company-name, .project-tech {
+            font-style: italic;
+            color: #bdbdbd;
+            margin-bottom: 0.5em;
+            display: block;
+        }
+
+        .dates {
+            font-size: 0.9em;
+            color: #a0a0a0;
+            margin-bottom: 0.5em;
+            display: block;
+        }
+
+        /* Grid layout for the skills section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skills-grid h3 {
+            color: #90ee90;
+            margin-bottom: 0.5em;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.1); opacity: 0; }
+            60% { transform: scale(1.05); opacity: 1; }
+            80% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+
+
+        /* Responsive Adjustments for Smaller Screens */
+        @media (max-width: 960px) {
+            body {
+                padding: 10px; /* Adjust body padding for small screens */
+            }
+            .main-container {
+                flex-direction: column;
+                border-radius: 0;
+                box-shadow: none;
+                min-height: auto; /* Allow height to adjust to content */
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 1.5rem 1rem;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+                animation: fadeIn 0.7s ease-out forwards;
+            }
+
+            .sidebar h2 {
+                margin-bottom: 1rem;
+            }
+
+            .sidebar nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .sidebar nav li {
+                margin-bottom: 0.5rem;
+            }
+
+            .sidebar nav button {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.9em;
+                text-align: center;
+                justify-content: center;
+                transform: none !important;
+            }
+            .sidebar nav button:hover {
+                transform: none;
+            }
+
+            .content-area {
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .profile-pic-placeholder {
+                margin-right: 0 !important;
+                margin-bottom: 1rem;
+                animation: bounceIn 1s ease-out;
+            }
+            .section-title {
+                font-size: 1.5em;
+            }
+            .job-title, .project-name {
+                font-size: 1.1em;
+            }
+        }
+
+        /* Icon styling (using pseudo-elements for simple visual icons) */
+        .icon-profile::before { content: "👤"; margin-right: 0.5em; }
+        .icon-education::before { content: "🎓"; margin-right: 0.5em; }
+        .icon-experience::before { content: "💼"; margin-right: 0.5em; }
+        .icon-projects::before { content: "💻"; margin-right: 0.5em; }
+        .icon-skills::before { content: "🛠️"; margin-right: 0.5em; }
+        .icon-extracurriculars::before { content: "�"; margin-right: 0.5em; }
     </style>
 </head>
-<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
-
-    <div class="max-w-4xl w-full space-y-10">
-
-        <header class="text-center mb-12">
-            <h1 class="text-5xl sm:text-6xl font-extrabold text-zinc-50 mb-4 tracking-tight">Prathamesh Upadhye</h1>
-            <p class="text-xl sm:text-2xl text-zinc-300 mb-6">Software Test Engineer | Cybersecurity Enthusiast</p>
-            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-zinc-400 text-lg mb-8">
-                <span class="flex items-center">
-                    <svg class="w-5 h-5 mr-2 text-zinc-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                    bhalprathamesh6@gmail.com
-                </span>
-                <span class="flex items-center">
-                    <svg class="w-5 h-5 mr-2 text-zinc-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
-                    +91 9137887904
-                </span>
-                <span class="flex items-center">
-                    <svg class="w-5 h-5 mr-2 text-zinc-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
-                    Mumbai, India
-                </span>
-            </div>
-
-            <div class="flex flex-wrap justify-center gap-6 text-zinc-300 mb-8">
-                <a href="https://www.instagram.com/prathamesh_upadhye/" target="_blank" aria-label="Instagram" class="social-icon">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2zm-.2 2A2.8 2.8 0 0 0 5 7.8v8.4c0 1.54 1.26 2.8 2.8 2.8h8.4a2.8 2.8 0 0 0 2.8-2.8V7.8A2.8 2.8 0 0 0 16.2 5H7.6zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm6.5-3a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5z"/>
-                    </svg>
-                </a>
-                <a href="https://discord.com/" target="_blank" aria-label="Discord" class="social-icon">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.218 2.664c-1.785-.92-3.66-.46-5.46.22-1.3.5-2.5.96-3.74 1.44-.06.02-.12.04-.18.06-.06-.02-.12-.04-.18-.06-1.24-.48-2.44-.94-3.74-1.44-1.8-.68-3.675-1.14-5.46-.22C.802 3.584 0 5.484 0 7.384v10.232c0 1.9 1.422 3.42 3.198 3.42 1.56 0 2.82-1.04 3.72-2.58.54.12 1.08.24 1.62.36.08.02.16.04.24.06.08-.02.16-.04.24-.06.54-.12 1.08-.24 1.62-.36.9 1.54 2.16 2.58 3.72 2.58 1.776 0 3.198-1.52 3.198-3.42V7.384c0-1.9-1.422-3.8-3.198-4.72zm-1.62 1.92c.66.34 1.2.98 1.56 1.78v.02c.36.8.54 1.7.54 2.62v7.2c0 .88-.34 1.68-.96 2.28-.62.6-1.42.94-2.3.94-1.12 0-2.02-.68-2.6-1.76-.58-1.08-.88-2.34-.88-3.72V7.384c0-1.38.3-2.64.88-3.72.58-1.08 1.48-1.76 2.6-1.76zm-12.84 0c1.12 0 2.02.68 2.6 1.76.58 1.08.88 2.34.88 3.72v7.2c0 1.38-.3 2.64-.88 3.72-.58 1.08-1.48 1.76-2.6 1.76-.88 0-1.68-.34-2.3-.94-.62-.6-.96-1.4-.96-2.28V7.384c0-.92.18-1.82.54-2.62v-.02c.36-.8.9-1.44 1.56-1.78zM12.318 8.164c-.66.34-1.2.98-1.56 1.78v.02c-.36.8-.54 1.7-.54 2.62v.02c0 .88.34 1.68.96 2.28.62.6 1.42.94 2.3.94 1.12 0 2.02-.68 2.6-1.76.58-1.08.88-2.34.88-3.72v-.02c0-1.38-.3-2.64-.88-3.72-.58-1.08-1.48-1.76-2.6-1.76-.88 0-1.68-.34-2.3-.94-.62-.6-.96-1.4-.96-2.28z"/>
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/prathamesh-upadhye/" target="_blank" aria-label="LinkedIn" class="social-icon">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.447 20.447h-3.554v-5.569c0-1.32-.472-2.223-1.658-2.223-1.341 0-2.135.908-2.488 1.782-.128.315-.163.753-.163 1.191v4.819h-3.554s.047-9.67 0-10.64h3.554v1.517c.472-.729 1.318-1.762 3.193-1.762 2.33 0 4.07 1.528 4.07 4.819v6.066zM4.35 8.196a2.122 2.122 0 110-4.244 2.122 2.122 0 010 4.244zm1.777 12.251H2.573V9.803h3.554v10.644zM22.227 0H1.771C.792 0 0 .792 0 1.771v20.458C0 23.208.792 24 1.771 24h20.458c.979 0 1.771-.792 1.771-1.771V1.771C24 .792 23.208 0 22.227 0z"/>
-                    </svg>
-                </a>
-                <a href="https://github.com/prathamesh-upadhye" target="_blank" aria-label="GitHub" class="social-icon">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.799 8.205 11.385.6.11.82-.26.82-.577v-2.003c-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.332-1.758-1.332-1.758-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.238 1.838 1.238 1.07 1.833 2.809 1.304 3.492.997.108-.775.419-1.304.762-1.604-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.465-2.382 1.235-3.22-.12-.303-.535-1.52.117-3.176 0 0 1.008-.323 3.301 1.23.957-.266 1.983-.4 3.003-.404 1.02.004 2.046.138 3.003.404 2.293-1.553 3.3-1.23 3.3-1.23.652 1.656.237 2.873.117 3.176.77.838 1.235 1.91 1.235 3.22 0 4.61-2.805 5.62-5.474 5.92.43.37.818 1.102.818 2.22v3.292c0 .318.216.69.825.577C20.565 21.799 24 17.302 24 12c0-6.627-5.373-12-12-12z" clip-rule="evenodd"/>
-                    </svg>
-                </a>
-                <a href="https://store.steampowered.com/" target="_blank" aria-label="Steam" class="social-icon">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 1.8c5.62 0 10.2 4.58 10.2 10.2S17.62 22.2 12 22.2 1.8 17.62 1.8 12 6.38 1.8 12 1.8zM12 4.2c-4.3 0-7.8 3.5-7.8 7.8s3.5 7.8 7.8 7.8 7.8-3.5 7.8-7.8-3.5-7.8-7.8-7.8zm0 2.4c3.08 0 5.6 2.52 5.6 5.6s-2.52 5.6-5.6 5.6-5.6-2.52-5.6-5.6 2.52-5.6 5.6-5.6zm0 2.4c-1.76 0-3.2 1.44-3.2 3.2s1.44 3.2 3.2 3.2 3.2-1.44 3.2-3.2-1.44-3.2-3.2-3.2z"/>
-                    </svg>
-                </a>
-            </div>
-
-            <!-- Download Resume Button -->
-            <div class="mt-8">
-                <a href="https://example.com/your-resume.pdf" target="_blank" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-zinc-900 bg-zinc-300 hover:bg-zinc-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-zinc-500 transition-colors duration-200">
-                    <svg class="-ml-1 mr-3 h-5 w-5 text-zinc-700" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    Download Resume
-                </a>
-            </div>
-        </header>
-
-        <nav class="flex justify-center mb-8">
-            <ul class="flex flex-wrap justify-center space-x-6 sm:space-x-10 text-xl font-medium text-zinc-500">
-                <li><a href="#education" class="nav-link hover:text-zinc-300 transition-colors duration-200 active" data-target="education-page">Education</a></li>
-                <li><a href="#experience" class="nav-link hover:text-zinc-300 transition-colors duration-200" data-target="experience-page">Experience</a></li>
-                <li><a href="#projects" class="nav-link hover:text-zinc-300 transition-colors duration-200" data-target="projects-page">Projects</a></li>
-                <li><a href="#skills" class="nav-link hover:text-zinc-300 transition-colors duration-200" data-target="skills-page">Skills</a></li>
-                <li><a href="#extracurricular" class="nav-link hover:text-zinc-300 transition-colors duration-200" data-target="extracurricular-page">Extracurricular</a></li>
-            </ul>
-        </nav>
-
-        <div id="content-wrapper">
-            <div id="education-page" class="content-page active">
-                <section class="bg-zinc-900 p-8 rounded-xl shadow-lg panel-hover-effect">
-                    <h2 class="text-3xl font-bold text-zinc-50 mb-6 border-b border-zinc-700 pb-3">Education</h2>
-                    <div class="panel-content">
-                        <div class="mb-4">
-                            <h3 class="text-xl font-semibold text-zinc-200">St. Francis Institute of Technology, Mumbai University</h3>
-                            <p class="text-zinc-400">B.E. in IT with Distinction | Honors in Cybersecurity (2024)</p>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-zinc-200">Nirmala Memorial Foundation Junior College</h3>
-                            <p class="text-zinc-400">HSC with Distinction</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div id="experience-page" class="content-page">
-                <section class="bg-zinc-900 p-8 rounded-xl shadow-lg panel-hover-effect">
-                    <h2 class="text-3xl font-bold text-zinc-50 mb-6 border-b border-zinc-700 pb-3">Professional Experience</h2>
-                    <div class="panel-content space-y-6">
-                        <div>
-                            <h3 class="text-xl font-semibold text-zinc-200">Testriq QA Lab LLP</h3>
-                            <p class="text-zinc-400">Software Test Engineer (Jul 2024 – Present)</p>
-                            <ul class="list-disc list-inside mt-2 text-zinc-300 space-y-1">
-                                <li>Regression, smoke, and security testing.</li>
-                                <li>Client collaboration and QA strategy execution.</li>
-                                <li>Improved testing efficiency with automation tools.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-zinc-200">Testriq QA Lab LLP</h3>
-                            <p class="text-zinc-400">Software Test Intern (Jun 2024 – Jul 2024)</p>
-                            <ul class="list-disc list-inside mt-2 text-zinc-300 space-y-1">
-                                <li>Test case creation and bug documentation.</li>
-                                <li>Exploratory testing to find edge cases.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-zinc-200">Epic Games</h3>
-                            <p class="text-zinc-400">Public Beta Tester (May 2022 – Nov 2022)</p>
-                            <ul class="list-disc list-inside mt-2 text-zinc-300 space-y-1">
-                                <li>Discovered and reported critical gameplay bugs.</li>
-                                <li>Contributed to QA improvements in "Fall Guys".</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div id="projects-page" class="content-page">
-                <section class="bg-zinc-900 p-8 rounded-xl shadow-lg panel-hover-effect">
-                    <h2 class="text-3xl font-bold text-zinc-50 mb-6 border-b border-zinc-700 pb-3">Projects</h2>
-                    <div class="panel-content space-y-6">
-                        <div>
-                            <h3 class="text-xl font-semibold text-zinc-200">Automated Drone Delivery System</h3>
-                            <p class="text-zinc-400">Flutter + Firebase with live tracking and route optimization.</p>
-                            <p class="text-zinc-400">Secured real-time notifications and user interface.</p>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-zinc-200">PScanner</h3>
-                            <p class="text-zinc-400">Python, Scapy, React</p>
-                            <p class="text-zinc-400">Advanced network scanner with OS fingerprinting.</p>
-                            <p class="text-zinc-400">React UI with periodic scan scheduling.</p>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-zinc-200">Keylogger (Ethical)</h3>
-                            <p class="text-zinc-400">Python tool with encryption and access control.</p>
-                            <p class="text-zinc-400">Ethical research with user consent framework.</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div id="skills-page" class="content-page">
-                <section class="bg-zinc-900 p-8 rounded-xl shadow-lg panel-hover-effect">
-                    <h2 class="text-3xl font-bold text-zinc-50 mb-6 border-b border-zinc-700 pb-3">Technical Skills</h2>
-                    <div class="panel-content grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-zinc-300">
-                        <div>
-                            <h3 class="text-xl font-semibold text-zinc-200 mb-2">Languages:</h3>
-                            <ul class="list-disc list-inside space-y-1">
-                                <li>Python</li>
-                                <li>Bash</li>
-                                <li>PowerShell</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-zinc-200 mb-2">Security Tools:</h3>
-                            <ul class="list-disc list-inside space-y-1">
-                                <li>Burp Suite</li>
-                                <li>OWASP ZAP</li>
-                                <li>Nessus</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-zinc-200 mb-2">Networking:</h3>
-                            <ul class="list-disc list-inside space-y-1">
-                                <li>Wireshark</li>
-                                <li>Nmap</li>
-                                <li>TCP/IP</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-zinc-200 mb-2">OS:</h3>
-                            <ul class="list-disc list-inside space-y-1">
-                                <li>Kali Linux</li>
-                                <li>Parrot OS</li>
-                                <li>Windows</li>
-                                <li>macOS</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-zinc-200 mb-2">Cloud:</h3>
-                            <ul class="list-disc list-inside space-y-1">
-                                <li>AWS</li>
-                                <li>Azure</li>
-                                <li>GCP</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-zinc-200 mb-2">Version Control:</h3>
-                            <ul class="list-disc list-inside space-y-1">
-                                <li>Git</li>
-                                <li>GitHub</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div id="extracurricular-page" class="content-page">
-                <section class="bg-zinc-900 p-8 rounded-xl shadow-lg panel-hover-effect">
-                    <h2 class="text-3xl font-bold text-zinc-50 mb-6 border-b border-zinc-700 pb-3">Extracurricular</h2>
-                    <div class="panel-content space-y-4 text-zinc-300">
-                        <ul class="list-disc list-inside space-y-1">
-                            <li>Stage Admin – ComicCon Mumbai, SkyEsports LAN</li>
-                            <li>Vice President – ITSA, SFIT</li>
-                            <li>Rocket League Champion – Zephyr 2022-23</li>
-                            <li>Volunteer – Blood Donation Drives (SFIT)</li>
-                        </ul>
-                    </div>
-                </section>
-            </div>
+<body>
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <h2>Portfolio</h2>
+            <nav>
+                <ul>
+                    <li><button id="nav-profile" class="icon-profile">Profile</button></li>
+                    <li><button id="nav-education" class="icon-education">Education</button></li>
+                    <li><button id="nav-experience" class="icon-experience">Experience</button></li>
+                    <li><button id="nav-projects" class="icon-projects">Projects</button></li>
+                    <li><button id="nav-skills" class="icon-skills">Skills</button></li>
+                    <li><button id="nav-extracurriculars" class="icon-extracurriculars">Activities</button></li>
+                </ul>
+            </nav>
         </div>
 
-        <footer class="text-center text-zinc-500 text-sm mt-12 pb-8">
-            <p>&copy; 2024 Prathamesh Upadhye. All rights reserved.</p>
-        </footer>
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Profile Section -->
+            <section id="section-profile" class="content-section">
+                <div class="panel">
+                    <div style="display: flex; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center;">
+                        <div class="profile-pic-placeholder" style="min-width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(45deg, #64ffda, #00c7a5); display: flex; justify-content: center; align-items: center; font-size: 2.5em; font-weight: bold; color: #1f1f1f; margin-right: 2rem; box-shadow: 0 0 15px rgba(100, 255, 218, 0.6);">
+                            PU
+                        </div>
+                        <div class="header-content" style="flex-grow: 1; text-align: left;">
+                            <h1 style="margin: 0; font-size: 2.8em; letter-spacing: 1px;">Prathamesh Upadhye</h1>
+                            <p style="margin: 0.5em 0 0.2em; color: #bdbdbd; font-size: 1.05em;">
+                                A/203, ShekharNagar Building, Dahisar (West), Mumbai-400068, India
+                            </p>
+                            <p style="margin: 0.2em 0; color: #bdbdbd; font-size: 1.05em;">
+                                <a href="mailto:bhalprathamesh6@gmail.com" style="display: inline-flex; align-items: center;">
+                                    <span style="margin-right: 0.5em;">📧</span> bhalprathamesh6@gmail.com
+                                </a>
+                            </p>
+                            <p style="margin: 0.2em 0; color: #bdbdbd; font-size: 1.05em;">
+                                <a href="tel:+919137887904" style="display: inline-flex; align-items: center;">
+                                    <span style="margin-right: 0.5em;">📞</span> +91 9137887904
+                                </a>
+                            </p>
+                            <p style="margin: 1em 0 0; color: #90ee90; font-weight: bold; font-size: 1.3em;">
+                                Cybersecurity & Software Quality Assurance Specialist
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <h2 class="section-title">About Me</h2>
+                    <p>
+                        Passionate and highly motivated Cybersecurity and Quality Assurance professional with a strong foundation in
+                        identifying vulnerabilities and ensuring software reliability. Eager to apply analytical skills and technical
+                        expertise to dynamic challenges in information security and software testing.
+                    </p>
+                    <p>
+                        My experience ranges from conducting security testing and identifying critical bugs in gaming systems to
+                        developing network scanning tools and ethical keyloggers. I thrive in collaborative environments and am
+                        committed to continuous improvement and securing digital infrastructures.
+                    </p>
+                </div>
+            </section>
 
+            <!-- Education Section -->
+            <section id="section-education" class="content-section">
+                <div class="panel">
+                    <h2 class="section-title">Education</h2>
+                    <div class="education-item">
+                        <h3 class="job-title">St Francis Institute of Technology, Mumbai University, India</h3>
+                        <span class="dates">July 2024</span>
+                        <p>Graduated with a Bachelor of Engineering in Information Technology with Distinction (CGPA 7.65/10)</p>
+                        <p><span style="font-weight: bold; color: #90ee90;">Honors in Cybersecurity</span></p>
+                    </div>
+                    <div class="education-item">
+                        <h3 class="job-title">Nirmala Memorial Foundation Junior College, Mumbai, India</h3>
+                        <span class="dates">March 2020</span>
+                        <p>Secured Distinction in Higher Secondary Certificate Examination (62.31%)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="section-experience" class="content-section">
+                <div class="panel">
+                    <h2 class="section-title">Professional Experience</h2>
+                    <div class="experience-item">
+                        <h3 class="job-title">Software Test Engineer</h3>
+                        <span class="company-name">Testriq QA Lab LLP, Thane, India</span>
+                        <span class="dates">July 2024 – Present</span>
+                        <ul>
+                            <li>Executing smoke testing and regression testing to validate software functionality and stability after changes or updates.</li>
+                            <li>Performing security testing to identify vulnerabilities, ensuring applications adhere to best practices and compliance standards.</li>
+                            <li>Collaborating with clients to provide tailored solutions, gather requirements, and address specific testing needs.</li>
+                            <li>Conducting manual and automation testing using version control software has led to an improvement in testing efficiency by approximately 30% to 70%, including reductions in testing time by 30% to 50%, increased bug detection rates by 20% to 40%, and enhancements in release frequency by 25% to 60%.</li>
+                            <li>Identified and resolved bugs throughout the web development lifecycle, leveraging tools such as Jira and TestRail for effective tracking and reporting.</li>
+                            <li>Assigned to implement testing strategies and frameworks to enhance the overall quality assurance process, fostering continuous improvement within the team.</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <h3 class="job-title">Software Test Intern</h3>
+                        <span class="company-name">Testriq QA Lab LLP, Thane, India</span>
+                        <span class="dates">June 2024 – July 2024</span>
+                        <ul>
+                            <li>Studied how to write effective test cases for various applications, ensuring comprehensive coverage of functional requirements.</li>
+                            <li>Tasked with identifying and documenting bugs during manual testing processes, providing clear and actionable feedback to development teams.</li>
+                            <li>Carried out thorough software testing to ensure application quality, including exploratory testing to uncover edge cases and unexpected behavior.</li>
+                            <li>Assisted in creating and maintaining test documentation, contributing to a structured testing process.</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <h3 class="job-title">Public Beta Tester – &quot;Fall Guys&quot;</h3>
+                        <span class="company-name">Epic Games, Cary, North Carolina, USA (Remote)</span>
+                        <span class="dates">May 2022 – November 2022</span>
+                        <ul>
+                            <li>Participated in the beta testing phase of &quot;Fall Guys,&quot; identifying bugs and providing actionable feedback.</li>
+                            <li>Undertook comprehensive testing to ensure game functionality and stability after updates.</li>
+                            <li>Collaborated with development teams to gather requirements and address specific testing needs.</li>
+                            <li>Utilized Discord for real-time bug reporting and communication with the testing team.</li>
+                            <li>Assigned to execute both manual and automated testing methodologies to enhance testing efficiency.</li>
+                            <li>Discovered a critical game-breaking bug in the voice chat system, demonstrating the ability to identify high-impact issues.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="section-projects" class="content-section">
+                <div class="panel">
+                    <h2 class="section-title">Academic Projects</h2>
+                    <div class="project-item">
+                        <h3 class="project-name">Automated Drone Delivery System</h3>
+                        <span class="project-tech">Technologies used: Flutter, JavaScript, Firebase, Google Maps API, Security Protocols</span>
+                        <ul>
+                            <li>Developed a secure web application using Flutter for frontend development and Firebase for backend management and real-time data synchronization, ensuring the safety of drones during delivery operations.</li>
+                            <li>Designed and integrated Google Maps UI for real-time route visualization and optimized delivery path planning, enhancing operational efficiency.</li>
+                            <li>Employed Firebase for backend management, ensuring reliable data synchronization and scalability to accommodate varying delivery volumes.</li>
+                            <li>Introduced security protocols to protect data and prevent unauthorized access, enhancing system integrity and user trust.</li>
+                            <li>Incorporated real-time notifications for users to track delivery status and receive updates on drone locations.</li>
+                            <li>Carried out thorough testing and debugging of the application to ensure seamless functionality across devices, resulting in a robust and user-friendly experience.</li>
+                        </ul>
+                    </div>
+                    <div class="project-item">
+                        <h3 class="project-name">PScanner (Network Scanning Tool)</h3>
+                        <span class="project-tech">Technologies used: Python, Scapy, Nmap, OS Fingerprinting, Service Enumeration</span>
+                        <ul>
+                            <li>Built a Python-based tool for advanced network scanning, identifying open ports, and mapping network devices to enhance network visibility and management.</li>
+                            <li>Deployed OS fingerprinting to determine the operating systems running on detected devices, improving network visibility and enabling targeted security measures; incorporated service enumeration to detect running services and unpatched vulnerabilities, enhancing proactive security measures and facilitating risk assessment.</li>
+                            <li>Applied network segmentation and vulnerability patching to mitigate risks from exposed services and ports, bolstering overall network security posture; integrated a user-friendly interface using React for easy navigation and reporting, allowing users to quickly analyze scan results and implement necessary actions.</li>
+                            <li>Introduced scheduling features for automated periodic scans, ensuring continuous monitoring of network security and timely identification of new vulnerabilities; developed comprehensive documentation and user guides to facilitate tool adoption and effective utilization by network administrators and security teams.</li>
+                        </ul>
+                    </div>
+                    <div class="project-item">
+                        <h3 class="project-name">Keylogger (Ethical Data Logging Tool)</h3>
+                        <span class="project-tech">Technologies used: Python, PyHook, Pynput, Data Encryption, Access Control</span>
+                        <ul>
+                            <li>Involved in designing a Python-based Keylogger for ethical research on vulnerabilities in unauthorized data access, contributing to the understanding of security flaws.</li>
+                            <li>Integrated encryption to securely store captured data, ensuring sensitive information remained protected and encrypted at all times.</li>
+                            <li>Implemented restricted access mechanisms to prevent unauthorized retrieval of logged data, maintaining ethical usage standards and compliance with privacy regulations.</li>
+                            <li>Programmed a monitoring system using Python with PyHook and Pynput libraries to analyze user input in controlled environments without breaching privacy guidelines, ensuring ethical data collection.</li>
+                            <li>Devised a user consent framework using Python and Flask to ensure participants were fully informed about data collection practices, reinforcing ethical research principles.</li>
+                            <li>Conducted thorough testing and validation of the Keylogger to ensure reliability and accuracy, minimizing potential disruptions in controlled environments.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="section-skills" class="content-section">
+                <div class="panel">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <div class="skills-grid">
+                        <div>
+                            <h3>Programming and Scripting</h3>
+                            <ul>
+                                <li>Python, Bash, and PowerShell for automation and security scripting.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Networking and Network Security</h3>
+                            <ul>
+                                <li>TCP/IP, firewalls, VPNs</li>
+                                <li>Tools: Wireshark and Nmap</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Operating Systems</h3>
+                            <ul>
+                                <li>Expertise in Linux (Kali, Parrot), Windows, and macOS with OS hardening skills.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Penetration Testing Tools</h3>
+                            <ul>
+                                <li>Experience with Burp Suite, OWASP ZAP, Metasploit, and Nessus for ethical hacking.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Cloud Security</h3>
+                            <ul>
+                                <li>Knowledge of AWS, Azure, GCP security practices, and cloud workload protection.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Version Control</h3>
+                            <ul>
+                                <li>Proficient with Git, GitHub, and Jira for version control and collaboration.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Extracurriculars Section -->
+            <section id="section-extracurriculars" class="content-section">
+                <div class="panel">
+                    <h2 class="section-title">Extracurricular Activities</h2>
+                    <ul>
+                        <li>Managed event flow and coordinated activities as a Stage Admin Volunteer at Mumbai ComicCon (2023-24), ensuring a seamless experience for attendees; involved in troubleshooting any issues that arose and facilitating communication between different teams.</li>
+                        <li>Led initiatives to boost student engagement through workshops and networking events as Vice President of the IT Students&apos; Association (ITSA) at St. Francis Institute of Technology (2023); collaborated with faculty to create valuable opportunities for students to connect with industry professionals.</li>
+                        <li>Participated in the Valorant tournament held at Shree LR Tiwari College of Engineering for the fest called MetaSummit (2023).</li>
+                        <li>Facilitated the smooth execution of live esports events as a Stage Admin and Operator at the SkyEsports LAN Event (2023); coordinated logistics and ensuring that all technical aspects ran without a hitch, contributing to a successful event.</li>
+                        <li>Achieved consecutive victories as a participant in the Zephyr Rocket League Tournament (2022-23), showcasing strategic gameplay and teamwork.</li>
+                        <li>Volunteered in St Francis Institute of Technology campus blood donation drives (2022-2023), raising awareness and supporting community health; promoted the events and encouraged fellow students to contribute to this important cause.</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const contentPages = document.querySelectorAll('.content-page');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all navigation buttons and content sections
+            const navButtons = {
+                profile: document.getElementById('nav-profile'),
+                education: document.getElementById('nav-education'),
+                experience: document.getElementById('nav-experience'),
+                projects: document.getElementById('nav-projects'),
+                skills: document.getElementById('nav-skills'),
+                extracurriculars: document.getElementById('nav-extracurriculars')
+            };
 
-            // Function to show a specific page
-            const showPage = (targetId) => {
-                contentPages.forEach(page => {
-                    if (page.id === targetId) {
-                        page.style.display = 'block'; // Ensure it's block to animate opacity
+            const contentSections = {
+                profile: document.getElementById('section-profile'),
+                education: document.getElementById('section-education'),
+                experience: document.getElementById('section-experience'),
+                projects: document.getElementById('section-projects'),
+                skills: document.getElementById('section-skills'),
+                extracurriculars: document.getElementById('section-extracurriculars')
+            };
+
+            let currentPage = 'profile'; // Initial active page
+
+            // Function to update the UI based on the active page
+            function updateUI(newPage) {
+                // Deactivate current nav button and hide current section
+                if (navButtons[currentPage]) {
+                    navButtons[currentPage].classList.remove('active');
+                }
+                if (contentSections[currentPage]) {
+                    contentSections[currentPage].classList.remove('visible');
+                    // Remove 'active' from panels within the previous section to reset animation state
+                    const oldPanels = contentSections[currentPage].querySelectorAll('.panel');
+                    oldPanels.forEach(panel => panel.classList.remove('active'));
+                }
+
+                currentPage = newPage; // Set the new current page
+
+                // Activate new nav button and show new section
+                if (navButtons[currentPage]) {
+                    navButtons[currentPage].classList.add('active');
+                }
+                if (contentSections[currentPage]) {
+                    contentSections[currentPage].classList.add('visible');
+                    // Apply 'active' to panels within the new section with a delay
+                    const newPanels = contentSections[currentPage].querySelectorAll('.panel');
+                    newPanels.forEach((panel, index) => {
+                        panel.classList.remove('active'); // Ensure state is reset before applying
                         setTimeout(() => {
-                            page.classList.add('active'); // Trigger opacity transition
-                        }, 10); // Small delay to allow display change to register
-                    } else {
-                        page.classList.remove('active');
-                        // After transition, set display to none
-                        page.addEventListener('transitionend', function handler() {
-                            if (!page.classList.contains('active')) {
-                                page.style.display = 'none';
-                            }
-                            page.removeEventListener('transitionend', handler);
-                        });
-                    }
-                });
-            };
+                            panel.classList.add('active');
+                        }, index * 100); // Stagger animation for each panel
+                    });
+                }
+            }
 
-            // Function to set active navigation link
-            const setActiveNavLink = (targetId) => {
-                navLinks.forEach(link => {
-                    if (link.dataset.target === targetId) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                });
-            };
+            // Add event listeners to navigation buttons
+            for (const key in navButtons) {
+                if (navButtons.hasOwnProperty(key)) {
+                    navButtons[key].addEventListener('click', function() {
+                        updateUI(key);
+                    });
+                }
+            }
 
-            // Event listener for navigation links
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault(); // Prevent default anchor link behavior
-                    const targetId = e.target.dataset.target;
-                    showPage(targetId);
-                    setActiveNavLink(targetId);
-                });
-            });
-
-            // Initial page load: show the first page and activate its link
-            const initialPageId = navLinks[0].dataset.target;
-            showPage(initialPageId);
-            setActiveNavLink(initialPageId);
+            // Initialize UI on page load to show the default page ('profile')
+            updateUI(currentPage);
         });
     </script>
 </body>
 </html>
+�
