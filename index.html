@@ -7,7 +7,7 @@
     <!-- Favicon: You can replace this with your own favicon.ico in the same directory -->
     <link rel="icon" href="/favicon.ico" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for social media icons -->
+    <!-- Font Awesome for social media and sidebar icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Basic CSS Reset */
@@ -98,10 +98,13 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            display: flex; /* Make it a flex container */
+            flex-direction: column; /* Stack items vertically by default */
+            gap: 1rem; /* Space between buttons */
         }
 
         .sidebar nav li {
-            margin-bottom: 1rem;
+            margin-bottom: 0; /* Remove individual item margin, replaced by ul gap */
         }
 
         .sidebar nav button {
@@ -109,17 +112,23 @@
             border: none;
             color: #e0e0e0;
             font-size: 1.1em;
-            padding: 0.8rem 1rem;
-            width: 100%;
+            padding: 0.8rem 1rem; /* Reverted padding */
+            width: 100%; /* Restore full width */
             text-align: left;
             cursor: pointer;
             border-radius: 6px;
-            /* Added box-shadow to transition */
             transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.2s ease-out, box-shadow 0.3s ease-in-out;
-            display: flex;
+            
+            display: flex; /* Keep flex to align icon and text */
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.8rem; /* Space between icon and text */
             font-weight: 500;
+        }
+
+        /* Style for icons inside sidebar buttons */
+        .sidebar nav button i {
+            font-size: 1.4em; /* Adjust icon size within the button */
+            margin-right: 0.5em; /* Add margin back */
         }
 
         .sidebar nav button:hover {
@@ -207,13 +216,6 @@
             transform: translateX(5px);
         }
 
-        ul li::before {
-            content: "•";
-            color: #64ffda;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-        }
 
         /* Styling for individual items within experience, projects, and education */
         .experience-item, .project-item, .education-item {
@@ -276,13 +278,16 @@
         .social-links a {
             display: flex;
             align-items: center;
-            font-size: 1.1em;
+            justify-content: center; /* Center icon within social link button */
+            width: 50px;
+            height: 50px;
+            padding: 0; /* Remove padding as content is centered */
             color: #e0e0e0; /* Default color for social links */
             transition: color 0.3s ease-in-out, transform 0.2s ease-out;
             border-radius: 6px; /* Slightly rounded for button feel */
-            padding: 0.5em 1em; /* Add padding for better touch targets */
             background-color: #3a3a3a; /* Subtle background */
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            flex-shrink: 0; /* Prevent shrinking */
         }
 
         .social-links a:hover {
@@ -292,9 +297,9 @@
             box-shadow: 0 4px 10px rgba(0,255,218,0.3); /* Accent shadow */
         }
 
-        /* Adjust icon specific spacing for Font Awesome */
+        /* Adjust icon specific spacing for Font Awesome in social links */
         .social-links a i {
-            margin-right: 0.7em;
+            margin: 0; /* Remove margin as it's the only content */
             font-size: 1.2em; /* Larger icon size */
         }
 
@@ -346,31 +351,34 @@
             }
 
             .sidebar nav ul {
-                display: flex;
+                flex-direction: row; /* Change to row for horizontal layout */
                 flex-wrap: wrap; /* Allow items to wrap */
-                justify-content: center; /* Center items if they don't fill the row */
-                gap: 0.75rem; /* Gap between buttons */
+                justify-content: center; /* Center items horizontally */
+                gap: 0.75rem; /* Space between buttons */
             }
 
             .sidebar nav li {
-                /* Remove fixed width or 100% width on li/button here */
-                /* Let flexbox handle sizing */
-                flex: 1 1 auto; /* Allow items to grow, shrink, and set basis based on content */
+                /* Allow items to grow/shrink based on content with a minimum width */
+                flex: 1 1 auto; /* Default flex behavior */
                 min-width: 120px; /* A reasonable minimum width for a button on a tablet/small screen */
                 margin-bottom: 0.5rem; /* Small vertical margin between wrapped rows */
             }
 
             .sidebar nav button {
-                /* Remove width: 100%; from here */
+                width: 100%; /* Restore full width within its flex item */
+                height: auto; /* Restore auto height */
+                font-size: 0.95em; /* Slightly smaller font for more fit */
+                padding: 0.6rem 0.8rem; /* Restore padding */
                 text-align: center; /* Center text/icon within the button */
                 justify-content: center; /* Center icon and text */
-                font-size: 0.95em; /* Slightly smaller font for more fit */
-                padding: 0.6rem 0.8rem;
-                height: 100%; /* Ensure button fills the li's height */
                 transform: none !important; /* Override hover transform */
             }
             .sidebar nav button:hover {
                 transform: none; /* Keep hover transform off for mobile consistency */
+            }
+            .sidebar nav button i {
+                font-size: 1.2em; /* Ensure icon size remains readable */
+                margin-right: 0.5em; /* Retain space between icon and text */
             }
 
             .content-area {
@@ -389,6 +397,9 @@
             .sidebar nav button {
                 font-size: 0.85em; /* Further reduce font size */
                 padding: 0.4rem 0.6rem; /* Reduce padding */
+            }
+            .sidebar nav button i {
+                font-size: 1.1em; /* Smaller icon size for very small screens */
             }
         }
 
@@ -410,13 +421,13 @@
                 font-size: 1.1em;
             }
             .social-links {
-                flex-direction: column; /* Stack social links vertically on very small screens */
+                flex-direction: row; /* Keep social links in a row if space allows */
+                justify-content: center; /* Center them */
                 gap: 0.8rem; /* Reduce gap */
             }
             .social-links a {
-                width: calc(100% - 2em); /* Make links take full width minus padding */
-                justify-content: center; /* Center content within button */
-                font-size: 1em;
+                width: 45px; /* Consistent small size for social links */
+                height: 45px;
             }
             .social-links a i { /* Ensure consistent icon size on small screens */
                 font-size: 1.1em;
@@ -439,15 +450,6 @@
             object-fit: cover; /* Covers the area, cropping if necessary */
             display: block; /* Removes extra space below image */
         }
-
-        /* Icon styling (using pseudo-elements for simple visual icons) */
-        /* These are for the sidebar buttons, kept as emojis for simplicity/no extra libraries */
-        .icon-profile::before { content: "👤"; margin-right: 0.5em; }
-        .icon-education::before { content: "🎓"; margin-right: 0.5em; }
-        .icon-experience::before { content: "💼"; margin-right: 0.5em; }
-        .icon-projects::before { content: "💻"; margin-right: 0.5em; }
-        .icon-skills::before { content: "🛠️"; margin-right: 0.5em; }
-        .icon-extracurriculars::before { content: "🏅"; margin-right: 0.5em; }
         
     </style>
 </head>
@@ -458,12 +460,12 @@
             <h2>Portfolio</h2>
             <nav>
                 <ul>
-                    <li><button id="nav-profile" class="icon-profile">Profile</button></li>
-                    <li><button id="nav-education" class="icon-education">Education</button></li>
-                    <li><button id="nav-experience" class="icon-experience">Experience</button></li>
-                    <li><button id="nav-projects" class="icon-projects">Projects</button></li>
-                    <li><button id="nav-skills" class="icon-skills">Skills</button></li>
-                    <li><button id="nav-extracurriculars" class="icon-extracurriculars">Activities</button></li>
+                    <li><button id="nav-profile"><i class="fas fa-user"></i>Profile</button></li>
+                    <li><button id="nav-education"><i class="fas fa-graduation-cap"></i>Education</button></li>
+                    <li><button id="nav-experience"><i class="fas fa-briefcase"></i>Experience</button></li>
+                    <li><button id="nav-projects"><i class="fas fa-project-diagram"></i>Projects</button></li>
+                    <li><button id="nav-skills"><i class="fas fa-tools"></i>Skills</button></li>
+                    <li><button id="nav-extracurriculars"><i class="fas fa-medal"></i>Activities</button></li>
                 </ul>
             </nav>
         </div>
@@ -501,16 +503,16 @@
                     </div>
                     <!-- Social Links Section -->
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/prathameshupadhye/" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/in/prathameshupadhye/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="https://github.com/YourGitHubProfile" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/YourGitHubProfile" target="_blank" rel="noopener noreferrer" title="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://steamcommunity.com/id/YourSteamProfile" target="_blank" rel="noopener noreferrer">
+                        <a href="https://steamcommunity.com/id/YourSteamProfile" target="_blank" rel="noopener noreferrer" title="Steam">
                             <i class="fab fa-steam"></i>
                         </a>
-                        <a href="https://www.instagram.com/YourInstagramProfile/" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/YourInstagramProfile/" target="_blank" rel="noopener noreferrer" title="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
