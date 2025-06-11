@@ -5,7 +5,7 @@ const portfolioData = {
         title: "Cybersecurity & Software Quality Assurance Specialist",
         profileImage: "assets/profilepic.jpg", // Path to your profile image
         contact: {
-            address: "A/203, ShekharNagar Building, Dahisar (West), Mumbai-400068, India",
+            address: "Mumbai, India",
             email: "bhalprathamesh6@gmail.com",
             phone: "+91 9137887904"
         },
@@ -16,10 +16,10 @@ const portfolioData = {
             systems to developing network scanning tools and ethical keyloggers. I thrive in collaborative
             environments and am committed to continuous improvement and securing digital infrastructures.`,
         social: [
-            { icon: "fab fa-linkedin", url: "https://www.linkedin.com/in/prathamesh-upadhye" },
-            { icon: "fab fa-github", url: "https://github.com/prathamesh-upadhye" },
-            { icon: "fab fa-steam", url: "#" }, // Placeholder
-            { icon: "fab fa-instagram", url: "#" } // Placeholder
+            { icon: "fab fa-linkedin", url: "https://www.linkedin.com/in/prathameshjod/" },
+            { icon: "fab fa-github", url: "https://github.com/legend69xd" },
+            { icon: "fab fa-steam", url: "https://steamcommunity.com/profiles/76561199064828256/" }, // Placeholder
+            { icon: "fab fa-instagram", url: "https://www.instagram.com/prathamesh_jod/" } // Placeholder
         ]
     },
     education: [
