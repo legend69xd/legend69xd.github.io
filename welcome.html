@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome, Player!</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Import Google Fonts for a futuristic look */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: #05050C; /* Very dark background */
+            color: #C0C0C0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            /* Background effect similar to anime's digital noise/lines */
+            background-image: radial-gradient(circle at center, rgba(10, 20, 30, 0.5) 1px, transparent 1px),
+                              linear-gradient(to right, rgba(10, 20, 30, 0.1) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(10, 20, 30, 0.1) 1px, transparent 1px);
+            background-size: 10px 10px, 10px 10px, 10px 10px;
+            background-position: 0 0;
+        }
+
+        /* Typing effect for welcome message */
+        .typing-container {
+            border-right: .15em solid rgba(76, 201, 240, 0.8); /* Cursor effect */
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            opacity: 0;
+            animation: typing 2.5s steps(40, end) forwards,
+                       blink-caret .75s step-end infinite;
+            font-family: 'Orbitron', sans-serif;
+            color: #4CC9F0; /* Aqua blue */
+            text-shadow: 0 0 10px #4CC9F0;
+        }
+
+        @keyframes typing {
+            from { width: 0; opacity: 0; }
+            to { width: 100%; opacity: 1; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #4CC9F0; }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 lg:p-8">
+
+    <h1 id="welcome-text" class="text-3xl sm:text-4xl lg:text-5xl font-bold typing-container px-2"></h1>
+
+    <script>
+        const welcomeTextElement = document.getElementById('welcome-text');
+        const welcomeMessage = "WELCOME TO PRATHAMESH'S WEBSITE";
+        let i = 0;
+
+        function typeWriter() {
+            if (i < welcomeMessage.length) {
+                welcomeTextElement.innerHTML += welcomeMessage.charAt(i);
+                i++;
+                setTimeout(typeWriter, 80); // Typing speed
+            } else {
+                // Once typing is complete, redirect to the main portfolio after a delay
+                setTimeout(() => {
+                    window.location.href = 'portfolio.html';
+                }, 2000); // Delay before redirecting
+            }
+        }
+
+        window.onload = typeWriter;
+    </script>
+</body>
+</html>

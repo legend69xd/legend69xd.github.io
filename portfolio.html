@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prathamesh Upadhye - Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Import Google Fonts for a futuristic look - Inter for readability, Orbitron for titles */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitbon:wght@400;700&display=swap');
+
+        /* New Color Palette Variables from the provided screenshot/index.html */
+        :root {
+            --color-background-dark: #0B0C10; /* Main background */
+            --color-panel-dark: #1F2833;      /* Card/Panel background */
+            --color-text-light: #C5C6C7;      /* General light text */
+            --color-accent-aqua: #66FCF1;     /* Primary accent color (aqua/cyan) */
+            --color-accent-dark-teal: #45A29E;/* Secondary accent color (darker teal) */
+            --color-white: #FFFFFF;           /* Pure white for high contrast elements */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background-dark);
+            color: var(--color-text-light);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at center, rgba(102, 252, 241, 0.1) 1px, transparent 1px),
+                              linear-gradient(to right, rgba(102, 252, 241, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(102, 252, 241, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            /* Added for smooth fade in */
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+
+        body.fade-in {
+            opacity: 1;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-panel-dark);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-accent-dark-teal);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-accent-aqua);
+        }
+
+        /* Main container styling */
+        .portfolio-container {
+            background-color: var(--color-panel-dark);
+            border: 1px solid var(--color-accent-aqua);
+            box-shadow: 0 0 20px rgba(102, 252, 241, 0.7), inset 0 0 10px rgba(102, 252, 241, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 2rem;
+            width: 95%;
+            max-width: 1200px;
+            min-height: calc(100vh - 4rem);
+        }
+
+        /* Header Bar Styling */
+        .header-bar {
+            background-color: var(--color-panel-dark);
+            border-bottom: 1px solid var(--color-accent-aqua);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.5);
+            font-family: 'Orbitron', sans-serif;
+            z-index: 20;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            justify-content: center; /* Center items on all screen sizes */
+            align-items: center;
+            padding: 0.75rem 1rem; /* Slightly reduced padding for small screens */
+            color: var(--color-white);
+        }
+
+        .header-nav {
+            flex-grow: 1; /* Allow navigation to take available space */
+            display: flex;
+            flex-wrap: wrap; /* Allow nav items to wrap */
+            justify-content: center; /* Center items within nav */
+            gap: 0.5rem; /* Space between nav links */
+            padding: 0.5rem 0; /* Vertical padding for wrapped nav */
+        }
+        .header-nav-link {
+            padding: 0.5rem 0.75rem; /* Adjusted padding for smaller links */
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            color: var(--color-text-light);
+            cursor: pointer;
+            position: relative;
+            font-size: 0.9rem; /* Smaller font for more links on small screens */
+            white-space: nowrap; /* Prevent breaking nav links */
+        }
+        .header-nav-link:hover {
+            background-color: rgba(102, 252, 241, 0.1);
+            color: var(--color-white);
+        }
+        .header-nav-link.active {
+            background-color: var(--color-accent-dark-teal);
+            color: var(--color-white);
+            box-shadow: 0 0 10px var(--color-accent-dark-teal);
+        }
+        .header-contact-button {
+            background-color: var(--color-accent-dark-teal);
+            color: var(--color-white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(69, 162, 158, 0.7);
+            font-family: 'Orbitron', sans-serif;
+            margin-left: 1rem; /* Adjusted margin */
+            font-size: 0.9rem; /* Smaller font */
+            white-space: nowrap; /* Prevent breaking button text */
+        }
+        .header-contact-button:hover {
+            background-color: var(--color-accent-aqua);
+            box-shadow: 0 0 15px rgba(102, 252, 241, 0.8);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content Area */
+        .content-area {
+            flex-grow: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            width: 100%;
+        }
+        .content-section {
+            background-color: var(--color-background-dark);
+            border: 1px solid var(--color-accent-aqua);
+            border-radius: 8px;
+            padding: 2rem; /* Default padding */
+            margin-bottom: 2rem;
+            box-shadow: inset 0 0 10px rgba(102, 252, 241, 0.3);
+        }
+        .content-section-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--color-accent-aqua);
+            font-size: 1.8rem; /* Default size */
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--color-accent-dark-teal);
+            padding-bottom: 0.75rem;
+            text-shadow: 0 0 5px rgba(102, 252, 241, 0.5);
+        }
+
+        /* Profile Section Specifics */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 2rem;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            justify-content: center; /* Center items on small screens */
+            text-align: center; /* Center text on small screens */
+        }
+        .profile-img {
+            border-radius: 50%;
+            border: 3px solid var(--color-accent-dark-teal);
+            box-shadow: 0 0 15px rgba(69, 162, 158, 0.7);
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .profile-info h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--color-white);
+            font-size: 2.5rem; /* Default size */
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 8px rgba(255,255,255,0.5);
+        }
+        .profile-info p {
+            color: var(--color-text-light);
+            font-size: 1.1rem; /* Default size */
+            line-height: 1.5;
+        }
+        .profile-contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.95rem; /* Default size */
+            color: var(--color-text-light);
+            align-items: center; /* Center contact details on small screens */
+        }
+        .profile-contact-details i {
+            color: var(--color-accent-dark-teal);
+            margin-right: 0.5rem;
+        }
+
+        .social-icons {
+            display: flex; /* Make social icons a flex container */
+            justify-content: center; /* Center them horizontally */
+            margin-top: 1.5rem; /* Add some top margin */
+        }
+        .social-icons a {
+            color: var(--color-accent-dark-teal);
+            font-size: 1.8rem;
+            margin: 0 0.75rem; /* Adjusted margin for better spacing */
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--color-accent-aqua);
+            transform: scale(1.1);
+        }
+
+        /* General List/Item Styling */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--color-accent-aqua);
+            position: absolute;
+            left: 0;
+            top: 0.15rem;
+            font-size: 0.8rem;
+        }
+        .item-title {
+            color: var(--color-text-light);
+            font-weight: 600;
+            font-size: 1.1rem; /* Default size */
+            margin-bottom: 0.25rem;
+        }
+        .item-subtitle {
+            color: var(--color-white); /* Changed to white for better contrast */
+            font-size: 0.95rem; /* Default size */
+            font-style: italic;
+        }
+        .item-description {
+            color: var(--color-text-light);
+            font-size: 1rem; /* Default size */
+            line-height: 1.4;
+            margin-top: 0.25rem;
+        }
+        .item-tech {
+            color: var(--color-accent-dark-teal);
+            font-size: 0.9rem; /* Default size */
+            margin-top: 0.5rem;
+        }
+        .sub-list {
+            margin-top: 0.5rem;
+            padding-left: 1.5rem;
+            list-style: none;
+        }
+        .sub-list li::before {
+            content: "\f067";
+            font-family: "Font Awesome 6 Free"; /* Ensure font is applied */
+            font-weight: 900; /* Ensure font is applied */
+            color: var(--color-accent-aqua);
+            font-size: 0.7rem;
+            top: 0.2rem;
+        }
+        .sub-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.2rem;
+        }
+        .sub-list span {
+            color: var(--color-text-light);
+        }
+
+        /* Responsive adjustments for mobile-first */
+        /* Extra small devices (less than 480px) */
+        @media (max-width: 480px) {
+            body {
+                padding-top: 5rem; /* Adjust padding-top for smaller header */
+            }
+            .header-bar {
+                padding: 0.25rem; /* Minimal padding */
+            }
+            .header-nav {
+                gap: 0.2rem; /* Even smaller gap between links */
+                padding: 0.2rem 0;
+            }
+            .header-nav-link, .header-contact-button {
+                font-size: 0.7rem; /* Smallest font size for very small screens */
+                padding: 0.2rem 0.4rem;
+                margin: 0.05rem; /* Reduce margin */
+            }
+            .header-contact-button {
+                margin-top: 0.5rem; /* Reduce top margin */
+            }
+            .portfolio-container {
+                margin-top: 0.5rem; /* Even smaller top margin */
+                width: 98%; /* Maximize width on tiny screens */
+            }
+            .content-area {
+                padding: 0.5rem; /* Minimum padding */
+            }
+            .content-section {
+                padding: 0.5rem; /* Minimum padding */
+                margin-bottom: 1rem;
+            }
+            .content-section-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+                padding-bottom: 0.5rem; /* Adjust padding */
+            }
+            .profile-img {
+                width: 80px; /* Even smaller image */
+                height: 80px;
+            }
+            .profile-info h1 {
+                font-size: 1.3rem;
+            }
+            .profile-info p {
+                font-size: 0.7rem;
+            }
+            .profile-contact-details {
+                font-size: 0.65rem;
+            }
+            .social-icons a {
+                font-size: 1.1rem;
+                margin: 0 0.2rem;
+            }
+            .item-title {
+                font-size: 0.8rem;
+            }
+            .item-subtitle, .item-description, .item-tech, .sub-list span {
+                font-size: 0.75rem;
+            }
+            li {
+                margin-bottom: 0.5rem;
+                padding-left: 0.7rem;
+            }
+            li::before {
+                font-size: 0.55rem;
+                top: 0.1rem;
+            }
+            .sub-list {
+                padding-left: 1rem;
+            }
+            .sub-list li {
+                padding-left: 0.8rem;
+            }
+            .sub-list li::before {
+                 font-size: 0.5rem;
+            }
+        }
+
+        /* Small devices (portrait tablets and large phones, 480px and up) */
+        @media (min-width: 481px) and (max-width: 768px) {
+            body {
+                padding-top: 6rem; /* Adjust padding-top */
+            }
+            .header-bar {
+                padding: 0.5rem 0.75rem;
+            }
+            .header-nav-link, .header-contact-button {
+                font-size: 0.8rem;
+                padding: 0.35rem 0.6rem;
+            }
+            .content-area {
+                padding: 1rem;
+            }
+            .content-section {
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            .content-section-title {
+                font-size: 1.4rem;
+                margin-bottom: 0.8rem;
+                padding-bottom: 0.6rem;
+            }
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+            .profile-info p {
+                font-size: 0.9rem;
+            }
+            .profile-contact-details {
+                font-size: 0.8rem;
+            }
+            .social-icons a {
+                font-size: 1.6rem;
+                margin: 0 0.6rem;
+            }
+            .item-title {
+                font-size: 1rem;
+            }
+            .item-subtitle, .item-description, .item-tech, .sub-list span {
+                font-size: 0.9rem;
+            }
+            li {
+                padding-left: 1.2rem;
+            }
+            li::before {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Medium devices (landscape tablets, 769px and up) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+             body {
+                padding-top: 7rem; /* Adjust padding-top */
+            }
+            .header-bar {
+                padding: 0.75rem 1rem;
+            }
+            .header-nav-link, .header-contact-button {
+                font-size: 0.9rem;
+                padding: 0.5rem 0.75rem;
+            }
+            .content-area {
+                padding: 1.5rem;
+            }
+            .content-section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            .content-section-title {
+                font-size: 1.7rem;
+                margin-bottom: 1.2rem;
+                padding-bottom: 0.75rem;
+            }
+            .profile-img {
+                width: 110px;
+                height: 110px;
+            }
+            .profile-info h1 {
+                font-size: 2.2rem;
+            }
+            .profile-info p {
+                font-size: 1rem;
+            }
+            .profile-contact-details {
+                font-size: 0.9rem;
+            }
+            .social-icons a {
+                font-size: 1.8rem;
+                margin: 0 0.75rem;
+            }
+            .item-title {
+                font-size: 1.05rem;
+            }
+            .item-subtitle, .item-description, .item-tech, .sub-list span {
+                font-size: 0.95rem;
+            }
+            li {
+                padding-left: 1.4rem;
+            }
+            li::before {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Large devices (desktops, 1025px and up) */
+        @media (min-width: 1025px) {
+            body {
+                padding-top: 5rem; /* Standard padding for large screens */
+            }
+            .header-bar {
+                padding: 0.75rem 2rem;
+            }
+            .header-nav-link {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+            .header-contact-button {
+                font-size: 0.9rem;
+                padding: 0.5rem 1.5rem;
+            }
+            .portfolio-container {
+                margin-top: 2rem;
+                width: 95%;
+            }
+            .content-area {
+                padding: 2rem;
+            }
+            .content-section {
+                padding: 2rem;
+                margin-bottom: 2rem;
+            }
+            .content-section-title {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+                padding-bottom: 0.75rem;
+            }
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+            .profile-info h1 {
+                font-size: 2.5rem;
+            }
+            .profile-info p {
+                font-size: 1.1rem;
+            }
+            .profile-contact-details {
+                font-size: 0.95rem;
+            }
+            .social-icons a {
+                font-size: 1.8rem;
+                margin: 0 0.75rem;
+            }
+            .item-title {
+                font-size: 1.1rem;
+            }
+            .item-subtitle, .item-description, .item-tech, .sub-list span {
+                font-size: 1rem;
+            }
+            li {
+                padding-left: 1.5rem;
+            }
+            li::before {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body class="pt-20">
+    <!-- Fixed Header Bar -->
+    <header class="header-bar">
+        <nav class="header-nav">
+            <a href="#profile" class="header-nav-link active" data-target="profile">Profile</a>
+            <a href="#education" class="header-nav-link" data-target="education">Education</a>
+            <a href="#experience" class="header-nav-link" data-target="experience">Experience</a>
+            <a href="#projects" class="header-nav-link" data-target="projects">Projects</a>
+            <a href="#skills" class="header-nav-link" data-target="skills">Skills</a>
+            <a href="#activities" class="header-nav-link" data-target="activities">Activities</a>
+        </nav>
+        <a href="mailto:bhalprathamesh6@gmail.com" class="header-contact-button">Contact Me</a>
+    </header>
+
+    <!-- Main Portfolio Container -->
+    <div class="portfolio-container">
+        <!-- Main Content Area -->
+        <main class="content-area">
+            <!-- Content sections will be dynamically loaded here -->
+        </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add fade-in class to body when DOM is ready
+            document.body.classList.add('fade-in');
+
+            const headerNavLinks = document.querySelectorAll('.header-nav-link');
+            const contentArea = document.querySelector('.content-area');
+
+            // Function to render content for a given section
+            const renderSection = (sectionName) => {
+                contentArea.innerHTML = ''; // Clear previous content
+                let htmlContent = '';
+
+                // Add section title
+                htmlContent += `<h2 class="content-section-title">${sectionName.toUpperCase()}</h2>`;
+
+                const data = portfolioData[sectionName];
+
+                if (sectionName === 'profile') {
+                    // Use profileImage from data.js
+                    const profileImageUrl = data.profileImage || `https://placehold.co/120x120/${getComputedStyle(document.documentElement).getPropertyValue('--color-accent-dark-teal').substring(1).trim()}/FFFFFF?text=P.U.`;
+                    htmlContent += `
+                        <div class="profile-header">
+                            <img src="${profileImageUrl}" alt="${data.name}" class="profile-img">
+                            <div class="profile-info">
+                                <h1>${data.name}</h1>
+                                <p class="text-white text-lg sm:text-xl font-bold">${data.title}</p>
+                                <div class="profile-contact-details">
+                                    <span><i class="fa-solid fa-location-dot"></i> ${data.contact.address}</span>
+                                    <span><i class="fa-solid fa-envelope"></i> ${data.contact.email}</span>
+                                    <span><i class="fa-solid fa-phone"></i> ${data.contact.phone}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="content-section-title !text-xl !text-white !border-b-0 !mb-4">ABOUT ME</h3>
+                        <p class="text-gray-300 leading-relaxed">${data.aboutMe}</p>
+                        <div class="social-icons mt-6">
+                            ${data.social.map(s => `<a href="${s.url}" target="_blank" title="${s.icon.split('-')[1]}"><i class="${s.icon}"></i></a>`).join('')}
+                        </div>
+                    `;
+                } else if (['education', 'experience', 'projects', 'skills', 'activities'].includes(sectionName)) {
+                    htmlContent += '<ul>';
+                    data.forEach(item => {
+                        htmlContent += `
+                            <li>
+                                <div class="item-title">${item.title}</div>
+                                ${item.subtitle ? `<div class="item-subtitle">${item.subtitle}</div>` : ''}
+                                ${item.description ? `<div class="item-description">${item.description}</div>` : ''}
+                                ${item.details ? `<div class="item-description">${item.details}</div>` : ''}
+                                ${item.responsibilities ? `
+                                    <ul class="sub-list">
+                                        ${item.responsibilities.map(resp => `<li><span>${resp}</span></li>`).join('')}
+                                    </ul>
+                                ` : ''}
+                                ${item.technologies ? `<div class="item-tech">Technologies used: ${item.technologies}</div>` : ''}
+                            </li>
+                        `;
+                    });
+                    htmlContent += '</ul>';
+                }
+
+                contentArea.innerHTML = `<section id="${sectionName}" class="content-section">${htmlContent}</section>`;
+            };
+
+            // Function to show a specific section and update active states
+            const showSection = (targetId) => {
+                // Update active class for header navigation links
+                headerNavLinks.forEach(link => {
+                    if (link.dataset.target === targetId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+                renderSection(targetId); // Render the content for the selected section
+                contentArea.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+            };
+
+            // Add click listeners to header navigation links
+            headerNavLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default anchor link behavior
+                    const targetId = link.dataset.target;
+                    showSection(targetId);
+                });
+            });
+
+            // Set initial active section (Profile)
+            showSection('profile');
+        });
+    </script>
+</body>
+</html>
