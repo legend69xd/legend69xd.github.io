@@ -3,767 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prathamesh Upadhye - Cybersecurity Portfolio</title>
-    <!-- Favicon: You can replace this with your own favicon.ico in the same directory -->
-    <link rel="icon" href="/favicon.ico" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for social media and sidebar icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Welcome to My Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Basic CSS Reset */
-        html, body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            height: 100%; /* Ensure full height for body and html */
+        /* New Color Palette Variables */
+        :root {
+            --color-background-dark: #0B0C10;
+            --color-text-dark-grey: #1F2833;
+            --color-text-light-grey: #C5C6C7;
+            --color-accent-aqua: #66FCF1;
+            --color-accent-dark-teal: #45A29E;
         }
 
-        /* Global Body Styling */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-            background-color: #1a1a1a; /* Even deeper charcoal black for the background */
-            color: #e0e0e0; /* Softer off-white for main text */
-            line-height: 1.6;
-            min-height: 100vh;
+            font-family: 'Space Mono', monospace;
+            background-color: var(--color-background-dark);
+            color: var(--color-text-light-grey);
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-            padding-top: 20px; /* Small top padding */
-            padding-bottom: 20px; /* Small bottom padding */
-        }
-
-        /* Headings Styling */
-        h1, h2, h3, h4, h5, h6 {
-            color: #ffffff; /* Pure white for all headings */
-            margin-top: 0;
-            margin-bottom: 0.5em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-
-        /* Paragraphs Styling */
-        p {
-            margin-top: 0;
-            margin-bottom: 1em;
-        }
-
-        /* Anchor (Link) Styling */
-        a {
-            color: #64ffda; /* Bright accent color for links (cyber-green) */
-            text-decoration: none;
-            transition: color 0.3s ease-in-out;
-        }
-
-        a:hover {
-            color: #a2f9d8; /* Lighter shade on hover */
-            text-decoration: underline;
-        }
-
-        /* Main Content Container */
-        .main-container {
-            display: flex;
-            width: 100%;
-            max-width: 1200px;
-            min-height: 100vh; /* Ensure it takes full viewport height */
-            margin: auto;
-            padding: 0;
-            background-color: #242424;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            border-radius: 12px;
+            align-items: center;
+            min-height: 100vh;
             overflow: hidden;
-        }
-
-        /* Sidebar Navigation Styling */
-        .sidebar {
-            width: 250px;
-            background-color: #1f1f1f;
-            padding: 2rem 1.5rem;
-            box-shadow: 5px 0 15px rgba(0,0,0,0.4);
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
-            animation: slideInLeft 0.7s ease-out forwards;
-        }
-
-        .sidebar h2 {
-            color: #64ffda;
-            font-size: 1.6em;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            border-bottom: 2px solid #64ffda;
-            padding-bottom: 0.5rem;
-        }
-
-        .sidebar nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex; /* Make it a flex container */
-            flex-direction: column; /* Stack items vertically by default */
-            gap: 1rem; /* Space between buttons */
-        }
-
-        .sidebar nav li {
-            margin-bottom: 0; /* Remove individual item margin, replaced by ul gap */
-        }
-
-        .sidebar nav button {
-            background: none;
-            border: none;
-            color: #e0e0e0;
-            font-size: 1.1em;
-            padding: 0.8rem 1rem; /* Reverted padding */
-            width: 100%; /* Restore full width */
-            text-align: left;
             cursor: pointer;
-            border-radius: 6px;
-            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.2s ease-out, box-shadow 0.3s ease-in-out;
-            
-            display: flex; /* Keep flex to align icon and text */
-            align-items: center;
-            gap: 0.8rem; /* Space between icon and text */
-            font-weight: 500;
-        }
-
-        /* Style for icons inside sidebar buttons */
-        .sidebar nav button i {
-            font-size: 1.4em; /* Adjust icon size within the button */
-            margin-right: 0.5em; /* Add margin back */
-        }
-
-        .sidebar nav button:hover {
-            background-color: #333;
-            color: #64ffda;
-            transform: translateY(-3px); /* Changed to lift effect */
-            box-shadow: 0 4px 10px rgba(0,255,218,0.3); /* Added glowing shadow */
-        }
-
-        .sidebar nav button.active {
-            background-color: #64ffda;
-            color: #1f1f1f;
-            font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-
-        .sidebar nav button.active:hover {
-            background-color: #7affc8;
-        }
-
-        /* Main Content Area */
-        .content-area {
-            flex-grow: 1;
-            padding: 2rem 3rem;
-            display: flex;
-            flex-direction: column;
-            /* Animation applied by JS based on section visibility */
-        }
-
-        /* General Panel Styling */
-        .panel {
-            background-color: #2b2b2b;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            margin-bottom: 1.5rem;
-            /* Initial state for animations (hidden) */
-            transform: translateY(20px);
-            opacity: 0;
-            transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Smooth transition for page changes */
-            position: relative; /* Needed for z-index if elements overlap */
-            z-index: 1; /* Default z-index */
-        }
-
-        /* When a panel is active/visible */
-        .panel.active {
-            transform: translateY(0);
+            position: relative;
+            background-image: radial-gradient(circle at center, rgba(102, 252, 241, 0.1) 1px, transparent 1px),
+                              linear-gradient(to right, rgba(102, 252, 241, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(102, 252, 241, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            /* Added for smooth fade out */
             opacity: 1;
-            animation: fadeInUp 0.8s ease-out forwards; /* Apply animation when active */
-            z-index: 2; /* Bring active panel to front */
+            transition: opacity 0.5s ease-out;
         }
 
-        /* Hidden class for sections not currently active */
-        .content-section {
-            display: none;
-        }
-        .content-section.visible {
-            display: block; /* Show active section */
-            animation: fadeIn 0.7s ease-out forwards; /* Content area entry animation */
+        body.fade-out {
+            opacity: 0;
         }
 
-
-        /* Section Title Styling (e.g., Education, Experience) */
-        .section-title {
-            font-size: 1.8em;
-            border-bottom: 2px solid #64ffda;
-            padding-bottom: 0.5em;
-            margin-bottom: 1.5em;
-            color: #64ffda;
+        #landing-content {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+            pointer-events: none; /* Allow clicks to pass through to body */
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
 
-        /* List Styling (e.g., for bullet points in experience/projects) */
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-accent-aqua);
+            text-shadow: 0 0 15px rgba(102, 252, 241, 0.7);
+            margin-bottom: 1rem;
+            animation: pulse-glow 2s infinite alternate;
         }
 
-        ul li {
-            margin-bottom: 0.8em;
-            transition: transform 0.3s ease-out;
+        p {
+            font-size: 1.2rem;
+            color: var(--color-text-light-grey);
+            opacity: 0.8;
+            animation: fadeIn 2s ease-in-out;
         }
 
-        ul li:hover {
-            transform: translateX(5px);
+        @keyframes pulse-glow {
+            from { text-shadow: 0 0 15px rgba(102, 252, 241, 0.7); }
+            to { text-shadow: 0 0 25px rgba(102, 252, 241, 1), 0 0 35px rgba(102, 252, 241, 0.5); }
         }
 
-
-        /* Styling for individual items within experience, projects, and education */
-        .experience-item, .project-item, .education-item {
-            margin-bottom: 1.5em;
-            padding-bottom: 0.5em;
-            border-bottom: 1px dashed rgba(100, 255, 218, 0.3);
-        }
-
-        /* Remove border and extra margin for the last item in a list */
-        .experience-item:last-child, .project-item:last-child, .education-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        /* Specific text styling for job/project titles, company names, and dates */
-        .job-title, .project-name {
-            font-weight: bold;
-            font-size: 1.2em;
-            color: #90ee90;
-        }
-
-        .company-name, .project-tech {
-            font-style: italic;
-            color: #bdbdbd;
-            margin-bottom: 0.5em;
-            display: block;
-        }
-
-        .dates {
-            font-size: 0.9em;
-            color: #a0a0a0;
-            margin-bottom: 0.5em;
-            display: block;
-        }
-
-        /* Grid layout for the skills section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skills-grid h3 {
-            color: #90ee90;
-            margin-bottom: 0.5em;
-        }
-
-        /* Social Links Styling */
-        .social-links {
-            display: flex;
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
-            justify-content: center; /* Center horizontally */
-            gap: 1.5rem; /* Space between links */
-            margin-top: 2rem; /* Space above social links */
-            padding-top: 1rem;
-            border-top: 1px solid rgba(100, 255, 218, 0.2); /* Separator line */
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center; /* Center icon within social link button */
-            width: 50px;
-            height: 50px;
-            padding: 0; /* Remove padding as content is centered */
-            color: #e0e0e0; /* Default color for social links */
-            transition: color 0.3s ease-in-out, transform 0.2s ease-out;
-            border-radius: 6px; /* Slightly rounded for button feel */
-            background-color: #3a3a3a; /* Subtle background */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            flex-shrink: 0; /* Prevent shrinking */
-        }
-
-        .social-links a:hover {
-            color: #64ffda; /* Accent color on hover */
-            transform: translateY(-3px); /* Lift effect */
-            text-decoration: none; /* No underline on hover */
-            box-shadow: 0 4px 10px rgba(0,255,218,0.3); /* Accent shadow */
-        }
-
-        /* Adjust icon specific spacing for Font Awesome in social links */
-        .social-links a i {
-            margin: 0; /* Remove margin as it's the only content */
-            font-size: 1.2em; /* Larger icon size */
-        }
-
-        /* Keyframe Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
-            to { opacity: 1; }
+            to { opacity: 0.8; }
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideInLeft {
-            from { transform: translateX(-100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        @keyframes bounceIn {
-            0% { transform: scale(0.1); opacity: 0; }
-            60% { transform: scale(1.05); opacity: 1; }
-            80% { transform: scale(0.95); }
-            100% { transform: scale(1); }
-        }
-
-
-        /* Responsive Adjustments for Smaller Screens */
-        @media (max-width: 960px) {
-            body {
-                padding: 10px; /* Adjust body padding for small screens */
-            }
-            .main-container {
-                flex-direction: column;
-                border-radius: 0;
-                box-shadow: none;
-                min-height: auto; /* Allow height to adjust to content */
-            }
-
-            .sidebar {
-                width: 100%;
-                padding: 1.5rem 1rem;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-                animation: fadeIn 0.7s ease-out forwards;
-            }
-
-            .sidebar h2 {
-                margin-bottom: 1rem;
-            }
-
-            .sidebar nav ul {
-                flex-direction: row; /* Change to row for horizontal layout */
-                flex-wrap: wrap; /* Allow items to wrap */
-                justify-content: center; /* Center items horizontally */
-                gap: 0.75rem; /* Space between buttons */
-            }
-
-            .sidebar nav li {
-                /* Allow items to grow/shrink based on content with a minimum width */
-                flex: 1 1 auto; /* Default flex behavior */
-                min-width: 120px; /* A reasonable minimum width for a button on a tablet/small screen */
-                margin-bottom: 0.5rem; /* Small vertical margin between wrapped rows */
-            }
-
-            .sidebar nav button {
-                width: 100%; /* Restore full width within its flex item */
-                height: auto; /* Restore auto height */
-                font-size: 0.95em; /* Slightly smaller font for more fit */
-                padding: 0.6rem 0.8rem; /* Restore padding */
-                text-align: center; /* Center text/icon within the button */
-                justify-content: center; /* Center icon and text */
-                transform: none !important; /* Override hover transform */
-            }
-            .sidebar nav button:hover {
-                transform: none; /* Keep hover transform off for mobile consistency */
-            }
-            .sidebar nav button i {
-                font-size: 1.2em; /* Ensure icon size remains readable */
-                margin-right: 0.5em; /* Retain space between icon and text */
-            }
-
-            .content-area {
-                padding: 1.5rem 1rem;
-            }
-        }
-
-        @media (max-width: 480px) { /* Targeting smaller phones specifically */
-            .sidebar nav ul {
-                gap: 0.5rem; /* Even smaller gap for very tight screens */
-            }
-            .sidebar nav li {
-                flex: 1 1 calc(50% - 0.25rem); /* Aim for two columns with smaller gap */
-                min-width: unset; /* Allow items to shrink more on very small screens */
-            }
-            .sidebar nav button {
-                font-size: 0.85em; /* Further reduce font size */
-                padding: 0.4rem 0.6rem; /* Reduce padding */
-            }
-            .sidebar nav button i {
-                font-size: 1.1em; /* Smaller icon size for very small screens */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            /* Styling for the profile image specifically */
-            .profile-pic-container img {
-                margin-right: 0 !important;
-                margin-bottom: 1rem;
-                animation: bounceIn 1s ease-out;
-            }
-            .section-title {
-                font-size: 1.5em;
-            }
-            .job-title, .project-name {
-                font-size: 1.1em;
-            }
-            .social-links {
-                flex-direction: row; /* Keep social links in a row if space allows */
-                justify-content: center; /* Center them */
-                gap: 0.8rem; /* Reduce gap */
-            }
-            .social-links a {
-                width: 45px; /* Consistent small size for social links */
-                height: 45px;
-            }
-            .social-links a i { /* Ensure consistent icon size on small screens */
-                font-size: 1.1em;
-            }
-        }
-
-        /* Specific styling for the profile picture container and image */
-        .profile-pic-container {
-            min-width: 120px;
-            height: 120px;
+        /* Warmup animation elements */
+        .warmup-effect {
+            position: absolute;
+            background-color: var(--color-accent-aqua);
             border-radius: 50%;
-            overflow: hidden; /* Ensures image respects border-radius */
-            margin-right: 2rem;
-            box-shadow: 0 0 15px rgba(100, 255, 218, 0.6); /* Glowing effect */
-            flex-shrink: 0; /* Prevent shrinking */
+            opacity: 0;
+            transform: scale(0);
+            pointer-events: none;
+            animation: warmup-pulse 1s forwards ease-out;
+            box-shadow: 0 0 20px var(--color-accent-aqua);
+            z-index: 5;
         }
-        .profile-pic-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Covers the area, cropping if necessary */
-            display: block; /* Removes extra space below image */
+
+        @keyframes warmup-pulse {
+            from { opacity: 0.5; transform: scale(0); }
+            to { opacity: 0; transform: scale(5); } /* Expand significantly */
         }
-        
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            p { font-size: 1rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <!-- Sidebar Navigation -->
-        <div class="sidebar">
-            <h2>Portfolio</h2>
-            <nav>
-                <ul>
-                    <li><button id="nav-profile"><i class="fas fa-user"></i>Profile</button></li>
-                    <li><button id="nav-education"><i class="fas fa-graduation-cap"></i>Education</button></li>
-                    <li><button id="nav-experience"><i class="fas fa-briefcase"></i>Experience</button></li>
-                    <li><button id="nav-projects"><i class="fas fa-project-diagram"></i>Projects</button></li>
-                    <li><button id="nav-skills"><i class="fas fa-tools"></i>Skills</button></li>
-                    <li><button id="nav-extracurriculars"><i class="fas fa-medal"></i>Activities</button></li>
-                </ul>
-            </nav>
-        </div>
-
-        <!-- Content Area -->
-        <div class="content-area">
-            <!-- Profile Section -->
-            <section id="section-profile" class="content-section">
-                <div class="panel">
-                    <div style="display: flex; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center;">
-                        <!-- Profile Picture -->
-                        <div class="profile-pic-container">
-                            <img src="assets/profilepic.jpg" alt="Prathamesh Upadhye Profile Picture"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/120x120/64ffda/1f1f1f?text=PU';" />
-                        </div>
-                        <div class="header-content" style="flex-grow: 1; text-align: left;">
-                            <h1 style="margin: 0; font-size: 2.8em; letter-spacing: 1px;">Prathamesh Upadhye</h1>
-                            <p style="margin: 0.5em 0 0.2em; color: #bdbdbd; font-size: 1.05em;">
-                                A/203, ShekharNagar Building, Dahisar (West), Mumbai-400068, India
-                            </p>
-                            <p style="margin: 0.2em 0; color: #bdbdbd; font-size: 1.05em;">
-                                <a href="mailto:bhalprathamesh6@gmail.com" style="display: inline-flex; align-items: center;">
-                                    <span style="margin-right: 0.5em;">📧</span> bhalprathamesh6@gmail.com
-                                </a>
-                            </p>
-                            <p style="margin: 0.2em 0; color: #bdbdbd; font-size: 1.05em;">
-                                <a href="tel:+919137887904" style="display: inline-flex; align-items: center;">
-                                    <span style="margin-right: 0.5em;">📞</span> +91 9137887904
-                                </a>
-                            </p>
-                            <p style="margin: 1em 0 0; color: #90ee90; font-weight: bold; font-size: 1.3em;">
-                                Cybersecurity & Software Quality Assurance Specialist
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Social Links Section -->
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/prathameshupadhye/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://github.com/YourGitHubProfile" target="_blank" rel="noopener noreferrer" title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://steamcommunity.com/id/YourSteamProfile" target="_blank" rel="noopener noreferrer" title="Steam">
-                            <i class="fab fa-steam"></i>
-                        </a>
-                        <a href="https://www.instagram.com/YourInstagramProfile/" target="_blank" rel="noopener noreferrer" title="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="panel">
-                    <h2 class="section-title">About Me</h2>
-                    <p>
-                        Passionate and highly motivated Cybersecurity and Quality Assurance professional with a strong foundation in
-                        identifying vulnerabilities and ensuring software reliability. Eager to apply analytical skills and technical
-                        expertise to dynamic challenges in information security and software testing.
-                    </p>
-                    <p>
-                        My experience ranges from conducting security testing and identifying critical bugs in gaming systems to
-                        developing network scanning tools and ethical keyloggers. I thrive in collaborative environments and am
-                        committed to continuous improvement and securing digital infrastructures.
-                    </p>
-                </div>
-            </section>
-
-            <!-- Education Section -->
-            <section id="section-education" class="content-section">
-                <div class="panel">
-                    <h2 class="section-title">Education</h2>
-                    <div class="education-item">
-                        <h3 class="job-title">St Francis Institute of Technology, Mumbai University, India</h3>
-                        <span class="dates">July 2024</span>
-                        <p>Graduated with a Bachelor of Engineering in Information Technology with Distinction (CGPA 7.65/10)</p>
-                        <p><span style="font-weight: bold; color: #90ee90;">Honors in Cybersecurity</span></p>
-                    </div>
-                    <div class="education-item">
-                        <h3 class="job-title">Nirmala Memorial Foundation Junior College, Mumbai, India</h3>
-                        <span class="dates">March 2020</span>
-                        <p>Secured Distinction in Higher Secondary Certificate Examination (62.31%)</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Experience Section -->
-            <section id="section-experience" class="content-section">
-                <div class="panel">
-                    <h2 class="section-title">Professional Experience</h2>
-                    <div class="experience-item">
-                        <h3 class="job-title">Software Test Engineer</h3>
-                        <span class="company-name">Testriq QA Lab LLP, Thane, India</span>
-                        <span class="dates">July 2024 – Present</span>
-                        <ul>
-                            <li>Executing smoke testing and regression testing to validate software functionality and stability after changes or updates.</li>
-                            <li>Performing security testing to identify vulnerabilities, ensuring applications adhere to best practices and compliance standards.</li>
-                            <li>Collaborating with clients to provide tailored solutions, gather requirements, and address specific testing needs.</li>
-                            <li>Conducting manual and automation testing using version control software has led to an improvement in testing efficiency by approximately 30% to 70%, including reductions in testing time by 30% to 50%, increased bug detection rates by 20% to 40%, and enhancements in release frequency by 25% to 60%.</li>
-                            <li>Identified and resolved bugs throughout the web development lifecycle, leveraging tools such as Jira and TestRail for effective tracking and reporting.</li>
-                            <li>Assigned to implement testing strategies and frameworks to enhance the overall quality assurance process, fostering continuous improvement within the team.</li>
-                        </ul>
-                    </div>
-                    <div class="experience-item">
-                        <h3 class="job-title">Software Test Intern</h3>
-                        <span class="company-name">Testriq QA Lab LLP, Thane, India</span>
-                        <span class="dates">June 2024 – July 2024</span>
-                        <ul>
-                            <li>Studied how to write effective test cases for various applications, ensuring comprehensive coverage of functional requirements.</li>
-                            <li>Tasked with identifying and documenting bugs during manual testing processes, providing clear and actionable feedback to development teams.</li>
-                            <li>Carried out thorough software testing to ensure application quality, including exploratory testing to uncover edge cases and unexpected behavior.</li>
-                            <li>Assisted in creating and maintaining test documentation, contributing to a structured testing process.</li>
-                        </ul>
-                    </div>
-                    <div class="experience-item">
-                        <h3 class="job-title">Public Beta Tester – &quot;Fall Guys&quot;</h3>
-                        <span class="company-name">Epic Games, Cary, North Carolina, USA (Remote)</span>
-                        <span class="dates">May 2022 – November 2022</span>
-                        <ul>
-                            <li>Participated in the beta testing phase of &quot;Fall Guys,&quot; identifying bugs and providing actionable feedback.</li>
-                            <li>Undertook comprehensive testing to ensure game functionality and stability after updates.</li>
-                            <li>Collaborated with development teams to gather requirements and address specific testing needs.</li>
-                            <li>Utilized Discord for real-time bug reporting and communication with the testing team.</li>
-                            <li>Assigned to execute both manual and automated testing methodologies to enhance testing efficiency.</li>
-                            <li>Discovered a critical game-breaking bug in the voice chat system, demonstrating the ability to identify high-impact issues.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Projects Section -->
-            <section id="section-projects" class="content-section">
-                <div class="panel">
-                    <h2 class="section-title">Academic Projects</h2>
-                    <div class="project-item">
-                        <h3 class="project-name">Automated Drone Delivery System</h3>
-                        <span class="project-tech">Technologies used: Flutter, JavaScript, Firebase, Google Maps API, Security Protocols</span>
-                        <ul>
-                            <li>Developed a secure web application using Flutter for frontend development and Firebase for backend management and real-time data synchronization, ensuring the safety of drones during delivery operations.</li>
-                            <li>Designed and integrated Google Maps UI for real-time route visualization and optimized delivery path planning, enhancing operational efficiency.</li>
-                            <li>Employed Firebase for backend management, ensuring reliable data synchronization and scalability to accommodate varying delivery volumes.</li>
-                            <li>Introduced security protocols to protect data and prevent unauthorized access, enhancing system integrity and user trust.</li>
-                            <li>Incorporated real-time notifications for users to track delivery status and receive updates on drone locations.</li>
-                            <li>Carried out thorough testing and debugging of the application to ensure seamless functionality across devices, resulting in a robust and user-friendly experience.</li>
-                        </ul>
-                    </div>
-                    <div class="project-item">
-                        <h3 class="project-name">PScanner (Network Scanning Tool)</h3>
-                        <span class="project-tech">Technologies used: Python, Scapy, Nmap, OS Fingerprinting, Service Enumeration</span>
-                        <ul>
-                            <li>Built a Python-based tool for advanced network scanning, identifying open ports, and mapping network devices to enhance network visibility and management.</li>
-                            <li>Deployed OS fingerprinting to determine the operating systems running on detected devices, improving network visibility and enabling targeted security measures; incorporated service enumeration to detect running services and unpatched vulnerabilities, enhancing proactive security measures and facilitating risk assessment.</li>
-                            <li>Applied network segmentation and vulnerability patching to mitigate risks from exposed services and ports, bolstering overall network security posture; integrated a user-friendly interface using React for easy navigation and reporting, allowing users to quickly analyze scan results and implement necessary actions.</li>
-                            <li>Introduced scheduling features for automated periodic scans, ensuring continuous monitoring of network security and timely identification of new vulnerabilities; developed comprehensive documentation and user guides to facilitate tool adoption and effective utilization by network administrators and security teams.</li>
-                        </ul>
-                    </div>
-                    <div class="project-item">
-                        <h3 class="project-name">Keylogger (Ethical Data Logging Tool)</h3>
-                        <span class="project-tech">Technologies used: Python, PyHook, Pynput, Data Encryption, Access Control</span>
-                        <ul>
-                            <li>Involved in designing a Python-based Keylogger for ethical research on vulnerabilities in unauthorized data access, contributing to the understanding of security flaws.</li>
-                            <li>Integrated encryption to securely store captured data, ensuring sensitive information remained protected and encrypted at all times.</li>
-                            <li>Implemented restricted access mechanisms to prevent unauthorized retrieval of logged data, maintaining ethical usage standards and compliance with privacy regulations.</li>
-                            <li>Programmed a monitoring system using Python with PyHook and Pynput libraries to analyze user input in controlled environments without breaching privacy guidelines, ensuring ethical data collection.</li>
-                            <li>Devised a user consent framework using Python and Flask to ensure participants were fully informed about data collection practices, reinforcing ethical research principles.</li>
-                            <li>Conducted thorough testing and validation of the Keylogger to ensure reliability and accuracy, minimizing potential disruptions in controlled environments.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Skills Section -->
-            <section id="section-skills" class="content-section">
-                <div class="panel">
-                    <h2 class="section-title">Technical Skills</h2>
-                    <div class="skills-grid">
-                        <div>
-                            <h3>Programming and Scripting</h3>
-                            <ul>
-                                <li>Python, Bash, and PowerShell for automation and security scripting.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>Networking and Network Security</h3>
-                            <ul>
-                                <li>TCP/IP, firewalls, VPNs</li>
-                                <li>Tools: Wireshark and Nmap</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>Operating Systems</h3>
-                            <ul>
-                                <li>Expertise in Linux (Kali, Parrot), Windows, and macOS with OS hardening skills.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>Penetration Testing Tools</h3>
-                            <ul>
-                                <li>Experience with Burp Suite, OWASP ZAP, Metasploit, and Nessus for ethical hacking.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>Cloud Security</h3>
-                            <ul>
-                                <li>Knowledge of AWS, Azure, GCP security practices, and cloud workload protection.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>Version Control</h3>
-                            <ul>
-                                <li>Proficient with Git, GitHub, and Jira for version control and collaboration.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Extracurriculars Section -->
-            <section id="section-extracurriculars" class="content-section">
-                <div class="panel">
-                    <h2 class="section-title">Extracurricular Activities</h2>
-                    <ul>
-                        <li>Managed event flow and coordinated activities as a Stage Admin Volunteer at Mumbai ComicCon (2023-24), ensuring a seamless experience for attendees; involved in troubleshooting any issues that arose and facilitating communication between different teams.</li>
-                        <li>Led initiatives to boost student engagement through workshops and networking events as Vice President of the IT Students&apos; Association (ITSA) at St. Francis Institute of Technology (2023); collaborated with faculty to create valuable opportunities for students to connect with industry professionals.</li>
-                        <li>Participated in the Valorant tournament held at Shree LR Tiwari College of Engineering for the fest called MetaSummit (2023).</li>
-                        <li>Facilitated the smooth execution of live esports events as a Stage Admin and Operator at the SkyEsports LAN Event (2023); coordinated logistics and ensuring that all technical aspects ran without a hitch, contributing to a successful event.</li>
-                        <li>Achieved consecutive victories as a participant in the Zephyr Rocket League Tournament (2022-23), showcasing strategic gameplay and teamwork.</li>
-                        <li>Volunteered in St Francis Institute of Technology campus blood donation drives (2022-2023), raising awareness and supporting community health; promoted the events and encouraged fellow students to contribute to this important cause.</li>
-                    </ul>
-                </div>
-            </section>
-        </div>
+    <div id="landing-content">
+        <h1>Welcome to my Portfolio Website</h1>
+        <h1 class="mt-4">- PRATHAMESH UPADHYE -</h1>
+        <p class="mt-8">Click anywhere to continue...</p>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get all navigation buttons and content sections
-            const navButtons = {
-                profile: document.getElementById('nav-profile'),
-                education: document.getElementById('nav-education'),
-                experience: document.getElementById('nav-experience'),
-                projects: document.getElementById('nav-projects'),
-                skills: document.getElementById('nav-skills'),
-                extracurriculars: document.getElementById('nav-extracurriculars')
-            };
-
-            const contentSections = {
-                profile: document.getElementById('section-profile'),
-                education: document.getElementById('section-education'),
-                experience: document.getElementById('section-experience'),
-                projects: document.getElementById('section-projects'),
-                skills: document.getElementById('section-skills'),
-                extracurriculars: document.getElementById('section-extracurriculars')
-            };
-
-            let currentPage = 'profile'; // Initial active page
-
-            // Function to update the UI based on the active page
-            function updateUI(newPage) {
-                // Deactivate current nav button and hide current section
-                if (navButtons[currentPage]) {
-                    navButtons[currentPage].classList.remove('active');
-                }
-                if (contentSections[currentPage]) {
-                    contentSections[currentPage].classList.remove('visible');
-                    // Remove 'active' from panels within the previous section to reset animation state
-                    const oldPanels = contentSections[currentPage].querySelectorAll('.panel');
-                    oldPanels.forEach(panel => panel.classList.remove('active'));
-                }
-
-                currentPage = newPage; // Set the new current page
-
-                // Activate new nav button and show new section
-                if (navButtons[currentPage]) {
-                    navButtons[currentPage].classList.add('active');
-                }
-                if (contentSections[currentPage]) {
-                    contentSections[currentPage].classList.add('visible');
-                    // Apply 'active' to panels within the new section with a delay
-                    const newPanels = contentSections[currentPage].querySelectorAll('.panel');
-                    newPanels.forEach((panel, index) => {
-                        panel.classList.remove('active'); // Ensure state is reset before applying
-                        setTimeout(() => {
-                            panel.classList.add('active');
-                        }, index * 100); // Stagger animation for each panel
-                    });
-                }
+        document.body.addEventListener('click', function(event) {
+            // Prevent multiple clicks from triggering multiple animations/redirects
+            if (document.body.classList.contains('activating-portfolio')) {
+                return;
             }
+            document.body.classList.add('activating-portfolio');
 
-            // Add event listeners to navigation buttons
-            for (const key in navButtons) {
-                if (navButtons.hasOwnProperty(key)) {
-                    navButtons[key].addEventListener('click', function() {
-                        updateUI(key);
-                    });
-                }
-            }
+            const clickX = event.clientX;
+            const clickY = event.clientY;
 
-            // Initialize UI on page load to show the default page ('profile')
-            updateUI(currentPage);
+            // Create and animate the warmup effect
+            const warmupEffect = document.createElement('div');
+            warmupEffect.classList.add('warmup-effect');
+            warmupEffect.style.left = `${clickX}px`;
+            warmupEffect.style.top = `${clickY}px`;
+            // Adjust origin for circular expansion
+            warmupEffect.style.transformOrigin = 'center center';
+            warmupEffect.style.width = '10px'; /* Starting small */
+            warmupEffect.style.height = '10px';
+            document.body.appendChild(warmupEffect);
+
+            // Hide the text content
+            const landingContent = document.getElementById('landing-content');
+            landingContent.style.opacity = '0';
+            landingContent.style.transform = 'scale(0.9)';
+
+            // Start body fade out
+            document.body.classList.add('fade-out');
+
+            // Redirect after animation completes
+            setTimeout(() => {
+                window.location.href = 'portfolio.html';
+            }, 500); // Match fade-out animation duration
         });
     </script>
 </body>
