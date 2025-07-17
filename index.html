@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prathamesh Upadhye – CS:GO Portfolio Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ===================== Landing Section ===================== -->
+    <section id="landing" class="landing-section">
+        <div class="landing-background">
+            <div class="dust2-bg" id="dust2Background"></div>
+            <div class="cyber-bg" id="cyberBackground"></div>
+            <div class="particles-container" id="particles"></div>
+        </div>
+        
+        <div class="landing-content">
+            <div class="main-title">
+                <h1 class="title-text">PRATHAMESH UPADHYE</h1>
+                <div class="subtitle">SOFTWARE TEST ENGINEER • CYBERSECURITY • FELLOW GAMER</div>
+            </div>
+            
+            <div class="team-selection">
+                <button id="fellowGamerBtn" class="team-btn gamer-btn" aria-label="Enter Fellow Gamer Section">
+                    <div class="btn-content">
+                        <div class="btn-icon">🎮</div>
+                        <div class="btn-text">FELLOW GAMER</div>
+                    </div>
+                    <div class="btn-glow"></div>
+                </button>
+                
+                <div class="vs-divider">VS</div>
+                
+                <button id="recruiterBtn" class="team-btn recruiter-btn" aria-label="Enter Recruiter Section">
+                    <div class="btn-content">
+                        <div class="btn-icon">💼</div>
+                        <div class="btn-text">RECRUITER</div>
+                    </div>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== Fellow Gamer Section ===================== -->
+    <section id="gamerSection" class="main-section hidden">
+        <div class="section-background">
+            <div class="background-overlay"></div>
+        </div>
+        
+        <header class="section-header">
+            <button class="logo" id="gamerLogo" aria-label="Return to Home">MAIN MENU</button>
+            <nav class="tab-navigation" role="tablist">
+                <button class="nav-tab active" data-target="gamesPlayed" role="tab" aria-selected="true">GAMES PLAYED</button>
+                <button class="nav-tab" data-target="csgoTimeline" role="tab" aria-selected="false">CS:GO TIMELINE</button>
+                <button class="nav-tab" data-target="iconicMoments" role="tab" aria-selected="false">ICONIC MOMENTS</button>
+                <button class="nav-tab" data-target="majors" role="tab" aria-selected="false">MAJORS</button>
+            </nav>
+        </header>
+
+        <div class="section-content">
+            <div id="gamesPlayed" class="content-panel active" role="tabpanel">
+                <div class="content-scroll">
+                    <div class="games-grid" id="gamesGrid"></div>
+                </div>
+            </div>
+
+            <div id="csgoTimeline" class="content-panel" role="tabpanel">
+                <div class="content-scroll">
+                    <div class="timeline-container" id="timelineContainer"></div>
+                </div>
+            </div>
+
+            <div id="iconicMoments" class="content-panel" role="tabpanel">
+                <div class="content-scroll">
+                    <div class="moments-grid" id="momentsGrid"></div>
+                </div>
+            </div>
+
+            <div id="majors" class="content-panel" role="tabpanel">
+                <div class="content-scroll">
+                    <div class="majors-timeline" id="majorsTimeline"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== Recruiter Section ===================== -->
+    <section id="recruiterSection" class="main-section hidden">
+        <div class="section-background">
+            <div class="background-overlay"></div>
+        </div>
+        
+        <header class="section-header">
+            <button class="logo" id="recruiterLogo" aria-label="Return to Home">MAIN MENU</button>
+            <nav class="tab-navigation" role="tablist">
+                <button class="nav-tab active" data-target="aboutMe" role="tab" aria-selected="true">ABOUT ME</button>
+                <button class="nav-tab" data-target="skills" role="tab" aria-selected="false">SKILLS</button>
+                <button class="nav-tab" data-target="education" role="tab" aria-selected="false">EDUCATION</button>
+                <button class="nav-tab" data-target="experience" role="tab" aria-selected="false">EXPERIENCE</button>
+                <button class="nav-tab" data-target="projects" role="tab" aria-selected="false">PROJECTS</button>
+            </nav>
+        </header>
+
+        <div class="section-content">
+            <div id="aboutMe" class="content-panel active" role="tabpanel">
+                <div class="content-scroll" id="aboutContent"></div>
+            </div>
+
+            <div id="skills" class="content-panel" role="tabpanel">
+                <div class="content-scroll" id="skillsContent"></div>
+            </div>
+
+            <div id="education" class="content-panel" role="tabpanel">
+                <div class="content-scroll" id="educationContent"></div>
+            </div>
+
+            <div id="experience" class="content-panel" role="tabpanel">
+                <div class="content-scroll" id="experienceContent"></div>
+            </div>
+
+            <div id="projects" class="content-panel" role="tabpanel">
+                <div class="content-scroll" id="projectsContent"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== Video Modal ===================== -->
+    <div id="videoModal" class="modal hidden" role="dialog" aria-labelledby="videoTitle" aria-modal="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="videoTitle" class="modal-title">CS:GO Iconic Moment</h2>
+                <button class="modal-close" id="modalClose" aria-label="Close Video">&times;</button>
+            </div>
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <iframe id="videoFrame" src="" frameborder="0" allowfullscreen 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            title="CS:GO Highlight Video"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== Easter Egg Elements ===================== -->
+    <div class="easter-eggs">
+        <button class="moai-easter" id="moaiEaster" aria-label="Rocket League Easter Egg">🗿</button>
+        <div class="konami-indicator" id="konamiIndicator" aria-live="polite">SARPBC MODE</div>
+    </div>
+
+    <!-- ===================== Loading Indicator ===================== -->
+    <div id="loadingIndicator" class="loading-indicator hidden">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
